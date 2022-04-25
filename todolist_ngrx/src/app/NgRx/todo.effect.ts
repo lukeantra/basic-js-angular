@@ -17,10 +17,10 @@ export class TodoEffect {
             mergeMap(actions => {
                 return this.http.get<Todo[]>([this.baseUrl, this.path].join('/')).pipe(
                     map((todos: Todo[]) => {
-                        return TodoActions.loadTodoListSuccess({ todolist: todos})
+                        return TodoActions.loadTodoListSuccess({ todolist: todos })
                     }),
                     catchError(err => {
-                        return of(TodoActions.loadTodoListFailure( {err}))
+                        return of(TodoActions.loadTodoListFailure({ err }))
                     })
                 )
             })
@@ -33,15 +33,33 @@ export class TodoEffect {
             ofType(TodoActions.addTodo),
             mergeMap(actions => {
                 return this.http.post<Todo[]>
-                ([this.baseUrl, this.path].join('/'), actions.todo).pipe(
-                    map((todo:any) => 
-                     TodoActions.addTodoListSuccess({ todo })
-                    ),
-                    catchError(err => 
-                        of(TodoActions.addTodoListFailure( {err}))
+                    ([this.baseUrl, this.path].join('/'), actions.todo).pipe(
+                        map((todo: any) =>
+                            TodoActions.addTodoListSuccess({ todo })
+                        ),
+                        catchError(err =>
+                            of(TodoActions.addTodoListFailure({ err }))
+                        )
                     )
-                )
             })
+        )
+    });
+
+    //delete todo
+    deleteTodo$ = createEffect(() => {
+        return this.actions$.pipe(
+            ofType(TodoActions.deleteTodo),
+            mergeMap(({ id }) =>
+                this.http.delete<Todo[]>
+                    ([this.baseUrl, this.path, id].join('/')).pipe(
+                        map((_) =>
+                            TodoActions.deleteTodoListSuccess({id})
+                        ),
+                        catchError(err =>
+                            of(TodoActions.deleteTodoListFailure({ err }))
+                        )
+                    )
+            )
         )
     });
 

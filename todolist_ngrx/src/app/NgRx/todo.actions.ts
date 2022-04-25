@@ -7,6 +7,7 @@ export const loadTodoList = createAction('[TodoList] Load TodoList');
 
 export const loadTodoListSuccess = createAction(
     '[TodoList] Load TodoList success',
+    // feedback
     props<{ todolist: Todo[] }>()
 );
 
@@ -16,7 +17,8 @@ export const loadTodoListFailure = createAction(
 );
 
 // addtodo
-export const addTodo = createAction('[TodoList] Add Todo',
+export const addTodo = createAction(
+    '[TodoList] Add Todo',
  props<{ todo: Todo }>());
 
 export const addTodoListSuccess = createAction(
@@ -26,5 +28,20 @@ export const addTodoListSuccess = createAction(
 
 export const addTodoListFailure = createAction(
     '[TodoList] add Todo failure',
+    props<{ err: string }>()
+);
+
+// deletetodo
+export const deleteTodo = createAction(
+    '[TodoList] delete Todo',
+    props<{ id: string }>());
+
+export const deleteTodoListSuccess = createAction(
+    '[TodoList] delete TodoList success',
+    props<{ id: string }>()
+);
+
+export const deleteTodoListFailure = createAction(
+    '[TodoList] delete Todo failure',
     props<{ err: string }>()
 );

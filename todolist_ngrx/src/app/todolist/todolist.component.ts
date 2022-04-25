@@ -31,9 +31,10 @@ export class TodolistComponent implements OnInit {
   }
 
   deletetodo(id: string) {
-    console.log(id);
-    this.todolist = this.todolist.filter((ele: any) => +ele.id !== +id);
-    this.todoservice.deleteTodo(id);
+    // console.log(id);
+    // this.todolist = this.todolist.filter((ele: any) => +ele.id !== +id);
+    // this.todoservice.deleteTodo(id);
+    this.store.dispatch(TodoActions.deleteTodo({ id }));
   }
 
   addtodo() {

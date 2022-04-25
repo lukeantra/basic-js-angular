@@ -61,4 +61,22 @@ export const todoreducer = createReducer(
             err: action.err,
         };
     }),
+    //delete todos
+    on(TodoActions.deleteTodoListSuccess, (state, { id }): TodoState => {
+        const newtodolist = state.todolist.filter(todo => {
+            return todo.id ? +todo.id !== +id : true
+        });
+        return {
+            ...state,
+            todolist: [...newtodolist],
+            err: '',
+        };
+    }),
+    on(TodoActions.deleteTodoListFailure, (state, {err}): TodoState => {
+        return {
+            ...state,
+            todolist: [],
+            err,
+        };
+    }),
 )
