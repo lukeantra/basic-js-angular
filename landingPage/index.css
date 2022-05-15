@@ -40,9 +40,6 @@ body {
     text-align: center;
 }
 
-.banner a {
-    color: var(--color-blue);
-}
 
 .images_container {
     margin-top: -120px;
