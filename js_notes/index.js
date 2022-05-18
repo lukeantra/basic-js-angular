@@ -14,33 +14,61 @@
 // console.log('number: typeof instance === ', typeof 911);
 // console.log('boolean: typeof instance === ', typeof true);
 // console.log('undefined: typeof instance === ', typeof undefined); //
-console.log(typeof null); 
+// console.log(typeof null); 
 
-// // Object Data
-// var arr = [];
+// undefined is where no notion of the thing exists; 
+// it has no type, and it's never been referenced before in that scope;
+//  null is where the thing is known to exist, 
+//  but it's not known what the value is.
 
-// var copyobj = obj;
-// const num = 3;
-// function foo(n) {
-//     n = 6;
-//     return n;
+// primitive data example
+// let a = 5;
+// function foo(input){
+//     input = 6;
+//     console.log(input);
 // }
-// console.log(foo(num))
-// console.log(num);
-// //如果是object 的话， 就可以改变内面的值。整个值是不能改变的。
-// var obj = {
-//     name: 'Dio',
-//     age: 200
-// }
-// function bar(obj) {
-//     // obj.name = 'Jojo';
-//     obj = {
-//         name: 'Joji',
-//         age: 200
+// foo(a);
+// console.log(a);
+// let b = 5;
+// let c = b;
+// b = 6;
+// console.log(b, c);
+
+// // Object Data -------------------------
+// how to create an object in js some students dont know how to create obj, 
+// you need to learn more by yourself after class
+// // plain obj or use class to create obj
+// var obj = {}
+// // prototype chain
+// console.log(obj);
+// // not a plain object, instead class object
+// class myObject {
+//     constructor() {
+
 //     }
 // }
+// var obj2 = new myObject();
+// console.log(obj2);
+
+//Q:---what is the type of function?
+// what is the type of array?
+// let arr = [1, 2, 3];
+// console.log(typeof(arr));
+
+// var copyobj = obj;
+// //
+// // passing by reference: arr, function, object
+// it wont let you pass reference through the arguments of a function
+// var obj = {
+//     name: 'Dio',
+// }
+// function bar(obj) {
+//     // create an new obj but only with the scope
+//     obj = {name: 'Jojo'}
+//     console.log(obj);
+// }
 // bar(obj);
-// console.log(obj.name);
+// console.log(obj);
 
 // // coercion 类型相互转换
 
@@ -53,6 +81,9 @@ console.log(typeof null);
 // console.log(typeof num2);
 
 // equality == vs. ===
+// dont know convert string to num or num to string
+// console.log('1' == 1); // true
+
 
 // console.log(undefined == null);
 // console.log(null == false);
@@ -62,13 +93,25 @@ console.log(typeof null);
 // console.log(isNaN('apple') === isNaN('banana'));
 // console.log(NaN == NaN);
 
-// ----------// var | let | const | function
+// always use === 
+
+
+// var vs let vs const
+// what is the difference between var and let 
+
+// create a table like this
+
+//             var | let | const | function
 // hoisting     y      y      y       y
 // init      undefined -      -       
 // scope     function block block
 
+// what is hoisting?
+// e.g., var = 5 what does it do. within the function, the first line, it will put
+// var a = undefined, and then in that line it will be a = 5;
+// so hoist is sending the first part (var a) to the top rahter than the whole statement
+
 // function foo() {
-//     var num = undefined;
 
 //     if (false) {
 //         num = 62;
@@ -76,9 +119,32 @@ console.log(typeof null);
 //     console.log(num);
 // }
 // foo();
+//-----------------------
+// function foo() {
+//     var num = undefined;
+//      console.log(num);
+
+//     if (false) {
+//         var num = 62;
+//     }
+//     console.log(num);
+// }
+// foo();
 
 
-// oop: Object oriented programming
+// undefined vs not defined (reference error)
+// undefined: you declare a varibale but without assign it.
+// console.log(abcd);
+// Q: what if you change keyword var to let 
+// Q: let vs const
+
+const obj = {name:'Dio' }
+obj.name = 'Jojo';
+console.log(obj);
+
+
+
+// ///////////////////////////////////////////////  oop: Object oriented programming
 // encapsulation 
 //ES6之后的写法
 // class Person {
