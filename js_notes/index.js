@@ -14,7 +14,7 @@
 // console.log('number: typeof instance === ', typeof 911);
 // console.log('boolean: typeof instance === ', typeof true);
 // console.log('undefined: typeof instance === ', typeof undefined); //
-// console.log(typeof null); 
+console.log(typeof null); 
 
 // // Object Data
 // var arr = [];
@@ -577,22 +577,22 @@ But when you are using "let" the time will help to hold the i.....
 // }
 
 // /*************************************interview question */
-const first = [
-    { userid: 2, name: 'Velen' },
-    { userid: 56, name: 'Illidan' },
-    { userid: 23, name: 'Muradin' },
-    { userid: 12, name: 'Sylvanas' },
-    { userid: 44, name: 'Cenarius' },
-    { userid: 4, name: 'Gul\'Dan'},
-];
-const second = [
-    { userid: 2, role: 'Mage' },
-    { userid: 4, role: 'Worlock' },
-    { userid: 56, role: 'Demon Hunter' },
-    { userid: 66, role: 'Druid' },
-    { userid: 87, role: 'Shaman' },
-    { userid: 12, role: 'Hunter' },
-];
+// const first = [
+//     { userid: 2, name: 'Velen' },
+//     { userid: 56, name: 'Illidan' },
+//     { userid: 23, name: 'Muradin' },
+//     { userid: 12, name: 'Sylvanas' },
+//     { userid: 44, name: 'Cenarius' },
+//     { userid: 4, name: 'Gul\'Dan'},
+// ];
+// const second = [
+//     { userid: 2, role: 'Mage' },
+//     { userid: 4, role: 'Worlock' },
+//     { userid: 56, role: 'Demon Hunter' },
+//     { userid: 66, role: 'Druid' },
+//     { userid: 87, role: 'Shaman' },
+//     { userid: 12, role: 'Hunter' },
+// ];
 
 // looking for
 // solution (firstarr, secondarr)
@@ -605,29 +605,29 @@ const second = [
 // ];
 
 
-function solution (firstarr, secondarr) {  
-    // const arr = firstarr.contact(secondarr);
-    const arr = [...firstarr, ...secondarr];
-    // the most important is to create a map
-    //override the key again and again
-    const map = {};
-    arr.forEach(ele => {
-        map[ele.userid] = {
-            ...{name: null, role:null},
-            //覆盖作用, Merge two maps. The last repeated key stay.
-            // 这个是指重复的id，也就是第二次出现的
-            ...map[ele.userid],
-            // 这个就是当前的
-            ...ele    
-        };
+// function solution (firstarr, secondarr) {  
+//     // const arr = firstarr.contact(secondarr);
+//     const arr = [...firstarr, ...secondarr];
+//     // the most important is to create a map
+//     //override the key again and again
+//     const map = {};
+//     arr.forEach(ele => {
+//         map[ele.userid] = {
+//             ...{name: null, role:null},
+//             //覆盖作用, Merge two maps. The last repeated key stay.
+//             // 这个是指重复的id，也就是第二次出现的
+//             ...map[ele.userid],
+//             // 这个就是当前的
+//             ...ele    
+//         };
         
-    })
-    console.log(map[2]);
-    return map;
+//     })
+//     console.log(map[2]);
+//     return map;
     
-}
+// }
 
-console.log(solution(first, second));
+// console.log(solution(first, second));
 
 
 /***JS day5 callback function & callback hell & Promise & My Promise ******/
