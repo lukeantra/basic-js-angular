@@ -171,9 +171,102 @@
 // overall you will prefer to use let and const rather than var
 
 ////////////////////////  oop: Object Oriented Programming ////////////////////
-// encapsulation 
-// ES6之后的写法  class
-// javascript does not have class structure
+
+
+// the old way to doing it before ES6
+// function 名字要大写 js的构函常用写法(constructor function)  但是这个是ES6以前的写法 
+// function PersonFn(name, age) {
+//     this.name = name;
+//     this.age = age;
+// }
+
+// // // no return 
+// // const dio = PersonFn('Dio', 200);
+// // console.log(dio);
+
+// const dio = new PersonFn('Dio', 200);
+// console.log(dio);
+
+// Q: what does the new keyword do? (constructor)
+// something like this, not exactly.
+
+// function PersonFn(name, age) {
+//     let obj = {}
+//     obj.name = name;
+//     obj.age = age;
+//     obj.__proto__.constructor = PersonFn;
+//     return obj;
+// }
+
+// const jojo = new PersonFn('Jojo', 200);
+// console.log(dio);
+
+//------------------------------------------------------
+// //create 了一个object/class的function：run
+// PersonFn.prototype.run = function() {
+//     console.log(`${this.name} is running`);
+// }
+
+
+// dio.run();
+// const jojo = new PersonFn('Jojo', 18);
+// jojo.run();
+// //给你看一下proto的东西
+// console.log(dio);
+// console.log(dio.__proto__);
+
+// // __proto__和 prototype不同的是： __proto__直接用实例来弄
+// // __proto__这个东西通过这个chain，有dio传到了PersonFn
+// // this stands for dio
+// dio.__proto__.run = function() {
+//     console.log(`${this.name} is running`);
+// }
+// //alternatively
+// jojo.walk = function() {
+//     console.log(`${this.name} is running`);
+// }
+// jojo.walk();
+
+// dio.run();
+// const jojo = new PersonFn('Jojo', 18);
+// jojo.run();
+
+// console.log(dio.prototype === dio.__proto__);
+// Q:how about this one??
+// console.log(PersonFn.prototype === dio.__proto__);// true class.prototype or instance.__proto__ 
+/*******************************************************/
+// another way of inheritance !!introduce the prototype!!
+// function PersonFn(name, age) {
+//     this.name = name;
+//     this.age = age;
+//     // this is the instance method
+//     this.run = function () {
+//         console.log(`${this.name} is running`);
+//     }
+// }
+// but when you using prototype you can not change the properties of the class.
+
+// PersonFn.prototype.walk = function() {
+//     console.log(`${this.name} is walking`);
+// }
+
+// // the way to create a static/class method.
+// PersonFn.jump = function () {
+//     console.log(`${this.name} is jumping`);
+// }
+
+// const jojo = new PersonFn('Jojo', 18);
+// jojo.run();
+// jojo.walk();
+// PersonFn.jump();
+
+
+// console.log(PersonFn);
+// -----------------------------------------------------------------------------
+// // encapsulation 
+// // ES6之后的写法  class
+// // javascript does not have class structure just syntax sugar for constructor function
+// // 
 // class Person {
 //     #name;
 //     #age;
@@ -195,48 +288,6 @@
 //     }
 // }
 
-// the old way to doing it before ES6
-// function 名字要大写 js的构函常用写法  但是这个是ES6以前的写法 
-// function PersonFn(name, age) {
-//     this.name = name;
-//     this.age = age;
-// }
-
-// // //create 了一个object/class的function：run
-// PersonFn.prototype.run = function() {
-//     console.log(`${this.name} is running`);
-// }
-
-// const dio = new PersonFn('Dio', 200);
-// //console.log(dio.name);
-// dio.run();
-// const jojo = new PersonFn('Jojo', 18);
-// jojo.run();
-// //给你看一下proto的东西
-// console.log(dio);
-// console.log(dio.__proto__);
-
-// __proto__和 prototype不同的是： __proto__直接用实例来弄
-//__proto__这个东西通过这个chain，有dio传到了PersonFn
-// dio.__proto__.run = function() {
-//     console.log(`${this.name} is running`);
-// }
-
-// dio.run();
-// const jojo = new PersonFn('Jojo', 18);
-// jojo.run();
-
-// console.log(dio.prototype === dio.__proto__);
-/*******************************************************/
-// // another way of inheritance !!introduce the prototype!!
-// function PersonFn(name, age) {
-//     this.name = name;
-//     this.age = age;
-// }
-
-// PersonFn.prototype.run = function() {
-//     console.log(`${this.name} is running`);
-// }
 // //gonna talk about keyword call later..
 // function EmployeeFn(name, age, company) {
 //     PersonFn.call(this, name, age);
