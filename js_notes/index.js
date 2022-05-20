@@ -114,7 +114,7 @@
 // function foo() {
 
 //     if (false) {
-//         num = 62;
+//         var num = 62;
 //     }
 //     console.log(num);
 // }
@@ -136,17 +136,44 @@
 // undefined: you declare a varibale but without assign it.
 // console.log(abcd);
 // Q: what if you change keyword var to let 
-// Q: let vs const
+// Q: let vs const (const cant reassign a value after it is assigned.)
 
-const obj = {name:'Dio' }
-obj.name = 'Jojo';
-console.log(obj);
+// but you can change/mutate inside of the obj. so just be more clear about the concepts
+// const obj = {name:'Dio' }
+// obj.name = 'Jojo';
+// console.log(obj);
+// object defineproperty. With some methods, you can't change it... it is advanced topic
+
+// (if someone mentioned) java use complier and check everything first, but js use interpreter//
 
 
+// let and const
+// function foo() {
 
-// ///////////////////////////////////////////////  oop: Object oriented programming
+//     if (true) {
+//         console.log(num);
+//         let/const num = 62;
+//     }
+//     console.log(num);
+// }
+// foo();
+
+// how about function....it will also do hoisting
+// console.log(foo);
+// function foo(){};
+// Ok, let's talk about a very important part, how about const or var a foo function 
+// hoisting function is diff with hositing var function, when you are
+// arrow funtion just need to be careful, because you can not use the arrow 
+// function before you declare it.
+// const foo = () => {}
+// var foo = () => {}
+
+// overall you will prefer to use let and const rather than var
+
+////////////////////////  oop: Object Oriented Programming ////////////////////
 // encapsulation 
-//ES6之后的写法
+// ES6之后的写法  class
+// javascript does not have class structure
 // class Person {
 //     #name;
 //     #age;
@@ -168,6 +195,7 @@ console.log(obj);
 //     }
 // }
 
+// the old way to doing it before ES6
 // function 名字要大写 js的构函常用写法  但是这个是ES6以前的写法 
 // function PersonFn(name, age) {
 //     this.name = name;
