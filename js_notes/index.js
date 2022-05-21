@@ -132,6 +132,7 @@
 // foo();
 
 
+
 // undefined vs not defined (reference error)
 // undefined: you declare a varibale but without assign it.
 // console.log(abcd);
@@ -155,6 +156,12 @@
 //         let/const num = 62;
 //     }
 //     console.log(num);
+// }
+// foo();
+
+// function foo(){
+//     let y; // ？？？
+//     console.log(y);
 // }
 // foo();
 
@@ -266,41 +273,73 @@
 // // encapsulation 
 // // ES6之后的写法  class
 // // javascript does not have class structure just syntax sugar for constructor function
-// // 
-// class Person {
-//     #name;
-//     #age;
-//     constructor(name, age) {
-//         this.#name = name;
-//         this.#age = age;
-//     }
-//     get name() {
-//         return this.#name;
-//     }
-//     set name(newName) {
-//         this.#name = newName;
-//     }
-//     run() {
-//         console.log(this.#name + ' is running');
-//         console.log(this.#name, 'is running');
+// // JS is not designed for oop but has the similar feature like oop
+class Person {
+    #name;
+    #age;
+    #height;
+    constructor(name, age, height) {
+        this.#name = name;
+        this.#age = age;
+        this.#height = height;
+    }
+    get name() {
+        return this.#name;
+    }
+    set name(newName) {
+        this.#name = newName;
+    }
+    run() {
+        console.log(this.#name + ' is running');
+        // console.log(this.#name, ' is running');
+        // console.log(`${this.#name} is running`);
+    }
+}
 
-//         console.log(`${this.#name} is running`);
-//     }
-// }
+const p = new Person('Dio', 18);
+// get method
+console.log(p.name);
+// set method
+p.name = 'Jojo';
+console.log(p.name);
 
-// //gonna talk about keyword call later..
-// function EmployeeFn(name, age, company) {
-//     PersonFn.call(this, name, age);
-//     this.company = company;
-// }
-// //extends
-// EmployeeFn.prototype = PersonFn.prototype;
+
+// Inheritance ------------------------------------------------
+
+
+// extends
+class Employee extends Person {
+    constructor(name, age, company) {
+        super(name, age);
+        this.company = company;
+    }
+}
+
+// Employee.prototype = Person.prototype;
 // //change the constructor name
 // EmployeeFn.prototype.constructor = EmployeeFn;
-// const e = new EmployeeFn('Dio',200,'Jump');
-// console.log(e);
+const e = new Employee('Dio',100,'Apple');
+console.log(e);
 
-// for loop
+// // Go back before es6, what is this call and binding ? (gonna talk about keyword call later)
+function PersonFn(name, age) {
+        this.name = name;
+        this.age = age;
+        // this is the instance method
+        this.run = function () {
+            console.log(`${this.name} is running`);
+        }
+    }
+// super is just a call, that why you can do extends in js
+function Employer(name, age, company) {
+    PersonFn.call(this, name, age);
+    this.company = company;
+}
+
+const er = new Employer('Dio',100,'Apple');
+console.log(er);
+
+// for loop------------------------------------------------------------
 // const arr = [1, 2, 3, 4, 5];
 // for (let i = 0; i < arr.length; i++) {
 //     console.log(arr[i]);
