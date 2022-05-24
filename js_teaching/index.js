@@ -426,35 +426,47 @@
 
 
 // -------------------for loop------------------------------------------
-// const arr = [1, 2, 3, 4, 5];
+// const arr = [1, 2, 3, ];
+// console.log(arr);
+
+// key-value pairs are properties such as 0: 1
+
 // for (let i = 0; i < arr.length; i++) {
 //     console.log(arr[i]);
 // }
 // for (let ele of arr) {
 //     console.log(ele);
 // }
-// //by this way we can construct an object
+
 // for (const index in arr) {
 //     console.log(arr[index]);
 // }
-// const obj ={
+
+// // we can construct an object
+// const obj = {
 //     name: 'Dio',
 //     age: 200
 // }
+// // what is the difference between this two: obj.name vs. obj['name']
+// // [] is for a variable, but . is for a given key or more like a sepecific key
+// console.log(obj.name, obj['name']);
+// // another example
 // for (const key in obj) {
 //     //you cant do things like: obj.key, becuase key is a variable
 //     console.log(key, obj[key]);
 // }
-// //自带方法 forEach building method****** but it is not orginal for loop!!!!!!!
 
+// //forEach building method-------- but it is not orginal for loop ----------
+// Q: where does this forEach come from ? (from the array class, foreach is a method of prototype)
 // //forEach cant use break and continune inside of the functions...
-// const arr = [1, 2, 3, 4, 5];
-// console.log(arr);
-// //function(ele is a callback funtion)
-// arr.forEach(function(ele) {
-//     console.log(ele);
-// });
-// //create my forEach
+const arr = [1, 2, 3, 4, 5];
+console.log(arr);
+//function(ele is a callback funtion)
+arr.forEach(function(ele) {
+    console.log(ele);
+});
+
+//create my forEach
 // Array.prototype.myforEach = function (callbackfn) {
 
 //     for (let i = 0; i < this.length; i++) {
@@ -469,7 +481,7 @@
 // // this will target to the instace itself... in this situation, it is arr...
 
 // // the difference between forEach and map
-//map always generate new array
+// // map always generate new array
 // console.log( arr.forEach(function(ele) {
 //     // console.log(ele);
 // }))
