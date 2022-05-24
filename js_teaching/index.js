@@ -355,59 +355,77 @@
 // we have a instance from employee when it calling some function, it always search from function 
 // employee (Itsself)first then from person(Parent). 
 // // so which means there is an order. instance > class Employee > class Person
-class Person {
-    #name;
-    #age;
-    #height;
-    #salary;
-    constructor(name, age, height, salary) {
-        this.#name = name;
-        this.#age = age;
-        this.#height = height;
-        this.#salary = salary;
-    }
-    get name() {
-        return this.#name;
-    }
-    set name(newName) {
-        this.#name = newName;
-    }
-    run() {
-        console.log(this.#name + ' is running');
-    }
+// class Person {
+//     #name;
+//     #age;
+//     #height;
+//     #salary;
+//     constructor(name, age, height, salary) {
+//         this.#name = name;
+//         this.#age = age;
+//         this.#height = height;
+//         this.#salary = salary;
+//     }
+//     get name() {
+//         return this.#name;
+//     }
+//     set name(newName) {
+//         this.#name = newName;
+//     }
+//     run() {
+//         console.log(this.#name + ' is running');
+//     }
 
-}
+// }
 
-class Employee extends Person {
-    constructor(name, age, company) {
-        super(name, age);
-        this.company = company;
-    }
-    getSalary() {
-        console.log('no param');
-        return this.salary
-    }
-    getSalary(baseSalary) {
-        console.log('with param');
-        return this.salary + baseSalary;
-    }
+// class Employee extends Person {
+//     constructor(name, age, company) {
+//         super(name, age);
+//         this.company = company;
+//     }
 
-}
+//     getSalary() {
+//         console.log('no param');
+//         return this.salary
+//     }
+//     // 可以调换顺序看看 console的结果
+//     getSalary(baseSalary) {
+//         console.log('with param');
+//         return this.salary + baseSalary;
+//     }
 
-const e = new Employee('Dio', 100, 'Apple', 10000);
-console.log(e.getSalary()); // NaN (0 + undefined) 第一个getsalary直接忽略 因为有第二个
+// }
+// 两个 subclass employer employee
+// class Employer extends Person {
+//     constructor(name, age, company, position) {
+//         super(name, age);
+//         this.company = company;
+//         this.postition = position;
+//     }
+// }
 
-// the order code prototype chain
-e.getSalary = function(){
-    console.log("hello");
-}
-console.log(e);
+// const er = new Employer('Jojo',100,'Antra', 'officer');
+// console.log(er);
+
+// const e = new Employee('Dio', 100, 'Apple', 10000);
+// console.log(e.getSalary()); // NaN (0 + undefined) 第一个getsalary直接忽略 因为有第二个
+
+// // the order code prototype chain
+// e.getSalary = function(){
+//     console.log("hello");
+// }
+// // from instance to employee to person and overridding to the end of the same name function 
+// console.log(e);
 
 // ------------------abstraction ------------------------------
+// (如果有人问的话) what is the difference between interface(multiple level) and abstract class (one level) in js??? 
+// // js
+// abstract class is for the inheritance but no instance. However, in js we dont have this kinda of concept
+// js does not have a key word abstract private or public, we you face that in the typescript which will
+// talked about in the angular traning.
 
 
-
-// -------------------for loop------------------------------------------------------------
+// -------------------for loop------------------------------------------
 // const arr = [1, 2, 3, 4, 5];
 // for (let i = 0; i < arr.length; i++) {
 //     console.log(arr[i]);
