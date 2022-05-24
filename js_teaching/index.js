@@ -165,6 +165,12 @@
 // }
 // foo();
 
+// (function() {
+//     console.log(z);
+//      let z;
+//      console.log(z);
+//  }());
+
 // how about function....it will also do hoisting
 // console.log(foo);
 // function foo(){};
@@ -228,7 +234,7 @@
 // dio.__proto__.run = function() {
 //     console.log(`${this.name} is running`);
 // }
-// //alternatively
+// //alternatively ！！但是不能写成PersonFn.walk .... 
 // jojo.walk = function() {
 //     console.log(`${this.name} is running`);
 // }
@@ -270,18 +276,95 @@
 
 // console.log(PersonFn);
 // -----------------------------------------------------------------------------
-// // encapsulation 
-// // ES6之后的写法  class
+// // ES6之后的写法  class es5 syntax is wired lets move to es6 syntax
 // // javascript does not have class structure just syntax sugar for constructor function
 // // JS is not designed for oop but has the similar feature like oop
+// class Person {
+//     #name;
+//     #age;
+//     #height;
+//     constructor(name, age, height) {
+//         this.#name = name;
+//         this.#age = age;
+//         this.#height = height;
+//     }
+//     get name() {
+//         return this.#name;
+//     }
+//     set name(newName) {
+//         this.#name = newName;
+//     }
+//     run() {
+//         console.log(this.#name + ' is running');
+//         // console.log(this.#name, ' is running');
+//         // console.log(`${this.#name} is running`);
+//     }
+// }
+
+// const p = new Person('Dio', 18);
+// // get method
+// console.log(p.name);
+// // set method
+// p.name = 'Jojo';
+// console.log(p.name);
+
+
+// // Inheritance ------------------------------------------------
+
+// // extends
+// class Employee extends Person {
+//     constructor(name, age, company) {
+//         super(name, age);
+//         this.company = company;
+//     }
+// }
+
+// // Employee.prototype = Person.prototype;
+// // //change the constructor name
+// // EmployeeFn.prototype.constructor = EmployeeFn;
+// const e = new Employee('Dio',100,'Apple');
+// console.log(e);
+
+// // // Go back to es5, what is this call and binding ? (gonna talk about keyword call later)
+// function PersonFn(name, age) {
+//         this.name = name;
+//         this.age = age;
+//         // this is the instance method
+//         this.run = function () {
+//             console.log(`${this.name} is running`);
+//         }
+//     }
+// // super is just a call, that why you can do extends in js
+// function Employer(name, age, company) {
+//     PersonFn.call(this, name, age);
+//     this.company = company;
+// }
+
+// const er = new Employer('Dio',100,'Apple');
+// console.log(er);
+
+// ----------------poly morphism ------------------------
+// 不用讲什么是 poly-morphism 但有人问 就说 . Like a man at the same time is a father, 
+// a husband, an employee. So the same person posses !!!different behavior!!!
+// in different situations. This is called polymorphism.
+// ----------------overloading ------------------------
+// // js does not have overload (same name but different params)feature 
+// // but it has something called overiding
+
+// so here is a very good example I want to show you guys.
+// we have a instance from employee when it calling some function, it always search from function 
+// employee (Itsself)first then from person(Parent). 
+// // so which means there is an order. instance > class Employee > class Person
 class Person {
     #name;
     #age;
     #height;
-    constructor(name, age, height) {
+    #salary;
+    constructor(name, age, height, salary) {
         this.#name = name;
         this.#age = age;
         this.#height = height;
+        this.#salary = salary;
     }
     get name() {
         return this.#name;
@@ -291,55 +374,40 @@ class Person {
     }
     run() {
         console.log(this.#name + ' is running');
-        // console.log(this.#name, ' is running');
-        // console.log(`${this.#name} is running`);
     }
+
 }
 
-const p = new Person('Dio', 18);
-// get method
-console.log(p.name);
-// set method
-p.name = 'Jojo';
-console.log(p.name);
-
-
-// Inheritance ------------------------------------------------
-
-
-// extends
 class Employee extends Person {
     constructor(name, age, company) {
         super(name, age);
         this.company = company;
     }
+    getSalary() {
+        console.log('no param');
+        return this.salary
+    }
+    getSalary(baseSalary) {
+        console.log('with param');
+        return this.salary + baseSalary;
+    }
+
 }
 
-// Employee.prototype = Person.prototype;
-// //change the constructor name
-// EmployeeFn.prototype.constructor = EmployeeFn;
-const e = new Employee('Dio',100,'Apple');
+const e = new Employee('Dio', 100, 'Apple', 10000);
+console.log(e.getSalary()); // NaN (0 + undefined) 第一个getsalary直接忽略 因为有第二个
+
+// the order code prototype chain
+e.getSalary = function(){
+    console.log("hello");
+}
 console.log(e);
 
-// // Go back before es6, what is this call and binding ? (gonna talk about keyword call later)
-function PersonFn(name, age) {
-        this.name = name;
-        this.age = age;
-        // this is the instance method
-        this.run = function () {
-            console.log(`${this.name} is running`);
-        }
-    }
-// super is just a call, that why you can do extends in js
-function Employer(name, age, company) {
-    PersonFn.call(this, name, age);
-    this.company = company;
-}
+// ------------------abstraction ------------------------------
 
-const er = new Employer('Dio',100,'Apple');
-console.log(er);
 
-// for loop------------------------------------------------------------
+
+// -------------------for loop------------------------------------------------------------
 // const arr = [1, 2, 3, 4, 5];
 // for (let i = 0; i < arr.length; i++) {
 //     console.log(arr[i]);
