@@ -70,6 +70,16 @@
 // bar(obj);
 // console.log(obj);
 
+
+// Q what is the output??
+// var X = {foo: 1};
+// var output = ( function() {
+// delete X.foo;
+// return X.foo;
+// }
+// )();
+// console.log(output);
+
 // // coercion 类型相互转换
 
 // console.log(typeof ('0' - '1'));
@@ -425,6 +435,8 @@
 // talked about in the angular traning.
 
 
+
+
 // -------------------for loop------------------------------------------
 // const arr = [1, 2, 3, ];
 // console.log(arr);
@@ -459,14 +471,14 @@
 // //forEach building method-------- but it is not orginal for loop ----------
 // Q: where does this forEach come from ? (from the array class, foreach is a method of prototype)
 // //forEach cant use break and continune inside of the functions...
-const arr = [1, 2, 3, 4, 5];
-console.log(arr);
+// const arr = [1, 2, 3, 4, 5];
 //function(ele is a callback funtion)
-arr.forEach(function(ele) {
-    console.log(ele);
-});
+// arr.forEach(function(ele) {
+//     console.log(ele);
+// });
 
-//create my forEach
+// // create my forEach
+// // Q: what is the arguments in forEach? what is the callback function?
 // Array.prototype.myforEach = function (callbackfn) {
 
 //     for (let i = 0; i < this.length; i++) {
@@ -480,13 +492,13 @@ arr.forEach(function(ele) {
 // //what is "this"?
 // // this will target to the instace itself... in this situation, it is arr...
 
-// // the difference between forEach and map
-// // map always generate new array
+// // !!!!the difference between forEach and Map!!!!
+// // map always generate new array. Below see the examples
 // console.log( arr.forEach(function(ele) {
-//     // console.log(ele);
+//     console.log(ele);
 // }))
 // console.log( arr.map(function(ele) {
-//     // console.log(ele);
+//     console.log(ele);
 // }))
 
 //create my Map
@@ -506,13 +518,20 @@ arr.forEach(function(ele) {
 
 // console.log(newarr);
 
-// know forEach method: current ele, current index, original array
-//ele is require, but other two are not required.
-// arr.forEach(function(ele,i,array){
+// --------forEach arguments: current ele, current index, original array-----------
+// // ele is required , but other two are not required.
+// const arr = [100, 200, 300];
+// arr.forEach(function(ele, i, array){
 //     array[i] = ele + 1;
+//     console.log(ele, i, array, arr);
+//     console.log(arr === array);
 // })
 // console.log(arr);
-//同理 如果有三个参数的 forEach
+//// since this arr can be changed instead of creating a new array. 
+////try to avoid involve this array when doing things 
+//// e.g. array[1] = 2000;
+
+//同理 如果有三个参数的 myforEach
 // Array.prototype.myforEach = function (callbackfn) {
 
 //     for (let i = 0; i < this.length; i++) {
