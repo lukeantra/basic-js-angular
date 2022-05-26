@@ -472,17 +472,18 @@
 // Q: where does this forEach come from ? (from the array class, foreach is a method of prototype)
 // //forEach cant use break and continune inside of the functions...
 // const arr = [1, 2, 3, 4, 5];
-//function(ele is a callback funtion)
+//function(ele) is a callback funtion
 // arr.forEach(function(ele) {
 //     console.log(ele);
 // });
 
 // // create my forEach
 // // Q: what is the arguments in forEach? what is the callback function?
+// // Q: do you know waht the this mean??? we are going to talk about this later...
 // Array.prototype.myforEach = function (callbackfn) {
 
 //     for (let i = 0; i < this.length; i++) {
-//         //告诉你 callback function里面的参数 this[i]。格式就这样！
+//         console.log(this);
 //         callbackfn(this[i]);
 //     }
 // }
@@ -565,11 +566,11 @@
 // })
 // console.log(newarr)
 
-// // reduce() has 4 parameters...
+// // reduce() has 4 parameters. The last one is an initial value.
 
-// //reducer is the callback function for reduce. 你是通过reducer才加的值 
-// //如果换一个callback 可能就减了
-// const reducer = function(acc, cur, i, array) {
+// //reducer is the callback function for reduce. Always save the previous value for new iteration
+
+// const reducer = function(acc, cur, i, array) {   
 //     return acc + cur + cur
 // }
 // //reduce 里面其实还是一个function('') 就多了个initial acc参数
@@ -606,7 +607,7 @@
 // //console.log(strarr.myReduce((acc, cur)=>acc+cur+cur, ''))
 // console.log(strarr.myReduce(reducer,''))
 
-/*************************************destructor */
+//---------------------------  destructor ---------------------------------
 // const obj ={
 //     key:"Jojo",
 //     value:18
@@ -614,14 +615,42 @@
 // let {key, value} = obj;
 // console.log(key);
 
-/*************************************spread operator vs. rest parameter */
-// //spread operator
-// const arr = [1, 2, 3];
-// const arr1 =[0, ...arr];
-// const arr2 = [...arr, 4, 5];
-// console.log(arr2);
+//--------------------------- spread operator vs. rest parameter ---------------------------
+// // rest parameter
+// // argument is an object (array like) to take care of all the parameters
+// Q: what does array like mean ? you can not use something like forEach, filter...
+//// Such as HTML.collection is also array like.
+// function foo(...args) {
+//     console.log(arguments);
+//     console.log(arguments[4]);
+//     console.log(...args);
+//     console.log(args);
+// }
+// foo(1, 2, 3, 4, "abc");
+
+// //another this example
+// function foo(num, ...args) {
+//     console.log(...args);
+//     console.log(args);
+// }
+// foo(1, 2, 3, 4, "abc");
+
+// // i did see some students do something like this during the interveiw
+// //  function foo([...args]){} lets try it
+
+// //spread operator 
+// // Q: what is spread oprator? 
+// // Q: waht does ... mean?  (copy, is it shallow copy or deep copy?)
+const arr = [1, 2, 3];
+const arr1 =[...arr, 4, 5];
+const arr2 = [...arr, 4, 5];
+console.log(arr1, arr2);
+
 // // their references are not the same
-// console.log(arr1 === arr2);
+console.log(arr1 === arr2);
+// // Q: how about this one?
+console.log(arr1 == arr2); // false
+// // what does [] do? (create a new array and get a new reference, same thing for {})
 
 // arr1 = [1, 2, 3];
 // arr2 = arr1;
@@ -639,7 +668,7 @@
 // console.log(set);
 
 
-/*************************************iife */
+//----------------------------------iife----------------------------------------
 // (function() {
 //     return console.log(5)
 // }())
