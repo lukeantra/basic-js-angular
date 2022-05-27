@@ -641,16 +641,16 @@
 // //spread operator 
 // // Q: what is spread oprator? 
 // // Q: waht does ... mean?  (copy, is it shallow copy or deep copy?)
-const arr = [1, 2, 3];
-const arr1 =[...arr, 4, 5];
-const arr2 = [...arr, 4, 5];
-console.log(arr1, arr2);
+// const arr = [1, 2, 3];
+// const arr1 =[...arr, 4, 5];
+// const arr2 = [...arr, 4, 5];
+// console.log(arr1, arr2);
 
-// // their references are not the same
-console.log(arr1 === arr2);
-// // Q: how about this one?
-console.log(arr1 == arr2); // false
-// // what does [] do? (create a new array and get a new reference, same thing for {})
+// // // their references are not the same
+// console.log(arr1 === arr2);
+// // // Q: how about this one?
+// console.log(arr1 == arr2); // false
+// // what does [] do? (Creating a new array and get a new reference, same thing for {})
 
 // arr1 = [1, 2, 3];
 // arr2 = arr1;
