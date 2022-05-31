@@ -627,7 +627,7 @@
 
 // this is the destructure: a shorter syntax, you will find key and value in the 
 // const {name, age} = obj;
-// lets change the sequence, and see whether it works or not
+// lets change the sequence, and it wont affect anything, becasue the obj has key value pair.
 // const {age, name} = obj;
 // console.log(name, age);
 
@@ -638,22 +638,29 @@
 // const {age, name, middleName, LastName = "Dio"} = obj;
 // console.log(name, age, middleName, LastName);
 
+// // lets see if I do this: 
+// const {key, value} = obj; // undefined
+// // const {key = "apple", value = "male"} = obj; // add new properties
+// console.log(key, value);
+
 // e.g.
 
-const {links} = {
-    id: 1,
-    name: 'David Dong',
-    links: [
-        { name: 'wechat',       link: 'wechat.com'      },
-        { name: 'apple',        link: 'apple.com'       },
-        { name: 'cnn',          link: 'cnn.com'         },
-        { name: 'fox',          link: 'fox.com'         },
-        { name: 'hbo',          link: 'hbo.com'         },
-    ]
-};
-
-console.log(links.find(({name}) => name === 'cnn').link);
-console.log(links)
+// const {links} = {
+//     id: 1,
+//     name: 'David Dong',
+//     links: [
+//         { name: 'wechat',       link: 'wechat.com'      },
+//         { name: 'apple',        link: 'apple.com'       },
+//         { name: 'cnn',          link: 'cnn.com'         },
+//         { name: 'fox',          link: 'fox.com'         },
+//         { name: 'hbo',          link: 'hbo.com'         },
+//     ]
+// };
+// // // before es6
+// console.log(links.find((ele) => ele.name === 'cnn').link);
+// // // after es6
+// console.log(links.find(({name}) => name === 'cnn').link);
+// // console.log(links[1].name);
 
 
 //--------------------------- spread operator vs. rest parameter ---------------------------
