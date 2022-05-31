@@ -607,13 +607,54 @@
 // //console.log(strarr.myReduce((acc, cur)=>acc+cur+cur, ''))
 // console.log(strarr.myReduce(reducer,''))
 
-//---------------------------  destructor ---------------------------------
+//---------------------------  destructure ---------------------------------
+// // Q: we have something called constructor. does any body know what the destructure is in js? 
+// // It creates a pattern that describes the kind of value you are expecting and makes the assignment. 
+// // Array destructuring uses position.
+
+// const [first, second, third] = ["a", "b", "c"];
+// console.log(first, third);
+
 // const obj ={
-//     key:"Jojo",
-//     value:18
+//     name: "Jojo",
+//     age: 18
 // }
-// let {key, value} = obj;
-// console.log(key);
+
+// //before es6, you can only do things like this for the assignment
+// const name = obj.name;
+// const theage = obj.age;
+// console.log(name, theage);
+
+// this is the destructure: a shorter syntax, you will find key and value in the 
+// const {name, age} = obj;
+// lets change the sequence, and see whether it works or not
+// const {age, name} = obj;
+// console.log(name, age);
+
+
+// // in my mind, destructuring will reduce some code. Or simplifies the code.
+// // Also you can add some properties
+
+// const {age, name, middleName, LastName = "Dio"} = obj;
+// console.log(name, age, middleName, LastName);
+
+// e.g.
+
+const {links} = {
+    id: 1,
+    name: 'David Dong',
+    links: [
+        { name: 'wechat',       link: 'wechat.com'      },
+        { name: 'apple',        link: 'apple.com'       },
+        { name: 'cnn',          link: 'cnn.com'         },
+        { name: 'fox',          link: 'fox.com'         },
+        { name: 'hbo',          link: 'hbo.com'         },
+    ]
+};
+
+console.log(links.find(({name}) => name === 'cnn').link);
+console.log(links)
+
 
 //--------------------------- spread operator vs. rest parameter ---------------------------
 // // rest parameter
@@ -677,7 +718,7 @@
 // })()
 
 
-/*************************************closure */
+//--------------------------------closure------------------------------------
 // // example from MDN website
 // function init() {
 //     var name = 'Mozilla'; // name is a local variable created by init
