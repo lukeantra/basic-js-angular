@@ -715,6 +715,33 @@
 // const set = new Set(newstr);
 // console.log(set);
 
+// --------------------------------object copy----------------------------------
+// // shallow copy : transfer the reference
+// const obj = {name: 'Jojo', age: 18}
+// // just copy the refence 
+// const objCopy = obj;
+
+
+const obj = {
+    name: 'Jojo',
+    age: 18,
+    links: [1, 2, 3],
+    // date: new Date(), // new Data(obj.date)
+    // foo: function() {
+    //     console.log('this is foo')
+    // }
+    
+};
+// only copy the first level for the reference the data,
+// but for the seond level (e.g. links), it only copies the refence for links
+const obj2 = {...obj};
+console.log(obj2);
+
+
+// // deep copy
+
+
+
 
 //----------------------------------iife----------------------------------------
 // (function() {
