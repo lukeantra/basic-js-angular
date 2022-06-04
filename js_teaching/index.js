@@ -718,32 +718,39 @@
 // --------------------------------object copy----------------------------------
 // // shallow copy : share the same reference. 
 // // In other words, the memory addresses are the same
-const obj = {name: 'Jojo', age: 18}
-// just copy the refence 
-const obj1 = obj;
-obj1.name = 'Dio';
+// const obj = {name: 'Jojo', age: 18}
+// // just copy the refence 
+// const obj1 = obj;
+// obj1.name = 'Dio';
+// console.log(obj);
+
+
+
+// // Q: how about spread operator
+
+
+const obj = {
+    name: 'Jojo',
+    age: 18,
+    links: [1, 2, 3],
+    // date: new Date(), // new Data(obj.date)
+    // foo: function() {
+    //     console.log('this is foo')
+    // }
+
+};
+// only copy the first level for the reference the data,
+// but for the seond level (e.g. links), it only copies the refence for links
+const obj2 = {...obj};
+obj2.name = 'Dio';
 console.log(obj);
 
-// // how about spread operator
-// // The spread operator makes deep copies of data if the data is not nested.
+// // (The spread operator makes deep copies of data if the data is not nested.)
 
-// const obj = {
-//     name: 'Jojo',
-//     age: 18,
-//     links: [1, 2, 3],
-//     // date: new Date(), // new Data(obj.date)
-//     // foo: function() {
-//     //     console.log('this is foo')
-//     // }
-
-// };
-// // only copy the first level for the reference the data,
-// // but for the seond level (e.g. links), it only copies the refence for links
-// const obj2 = {...obj};
-// console.log(obj2);
+obj2.
 
 
-// // deep copy
+// // deep copy methods
 
 
 
