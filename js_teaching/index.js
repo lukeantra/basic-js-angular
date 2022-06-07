@@ -747,7 +747,6 @@ console.log(obj);
 
 // // (The spread operator makes deep copies of data if the data is not nested.)
 
-obj2.
 
 
 // // deep copy methods
