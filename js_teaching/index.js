@@ -743,7 +743,9 @@ const obj = {
 // but for the seond level (e.g. links), it only copies the refence for links
 const obj2 = {...obj};
 obj2.name = 'Dio';
-console.log(obj);
+console.log(obj);   
+
+
 
 // // (The spread operator makes deep copies of data if the data is not nested.)
 
@@ -755,6 +757,7 @@ console.log(obj);
 
 
 //----------------------------------iife----------------------------------------
+// // The definition 
 // (function() {
 //     return console.log(5)
 // }())
@@ -765,6 +768,7 @@ console.log(obj);
 
 //--------------------------------closure------------------------------------
 // // example from MDN website
+// // definition
 // function init() {
 //     var name = 'Mozilla'; // name is a local variable created by init
 //     function displayName() { // displayName() is the inner function, a closure
