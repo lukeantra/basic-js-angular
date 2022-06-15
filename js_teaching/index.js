@@ -754,8 +754,6 @@ console.log(obj);
 // // deep copy methods
 
 
-
-
 //----------------------------------iife----------------------------------------
 // // The definition 
 // (function() {
