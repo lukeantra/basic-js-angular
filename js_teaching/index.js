@@ -721,37 +721,53 @@
 // const obj = {name: 'Jojo', age: 18}
 // // just copy the refence 
 // const obj1 = obj;
-// obj1.name = 'Dio';
+// obj1.name = 'Dio'; // it will change
 // console.log(obj);
 
 
 
-// // Q: how about spread operator
-
-
-const obj = {
-    name: 'Jojo',
-    age: 18,
-    links: [1, 2, 3],
-    // date: new Date(), // new Data(obj.date)
-    // foo: function() {
-    //     console.log('this is foo')
-    // }
-
-};
-// only copy the first level for the reference the data,
-// but for the seond level (e.g. links), it only copies the refence for links
-const obj2 = {...obj};
-obj2.name = 'Dio';
-console.log(obj);   
-
-
+// // Q: how about spread operator (only deep copy the first level)
 
 // // (The spread operator makes deep copies of data if the data is not nested.)
 
+// const obj = {
+//     name: 'Jojo',
+//     age: 18,
+//     links: [1, 2, 3],
+//     date: new Date(), // new Data(obj.date)
+//     foo: function() {
+//         console.log('this is foo')
+//     }
+
+// };
+// only deep copy the first level for the reference of the object,
+// but for the seond level (e.g. links), it will share the reference for links
+// const obj2 = {...obj};
+// console.log(obj == obj2); // == to cheack the reference 
+// // // also you can check the reference for links
+// console.log(obj.links == obj2.links);
+// obj2.name = 'Dio'; // does not effect
+// console.log(obj);   
+// obj2.links = [100, 200, 300];
+// console.log(obj);
+// obj2.links[0] = 100;
+// console.log(obj);
 
 
-// // deep copy methods
+
+// // 第一个方法 deep copy 
+// // change the original obj to a string and then change it back  
+// console.log(obj, JSON.parse(JSON.stringify(obj)));
+// const obj2 = JSON.parse(JSON.stringify(obj));
+// console.log(obj == obj2); // == to cheack the reference 
+// // also you can check the reference for links
+// console.log(obj.links == obj2.links);
+
+// //the cons: it cant not change the function to a string. Lose the function
+// // also it has a issue for date.
+// console.log(obj2);
+
+
 
 
 //----------------------------------iife----------------------------------------
