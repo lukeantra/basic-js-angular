@@ -738,7 +738,6 @@
 //     foo: function() {
 //         console.log('this is foo')
 //     }
-
 // };
 // only deep copy the first level for the reference of the object,
 // but for the seond level (e.g. links), it will share the reference for links
@@ -771,7 +770,8 @@
 
 
 //----------------------------------iife----------------------------------------
-// // The definition 
+// // The definition (save some codes, create private scope)
+
 // (function() {
 //     return console.log(5)
 // }())
@@ -779,6 +779,7 @@
 //     return console.log(5)
 // })()
 
+// // use iife to create closure ????? ---> work together with closure
 
 //--------------------------------closure------------------------------------
 // // example from MDN website
@@ -848,7 +849,7 @@
 // fn(4,5);
 
 
-/*************************************this */
+//-------------------------------this--------------------------------
 // const obj = {
 //     name: 'Dio',
 //     age: 18,
@@ -864,7 +865,7 @@
 // }
 // obj.foo();
 
-/*************************************call bind*/
+//-----------------------------call bind---------------------------------
 // const obj = {
 //     name: 'Dio',
 //     age: 18,
@@ -885,7 +886,7 @@
 // }
 // obj.foo();
 
-/*************************************call apply bind */
+//------------------------------------call apply bind -----------------------
 // //bind
 // const obj ={
 //     pi: 3.14,
@@ -917,7 +918,7 @@
 
 
 // ES6 arrow function class let const promise
-/************************************* arrow function  ES6 */
+//--------------------------------------arrow function  ES6 ----------------------
 // const foo = a => b => a + b;
 
 // function bar (){
@@ -928,7 +929,7 @@
 
 // console.log(foo());
 
-/***interview*************************************currying */
+//--------------------------------------currying-------------------------
 // foo(4)(5);
 
 // const callback1 = a => a + 2;
@@ -974,12 +975,27 @@
 
 // arr.forEach(bar(12));
 
-/***interview*************************************Event loop */
+
+
+//-------------------------------------Event loop------------------------------
+// Q: what is event loop??? 
+// console.log(0);
+// setTimeout(function(){
+//     console.log(1);
+// }, 1000)
+// console.log(2);
+// setTimeout(function(){
+//     console.log(3);
+// }, 2000)
+// console.log(4);
+
+// // Then add this thing: Event loop: Call stack | Async Api | Task Queue
+
 // var and let has different scope
 
-// for (var i = 0; i < 5 ; i ++){
-//     setTimeout(() => { console.log(i) }, i*1000);
-// }
+for (var i = 0; i < 5 ; i ++){
+    setTimeout(() => { console.log(i) }, i*1000);
+}
 
 // call stack first! stack: for , for setTimeout, After setTimeout is done and out, for out.  
 /*
