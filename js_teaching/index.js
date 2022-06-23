@@ -974,12 +974,20 @@
 // }
 
 // arr.forEach(bar(12));
+//-----------------------------------------------------
+const a = {};
+const b = { };
+const c = { key: "c" };
 
+a[b] = 123;
+// a[c] = 456;
 
+console.log(a[b]);
 
 //-------------------------------------Event loop------------------------------
 // Q: what is event loop??? 
 // console.log(0);
+// // what does this 1000 mean ?
 // setTimeout(function(){
 //     console.log(1);
 // }, 1000)
@@ -990,7 +998,8 @@
 // console.log(4);
 
 // // Then add this thing: Event loop: Call stack | Async Api | Task Queue
-
+// // Q: what does 1000s mean??? (It means after 1s it will be thrown into task queue, not callback)
+// // For example, if you have infinite loop, you may does not have chance to call console.log(1)
 // var and let has different scope
 
 for (var i = 0; i < 5 ; i ++){
