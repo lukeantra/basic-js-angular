@@ -985,7 +985,9 @@ a[b] = 123;
 console.log(a[b]);
 
 //-------------------------------------Event loop------------------------------
-// Q: what is event loop??? 
+// Q: what is event loop??? // let us do an example first
+
+// // setTimeout(()=>{console.log(1)}, 3000); 第一个par必须是个function 不能只是console.log(...)
 // console.log(0);
 // // what does this 1000 mean ?
 // setTimeout(function(){
@@ -998,23 +1000,48 @@ console.log(a[b]);
 // console.log(4);
 
 // // Then add this thing: Event loop: Call stack | Async Api | Task Queue
-// // Q: what does 1000s mean??? (It means after 1s it will be thrown into task queue, not callback)
+// // Q: what does 1000s mean??? (It means !!!after 1s send  it to task queue!!! NOT callback)
 // // For example, if you have infinite loop, you may does not have chance to call console.log(1)
-// var and let has different scope
+// Q: So when to call the task queue? (when call stack is empty)
 
-for (var i = 0; i < 5 ; i ++){
-    setTimeout(() => { console.log(i) }, i*1000);
+// //an interview question:
+// // What is the output??? (after 2s print 5)
+// setTimeout helps to send the foo into task queue after i*1000 seconds, but i = 5 will run first
+// var i = 2;
+// function foo() {
+//     console.log(i)
+// }
+// setTimeout(foo, i*1000)
+// i = 5;
+
+// // Q: how about like this setTimeout(foo(), i*1000)
+
+// function foo() {
+//     console.log(1);
+// }
+// console.log(foo);
+// console.log(foo());
+
+// //Q: how about this one?  async api acts like a theshold/transfer station. check it goes to task queue or not 
+// after how many seconds
+function foo() {
+    for (let i = 2; i < 5 ; i++){
+        setTimeout(() => console.log(i),i*1000);
+    }
+    console.log('abc');
 }
 
-// call stack first! stack: for , for setTimeout, After setTimeout is done and out, for out.  
-/*
-async api, or web api:  等的功能 时间到了 就push到task queue
-first round: () => { console.log(i) } , 0
-second round:() => { console.log(i) } , 1
-thrid round: () => { console.log(i) } , 2
-four round: () => { console.log(i) } , 3
-five round: () => { console.log(i) } , 4
-*/
+foo();
+
+
+
+
+// // Can somebody explain how it works? 
+// call stack is first in last out but it is about function invoke function, not line by line.
+
+// // async api, or web api:  hold的功能 时间到了 就push到task queue
+
+//等到call stack is empty (很快就empty了)/ OR you can say the sync function has finished
 /*
 task queue, message queue (queue) 先进先出 。
 // The task queue will Wait for call stack is empty, after call stack is empty,
@@ -1023,10 +1050,10 @@ the task queue will push all the items into call stack again---> This is event l
 https://www.youtube.com/watch?v=8aGhZQkoFbQ&list=RDQMlEeL_gAWOPo&start_radio=1&ab_channel=JSConf
 [first round, second round, thrid round, four round, five round...]
 
-So when you are using "var" the stack is empty and the i is ready being 5. 
+
 But when you are using "let" the time will help to hold the i.....
 */
-// Another way to change it
+// Another way to change it 
 // for (var i = 0; i < 5 ; i ++){
 
 //     (function (v){
