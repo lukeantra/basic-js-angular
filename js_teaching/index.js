@@ -1007,12 +1007,13 @@ console.log(a[b]);
 // //an interview question:
 // // What is the output??? (after 2s print 5)
 // setTimeout helps to send the foo into task queue after i*1000 seconds, but i = 5 will run first
-// var i = 2;
+// let i = 2;
 // function foo() {
 //     console.log(i)
 // }
 // setTimeout(foo, i*1000)
 // i = 5;
+// //try using let and see the result 一定要try这个  --> 结果还是5
 
 // // Q: how about like this setTimeout(foo(), i*1000)
 
@@ -1024,35 +1025,32 @@ console.log(a[b]);
 
 // //Q: how about this one?  async api acts like a theshold/transfer station. check it goes to task queue or not 
 // after how many seconds
-function foo() {
-    for (let i = 2; i < 5 ; i++){
-        setTimeout(() => console.log(i),i*1000);
-    }
-    console.log('abc');
-}
+// function foo() {
+//     for (let i = 2; i < 5 ; i++){
+//         setTimeout(() => console.log(i),i*1000);
+//     }
+//     console.log('abc');
+// }
 
-foo();
-
-
+// foo();
 
 
 // // Can somebody explain how it works? 
-// call stack is first in last out but it is about function invoke function, not line by line.
+// // call stack is first in last out but it is about function invoke function or something, not line by line.
+// // (dont get confused about stack!!!)one line code, will go in and go out immediately.
 
 // // async api, or web api:  hold的功能 时间到了 就push到task queue
 
-//等到call stack is empty (很快就empty了)/ OR you can say the sync function has finished
-/*
-task queue, message queue (queue) 先进先出 。
-// The task queue will Wait for call stack is empty, after call stack is empty,
-the task queue will push all the items into call stack again---> This is event loop! //
-// 为什么要回到stack， 因为回到stack才会consloe 东西 那么，这时候stack是不会等的。 有一个就出一个 下面的视频也有
-https://www.youtube.com/watch?v=8aGhZQkoFbQ&list=RDQMlEeL_gAWOPo&start_radio=1&ab_channel=JSConf
-[first round, second round, thrid round, four round, five round...]
+// //等到call stack is empty (很快就empty了 一起全走了)/ OR you can say the sync function has finished
+
+// // task queue, message queue (queue) 先进先出 。
+// //The task queue will Wait for call stack is empty （一般很快都empty）, after call stack is empty,
+// //the task queue will push all the items into call stack ---> This is event loop! 
+// //为什么要回到stack， 因为回到stack才会consloe 东西 （所以这就叫做 loop)
 
 
-But when you are using "let" the time will help to hold the i.....
-*/
+// //But when you are using "let" the time will help to hold the i.....
+
 // Another way to change it 
 // for (var i = 0; i < 5 ; i ++){
 
