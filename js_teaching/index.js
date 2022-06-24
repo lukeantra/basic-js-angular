@@ -975,14 +975,6 @@
 
 // arr.forEach(bar(12));
 //-----------------------------------------------------
-const a = {};
-const b = { };
-const c = { key: "c" };
-
-a[b] = 123;
-// a[c] = 456;
-
-console.log(a[b]);
 
 //-------------------------------------Event loop------------------------------
 // Q: what is event loop??? // let us do an example first
@@ -1114,18 +1106,36 @@ console.log(a[b]);
 // console.log(solution(first, second));
 
 
-/***JS day5 callback function & callback hell & Promise & My Promise ******/
+//-----------------------JS day5 callback function & callback hell & Promise & My Promise--------------------
+// // callback function; callback hell
+const foo = () => console.log('foo showup');
+
+const  randomNum = () => Math.floor((Math.random() * 6));
+
+const callFnInRandomTime = (callback) => {
+    const timer = randomNum();
+    console.log(`${timer}s`);
+
+    setTimeout(callback, timer * 1000);
+}
+
+callFnInRandomTime(foo);
+
+// // Q: do you know what is XHR? (XML HttpRequest)
 // const getToDoFormJsonPlaceHolder = (id, callback) => {
 //   var xhttp = new XMLHttpRequest();
 //   xhttp.onreadystatechange = function () {
 //     if (this.readyState == 4 && this.status == 200) {
 //       // Typical action to be performed when the document is ready:
-//       callback(JSON.parse(xhttp.response));
+//       callback(JSON.parse(xhttp.response)); // from string to js object
 //     }
 //   };
 //   xhttp.open("GET", `https://jsonplaceholder.typicode.com/todos/${id}`, true);
 //   xhttp.send();
 // }
+// // Q: what is JSON? -->data format
+// // Q: Why does JSON is popular? --> js natively support JSON &XML is not very readable
+
 
 // const print = (ele) => {
 //   console.log(ele);
