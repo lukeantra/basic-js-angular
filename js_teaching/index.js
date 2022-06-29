@@ -947,9 +947,9 @@
 //         for (let i in args){
 //             res =args[i](res);
 //         }
-           // // for (let ele of args) {
-           // // res = ele(res);
-           // // }
+// // for (let ele of args) {
+// // res = ele(res);
+// // }
 //         return res;
 //       }  
 // }
@@ -960,7 +960,7 @@
 
 //     return function (num) {
 //         return args.reduce((acc, cb) => cb(acc), num);
-            //return args.reduce((acc, cur) => cur(acc), num);
+//return args.reduce((acc, cur) => cur(acc), num);
 //     }
 // }
 
@@ -1096,11 +1096,11 @@
 //             // 这个就是当前的
 //             ...ele    
 //         };
-        
+
 //     })
 //     console.log(map[2]);
 //     return map;
-    
+
 // }
 
 // console.log(solution(first, second));
@@ -1110,7 +1110,7 @@
 // // callback function; callback hell
 const foo = () => console.log('foo showup');
 
-const  randomNum = () => Math.floor((Math.random() * 6));
+const randomNum = () => Math.floor((Math.random() * 6));
 
 const callFnInRandomTime = (callback) => {
     const timer = randomNum();
@@ -1119,7 +1119,30 @@ const callFnInRandomTime = (callback) => {
     setTimeout(callback, timer * 1000);
 }
 
-callFnInRandomTime(foo);
+// callFnInRandomTime(foo);
+// // introduce call back hell
+// callFnInRandomTime(() => {
+//     callFnInRandomTime(foo);
+// });
+callFnInRandomTime(() => {
+    callFnInRandomTime(() => {
+        callFnInRandomTime(() => {
+            callFnInRandomTime(() => {
+                callFnInRandomTime(() => {
+                    callFnInRandomTime(() => {
+                        callFnInRandomTime(() => {
+                            callFnInRandomTime(foo);
+                        });
+                    });
+                });
+            });
+        });
+    });
+});
+
+
+
+
 
 // // Q: do you know what is XHR? (XML HttpRequest)
 // const getToDoFormJsonPlaceHolder = (id, callback) => {
