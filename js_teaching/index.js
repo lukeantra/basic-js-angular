@@ -1108,39 +1108,39 @@
 
 //-----------------------JS day5 callback function & callback hell & Promise & My Promise--------------------
 // // callback function; callback hell
-const foo = () => console.log('foo showup');
+// const foo = () => console.log('foo showup');
 
-const randomNum = () => Math.floor((Math.random() * 6));
+// const randomNum = () => Math.floor((Math.random() * 6));
 
-const callFnInRandomTime = (callback) => {
-    const timer = randomNum();
-    console.log(`${timer}s`);
+// const callFnInRandomTime = (callback) => {
+//     const timer = randomNum();
+//     console.log(`${timer}s`);
 
-    setTimeout(callback, timer * 1000);
-}
+//     setTimeout(callback, timer * 1000);
+// }
 
-// callFnInRandomTime(foo);
-// // introduce call back hell
+// // callFnInRandomTime(foo);
+// // // introduce call back hell
+// // callFnInRandomTime(() => {
+// //     callFnInRandomTime(foo);
+// // });
 // callFnInRandomTime(() => {
-//     callFnInRandomTime(foo);
+//     callFnInRandomTime(() => {
+//         callFnInRandomTime(() => {
+//             callFnInRandomTime(() => {
+//                 callFnInRandomTime(() => {
+//                     callFnInRandomTime(() => {
+//                         callFnInRandomTime(() => {
+//                             callFnInRandomTime(foo);
+//                         });
+//                     });
+//                 });
+//             });
+//         });
+//     });
 // });
-callFnInRandomTime(() => {
-    callFnInRandomTime(() => {
-        callFnInRandomTime(() => {
-            callFnInRandomTime(() => {
-                callFnInRandomTime(() => {
-                    callFnInRandomTime(() => {
-                        callFnInRandomTime(() => {
-                            callFnInRandomTime(foo);
-                        });
-                    });
-                });
-            });
-        });
-    });
-});
 
-
+// // 
 
 
 
