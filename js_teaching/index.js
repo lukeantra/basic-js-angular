@@ -1174,24 +1174,41 @@
 
 // getToDoFormJsonPlaceHolder(4, (data) => {
 //     print(data);
-//     getToDoFormJsonPlaceHolder(15, (data) => {
+//     getToDoFormJsonPlaceHolder(16, (data) => {
 //         print(data);
 //     }); 
 // });
 
 //-------------------------------------Promise & My Promise -------------------------
-// const promise = new Promise((resolve, reject) => {
-// console.log('hello');
-// });
+// // lets give an example of promise:
 
-
-// //you can also write like this:
-// //resolve and reject are two callback functions. 
+const promise = new Promise((resolve, reject) => {
+console.log('hello');
+});
+// // there is no need to have const promise 
+// // in other words, you dont need to creat an instance of promise
+new Promise((resolve, reject) => {
+    console.log('hello');
+    });
 // //three build in methods: then(),catch(),finally()
+
+class Promise {
+    constructor(executor){
+        executor();
+    }
+    then () {}
+    //catch()...
+    //finally()...
+}
+
+
+// //resolve and reject are two callback functions. 
+
 // new Promise((resolve, reject) => {
 //     console.log('hello');
 //     resolve('world');
 
+// // resolve will hold some data, and transfer the data to .then()
 // }).then((data)=>{
 //     console.log(data);
 //     return 'test1';
