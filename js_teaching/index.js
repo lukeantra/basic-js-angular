@@ -1182,24 +1182,24 @@
 //-------------------------------------Promise & My Promise -------------------------
 // // lets give an example of promise:
 
-const promise = new Promise((resolve, reject) => {
-console.log('hello');
-});
-// // there is no need to have const promise 
-// // in other words, you dont need to creat an instance of promise
-new Promise((resolve, reject) => {
-    console.log('hello');
-    });
-// //three build in methods: then(),catch(),finally()
+// const promise = new Promise((resolve, reject) => {
+// console.log('hello');
+// });
+// // // there is no need to have const promise 
+// // // in other words, you dont need to creat an instance of promise
+// new Promise((resolve, reject) => {
+//     console.log('hello');
+//     });
+// // //three build in methods: then(),catch(),finally()
 
-class Promise {
-    constructor(executor){
-        executor();
-    }
-    then () {}
-    //catch()...
-    //finally()...
-}
+// class MyPromise {
+//     constructor(executor){
+//         executor();
+//     }
+//     then () {}
+//     //catch()...
+//     //finally()...
+// }
 
 
 // //resolve and reject are two callback functions. 
@@ -1209,6 +1209,7 @@ class Promise {
 //     resolve('world');
 
 // // resolve will hold some data, and transfer the data to .then()
+// // in other words, the .then() will always looking for resolve
 // }).then((data)=>{
 //     console.log(data);
 //     return 'test1';
@@ -1216,54 +1217,81 @@ class Promise {
 //     console.log(data);
 //     return 'test2';
 // })
-// /////// using promise
-// const getToDoFormJsonPlaceHolder = (id) => {
-//     return new Promise((resolve,reject) => {
-//         var xhttp = new XMLHttpRequest();
-// xhttp.onreadystatechange = function() {
-//     if (this.readyState == 4 && this.status == 200) {
-//        // Typical action to be performed when the document is ready:
-//        resolve(JSON.parse(xhttp.response));
-//     }
-// };
-// xhttp.open("GET", `https://jsonplaceholder.typicode.com/todos/${id}`, true);
-// xhttp.send();
-//     }) 
-// }
 
-// const print = (ele) => {
-//     console.log(ele);
-// }
-// this is callback hell again!!!!!!
+// using promise example
+const getToDoFormJsonPlaceHolder = (id) => {
+    return new Promise((resolve,reject) => {
+        var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+       // Typical action to be performed when the document is ready:
+       resolve(JSON.parse(xhttp.response));
+    }
+};
+xhttp.open("GET", `https://jsonplaceholder.typicode.com/todos/${id}`, true);
+xhttp.send();
+    }) 
+}
+
+const myprint = (ele) => {
+    console.log(ele);
+}
+// //this is callback hell as well, and you never want to write your promise in this way.
 // getToDoFormJsonPlaceHolder(4)
 //     .then(data =>{
-//         print(data);
+//         myprint(data); // or you can say console.log(data)
 //         return getToDoFormJsonPlaceHolder(15)
 //         .then(data =>{
-//             print(data);
+//             myprint(data);
 //             return getToDoFormJsonPlaceHolder(78)
 //             .then(data =>{
-//                 print(data);
+//                 myprint(data);
 //              })
 //          })
 //     })
-// this is the right promise way...
+// But this way is much better, and it avoid callback hell style
 // getToDoFormJsonPlaceHolder(4)
 //     .then(data => {
-//         print(data); 
+//         myprint(data); 
 //         return getToDoFormJsonPlaceHolder(15);
-//     })
+//     }) // close it everytime, no more nesting
 //     .then(data => {
-//         print(data); 
+//         myprint(data); 
 //         return getToDoFormJsonPlaceHolder(78);
 //     })
 //     .then(data => {
-//         print(data); 
-
+//         myprint(data); 
 //     })
 
-// //async await syntax sugar
-//// build your Mypromise
+// //async await,  a lot of online toturials are using this way but ... syntax sugar...
+(async () => {
+        const todo5 = await getToDoFormJsonPlaceHolder(5);
+        console.log(todo5);
+  
+})();
+
+// // 
+(async () => {
+    // the way to catch error for async await
+    try {
+        const todo5 = await getToDoFormJsonPlaceHolder(5);
+        console.log(todo5);
+
+        const todo12 = await getToDoFormJsonPlaceHolder(12);
+        console.log(todo12);
+
+        const todo78 = await getToDoFormJsonPlaceHolder(78);
+        console.log(todo78);
+    } catch (error) {
+        console.log(error);
+    }
+})();
+
+// // what the syntax difference between promise and async await, go to the following link:
+// // Let us take a look
+// // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function
+
+// //Build your MyPromise
 
 // // Mypromise  final questions for fb and amazon interview
 // class MyPromise{
