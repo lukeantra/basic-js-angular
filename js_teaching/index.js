@@ -1140,9 +1140,7 @@
 //     });
 // });
 
-// // 
-
-
+// -------------------------XHR----------------------------------
 
 // // Q: do you know what is XHR? (XML HttpRequest)
 // const getToDoFormJsonPlaceHolder = (id, callback) => {
@@ -1157,19 +1155,21 @@
 //   xhttp.send();
 // }
 // // Q: what is JSON? -->data format
-// // Q: Why does JSON is popular? --> js natively support JSON &XML is not very readable
+// // Q: Why does JSON is popular? --> js natively support JSON & XML is not very readable
 
 
 // const print = (ele) => {
 //   console.log(ele);
 // }
 // //you can not control the time when fetching the data. 
-// // it is like settimeout(() => {}, random!!!! )
+// // it is like settimeout(() => {}, but the httprequest time is random. Always changed )
+// // so lets try to run it. (Everytime it will respond differently)
 // getToDoFormJsonPlaceHolder(4, print);
 // getToDoFormJsonPlaceHolder(15, print);
 // getToDoFormJsonPlaceHolder(78, print);
 
-// hold data then you dont need to define data. 这样做就会包函数进来。。
+// //
+
 // getToDoFormJsonPlaceHolder(4, (data) => {print(data)});
 
 // getToDoFormJsonPlaceHolder(4, (data) => {
@@ -1179,7 +1179,7 @@
 //     }); 
 // });
 
-// /////Promise & My Promise //////////
+//-------------------------------------Promise & My Promise -------------------------
 // const promise = new Promise((resolve, reject) => {
 // console.log('hello');
 // });
