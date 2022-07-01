@@ -848,22 +848,32 @@
 // fn(4,5);
 // fn(4,5);
 
-
+// ----------------------------js day4-----------------------------------
 //-------------------------------this--------------------------------
-// const obj = {
-//     name: 'Dio',
-//     age: 18,
+// // Q: what is this keyword? (window)
+// console.log(this);
+// // this is also window (bec), which is gloabl environment
+// (function() {
+//     console.log(this);
+// })();
 
-//     foo: function() {
-//         console.log(this); // this goes to obj
+const myObj = {
+    name: 'Dio',
+    age: 18,
 
-//         const bar = function() {
-//             console.log(this);// this will goes to Window Global...
-//         }
-//         bar(); 
-//     }
-// }
-// obj.foo();
+    foo: function() {
+        console.log(this); // this goes to obj
+
+        const bar = function() {
+            console.log(this);// this will goes to Window Global. Because it is not belong to myobj
+            // in other words, this does not know the target in the first place, then it will target to window.
+        }
+        bar(); 
+    }
+}
+myObj.foo();
+
+
 
 //-----------------------------call bind---------------------------------
 // const obj = {
@@ -974,7 +984,6 @@
 // }
 
 // arr.forEach(bar(12));
-//-----------------------------------------------------
 
 //-------------------------------------Event loop------------------------------
 // Q: what is event loop??? // let us do an example first
@@ -1052,7 +1061,7 @@
 
 // }
 
-// /*************************************interview question */
+// //interview question
 // const first = [
 //     { userid: 2, name: 'Velen' },
 //     { userid: 56, name: 'Illidan' },
@@ -1219,23 +1228,23 @@
 // })
 
 // using promise example
-const getToDoFormJsonPlaceHolder = (id) => {
-    return new Promise((resolve,reject) => {
-        var xhttp = new XMLHttpRequest();
-xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-       // Typical action to be performed when the document is ready:
-       resolve(JSON.parse(xhttp.response));
-    }
-};
-xhttp.open("GET", `https://jsonplaceholder.typicode.com/todos/${id}`, true);
-xhttp.send();
-    }) 
-}
+// const getToDoFormJsonPlaceHolder = (id) => {
+//     return new Promise((resolve,reject) => {
+//         var xhttp = new XMLHttpRequest();
+// xhttp.onreadystatechange = function() {
+//     if (this.readyState == 4 && this.status == 200) {
+//        // Typical action to be performed when the document is ready:
+//        resolve(JSON.parse(xhttp.response));
+//     }
+// };
+// xhttp.open("GET", `https://jsonplaceholder.typicode.com/todos/${id}`, true);
+// xhttp.send();
+//     }) 
+// }
 
-const myprint = (ele) => {
-    console.log(ele);
-}
+// const myprint = (ele) => {
+//     console.log(ele);
+// }
 // //this is callback hell as well, and you never want to write your promise in this way.
 // getToDoFormJsonPlaceHolder(4)
 //     .then(data =>{
@@ -1264,28 +1273,28 @@ const myprint = (ele) => {
 //     })
 
 // //async await,  a lot of online toturials are using this way but ... syntax sugar...
-(async () => {
-        const todo5 = await getToDoFormJsonPlaceHolder(5);
-        console.log(todo5);
+// (async () => {
+//         const todo5 = await getToDoFormJsonPlaceHolder(5);
+//         console.log(todo5);
   
-})();
+// })();
 
 // // 
-(async () => {
-    // the way to catch error for async await
-    try {
-        const todo5 = await getToDoFormJsonPlaceHolder(5);
-        console.log(todo5);
+// (async () => {
+//     // the way to catch error for async await
+//     try {
+//         const todo5 = await getToDoFormJsonPlaceHolder(5);
+//         console.log(todo5);
 
-        const todo12 = await getToDoFormJsonPlaceHolder(12);
-        console.log(todo12);
+//         const todo12 = await getToDoFormJsonPlaceHolder(12);
+//         console.log(todo12);
 
-        const todo78 = await getToDoFormJsonPlaceHolder(78);
-        console.log(todo78);
-    } catch (error) {
-        console.log(error);
-    }
-})();
+//         const todo78 = await getToDoFormJsonPlaceHolder(78);
+//         console.log(todo78);
+//     } catch (error) {
+//         console.log(error);
+//     }
+// })();
 
 // // what the syntax difference between promise and async await, go to the following link:
 // // Let us take a look
