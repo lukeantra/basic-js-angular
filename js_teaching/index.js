@@ -1293,12 +1293,12 @@ const myprint = (ele) => {
 
 // //Build your MyPromise
 
-// // Mypromise  final questions for fb and amazon interview
+// // Mypromise  interview question for fb and amazon interview
 // class MyPromise{
 //     // use an array to hold the callback method...
 //     thencallbackqueue = [];
 
-//     //make your life easier,换汤不换药。。
+//     //make your life easier.
 //     constructor(executor){
 //         // console.log(this);
 //         executor(this.resolve.bind(this), this.reject);
