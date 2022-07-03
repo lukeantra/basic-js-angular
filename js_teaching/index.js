@@ -1,4 +1,4 @@
-
+// -----------------------------js day1----------------------------
 // ECMAscript: syntax ES6
 // Javascript = ECMAscript + Web.api
 // Nodejs = ECMAscript + Node.api
@@ -662,7 +662,7 @@
 // console.log(links.find(({name}) => name === 'cnn').link);
 // // console.log(links[1].name);
 
-
+//------------------------------js day3----------------------------------------------------
 //--------------------------- spread operator vs. rest parameter ---------------------------
 // // rest parameter
 // // argument is an object (array like) to take care of all the parameters
@@ -849,7 +849,7 @@
 // fn(4,5);
 
 // ----------------------------js day4-----------------------------------
-//-------------------------------this--------------------------------
+//-------------------------------this-------------------------------------
 // // Q: what is this keyword? (window)
 // console.log(this);
 // // this is also window (bec), which is gloabl environment
@@ -857,22 +857,45 @@
 //     console.log(this);
 // })();
 
-const myObj = {
-    name: 'Dio',
-    age: 18,
+// const myObj = {
+//     name: 'Dio',
+//     age: 18,
 
-    foo: function() {
-        console.log(this); // this goes to obj
+//     foo: function() {
+//         console.log(this); // this goes to obj
 
-        const bar = function() {
-            console.log(this);// this will goes to Window Global. Because it is not belong to myobj
-            // in other words, this does not know the target in the first place, then it will target to window.
-        }
-        bar(); 
-    }
-}
-myObj.foo();
+//         const bar = function() {
+//             console.log(this);// this will goes to Window Global. Because it is not belong to myobj
+//             // in other words, this does not know the target in the first place, then it will target to window.
+//         }
+//         bar(); 
+//     }
+// }
+// myObj.foo();
 
+
+// class Person {
+//     constructor(name) {
+//         this.name = name;
+//     }
+//     showThis() {
+//         console.log(this);
+//     }
+//     // no instace needed
+//     static statisShowThis() {
+//         console.log(this);
+//     }
+// }
+// // no static has to creat an instance
+// const p = new Person('Jojo');
+// p.showThis();
+// Person.statisShowThis();
+
+// // Lets make a summary. Three ways to use this keyword
+// // 1. if "this" keyword in the function, it will target to global object
+// // 2. if the function belongs to an object, the "this" keyword will target to the object.
+// // 3.1 if "this" is in the class, it will target to the instance. 
+// // 3.2 if you use static, it will target to the class
 
 
 //-----------------------------call bind---------------------------------
@@ -901,29 +924,34 @@ myObj.foo();
 // const obj ={
 //     pi: 3.14,
 //     getPi() {
-//         return this.pi
+//         return this.pi;
 //     }
 // }
-// function getPi(radius) {
-//     console.log(this.getPi()*radius);
+// function getPerimeter(radius) {
+//     console.log(this.getPi() * 2 * radius);
 // }
 
-// // getPi(20);
-// const newGetPi = getPi.bind(obj); // lazyloading  you cant change bind to call
+// getPerimeter(20);
+// //  bind involve one arg, -->the target you want to target
+// const newGetPerimeter = getPerimeter.bind(obj); // -->lazyloading: you cant change bind to call
+// newGetPerimeter(20);
 
-// //call apply   ----------> eagerloading
+// // lady loading here is hold or wait until someone use this method.
+
+//call apply   ------> they are eagerloading, you need to have declare first
 // const obj ={
-//     a: 1000,
-//     getSome() {
-//         return this.a
+//     area: 1000,
+//     getArea() {
+//         return this.area
 //     }
 // }
-// function getSome(num0, num1, num2) {
-//     console.log(this.getSome(), num0, num1, num2);
+// function getNum(num0, num1, num2) {
+//     console.log(this.getArea(), num0, num1, num2);
 // }
 
-// getSome.call(obj, 1, 2, 3);
-// getSome.apply(obj, [1, 2, 3]);
+// getNum.call(obj, 1, 2, 3);
+// // // apply is also eager loading but only two args: obj and array
+// getNum.apply(obj, [1, 2, 3]);
 
 
 
@@ -986,7 +1014,8 @@ myObj.foo();
 // arr.forEach(bar(12));
 
 //-------------------------------------Event loop------------------------------
-// Q: what is event loop??? // let us do an example first
+// //Q: what is event loop??? 
+// //let us do an example first
 
 // // setTimeout(()=>{console.log(1)}, 3000); 第一个par必须是个function 不能只是console.log(...)
 // console.log(0);
@@ -1115,7 +1144,8 @@ myObj.foo();
 // console.log(solution(first, second));
 
 
-//-----------------------JS day5 callback function & callback hell & Promise & My Promise--------------------
+//-----------------------JS day5 -----------------------------------------------
+//--------callback function & callback hell & Promise & My Promise--------------------
 // // callback function; callback hell
 // const foo = () => console.log('foo showup');
 
@@ -1549,8 +1579,8 @@ myObj.foo();
 //     console.log(data);
 //   });
 
-
-/********************************MyFetch*****/
+// -----------------------------js day6---------------------------
+//-----------------------------MyFetch----------------------------
 // const myFetch = (url, options) => {
 //     let method = options && options.method
 //         ? options.method
