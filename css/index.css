@@ -1,0 +1,21 @@
+* {
+    font-family: 'Splash', cursive;
+    font-size: 20px;
+}
+
+#myh1 {
+    background-color: blueviolet;
+    height: 100px;
+    width: 100px;
+    font-size: 50px;
+}
+
+#myh2 {
+    background-color: blue;
+    /* height: 2em;
+    width: 2em; */
+    height: 50vh; 
+    width: 10vw;
+
+    font-size: 2rem;
+}
