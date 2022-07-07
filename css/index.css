@@ -1,16 +1,23 @@
+:root{
+    --box-width: 500px;
+}
 * {
     font-family: 'Splash', cursive;
     font-size: 20px;
 }
 
 #myh1 {
+    /* position: absolute;
+    top: 50px; */
     background-color: blueviolet;
-    height: 100px;
-    width: 100px;
+    height: 300px;
+    width: var(--box-width);
     font-size: 50px;
 }
 
 #myh2 {
+    position: absolute;
+    top: 20px;
     background-color: blue;
     /* height: 2em;
     width: 2em; */

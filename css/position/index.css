@@ -1,0 +1,14 @@
+.container1 {
+    height: 100px;
+    width: 100px;
+    background-color: blue;
+    position: relative;
+    /* top: -20px; */
+    bottom: 20px;
+}
+
+.container2 {
+    height: 100px;
+    width: 100px;
+    background-color: red;
+}
