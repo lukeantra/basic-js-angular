@@ -8,18 +8,18 @@
 // // Primitive Data
 // // sting number boolean undefined null symbol
 
-var str = 'abc'; 
-console.log(typeof str);
+// var str = 'abc'; 
+// console.log(typeof str);
 // var copystr = str;
 // console.log(typeof copystr);
 // console.log('string: typeof instance === ', typeof 'string');
 // console.log('number: typeof instance === ', typeof 911);
 // console.log('boolean: typeof instance === ', typeof true);
-// console.log('undefined: typeof instance === ', typeof undefined); //
-// console.log(typeof null); 
+// console.log('undefined: typeof instance === ', typeof undefined); 
+// console.log(typeof null); // it is a bug of js, is a primitive value.
 
 // undefined is where no notion of the thing exists; 
-// it has no type, and it's never been referenced before in that scope;
+// it has no type, and it's never been referenced before in that scope!!!!
 //  null is where the thing is known to exist, 
 //  but it's not known what the value is.
 
@@ -29,10 +29,11 @@ console.log(typeof str);
 //     input = 6;
 //     console.log(input);
 // }
-// foo(a);
-// console.log(a);
+// foo(a); // 6 
+// console.log(a); // 5 passing by value not passing by reference
+// // // a same example
 // let b = 5;
-// let c = b;
+// let c = b; // passing by value
 // b = 6;
 // console.log(b, c);
 
@@ -41,8 +42,9 @@ console.log(typeof str);
 // you need to learn more by yourself after class
 // // plain obj or use class to create obj
 // var obj = {}
-// // prototype chain
+// // prototype chain, what is prototype chain? ()
 // console.log(obj);
+
 // // not a plain object, instead class object
 // class myObject {
 //     constructor() {
@@ -52,8 +54,8 @@ console.log(typeof str);
 // var obj2 = new myObject();
 // console.log(obj2);
 
-//Q:---what is the type of function?
-// what is the type of array?
+//Q:---what is the typeof function? --> object, but it will return a funtion
+// what is the typeof array? -> object
 // let arr = [1, 2, 3];
 // console.log(typeof(arr));
 
@@ -64,10 +66,16 @@ console.log(typeof str);
 // var obj = {
 //     name: 'Dio',
 // }
-// function bar(obj) {
-//     // create an new obj but only with the scope
-//     obj = {name: 'Jojo'}
-//     console.log(obj);
+// function bar(input) {
+    
+//     input.name = 'Jojo'
+//     console.log(input);
+//     // Q: how about this one????? --> create an new obj but only with the scope
+//     // input = {name: 'Jojo'} 
+//     // console.log(input === obj)
+//     // // Q: we changed the reference but why it is not working???
+//     // // js is sometimes wired, it create another variable called input. so the second way is not a good behavior
+//     // // then the first one will get ignored, run line by line, also called interpartor
 // }
 // bar(obj);
 // console.log(obj);
@@ -93,7 +101,7 @@ console.log(typeof str);
 // console.log(typeof num2);
 
 // equality == vs. ===
-// dont know convert string to num or num to string
+// I dont know convert string to num or num to string, I think it depends.
 // console.log('1' == 1); // true
 
 
@@ -107,7 +115,7 @@ console.log(typeof str);
 
 // always use === 
 
-
+// // Q: how to declare a variable in js?
 // var vs let vs const
 // what is the difference between var and let 
 
