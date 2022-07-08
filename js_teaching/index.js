@@ -3,11 +3,13 @@
 // Javascript = ECMAscript + Web.api
 // Nodejs = ECMAscript + Node.api
 
+// // showing node index.js
+
 // // Primitive Data
 // // sting number boolean undefined null symbol
 
-// var str = 'abc'; 
-// console.log(typeof str);
+var str = 'abc'; 
+console.log(typeof str);
 // var copystr = str;
 // console.log(typeof copystr);
 // console.log('string: typeof instance === ', typeof 'string');
