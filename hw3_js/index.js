@@ -166,10 +166,8 @@
 //     for (let i = 0; i < n; i++) {
 //         res[i] = new Array(n).fill(0);
 //     }
-//     // // let res = new Array(n).fill(0).map(_ => new Array(n).fill(0));
-//     // for (let i = 0; i < n; i++) {
-//     //     res[i][i] = 1;
-//     // }
+//     // //let res = new Array(n).fill(0).map(_ => new Array(n).fill(0));
+
 //     return res;
 // };
 // // ~test~
@@ -229,7 +227,7 @@
 // 14. Write a JavaScript function to convert an amount to coins.
 // Sample function : amountTocoins(46, [25, 10, 5, 2, 1])
 // Here 46 is the amount. and 25, 10, 5, 2, 1 are coins.
-// Output : 25, 10, 10, 1    动归 但是前端不看时间复杂度
+// Output : 25, 10, 10, 1   
 // const amountToconins = (amount, coins) => {
 //     coins.sort((a, b) => b - a);
 //     const res = [];
@@ -265,14 +263,14 @@
 
 // 16. Write a JavaScript function to extract unique characters from a string.
 // Example string : "thequickbrownfoxjumpsoverthelazydog"
-// Expected Output : "thequickbrownfxjmpsvlazydg"      // 这个题就是练习 set
+// Expected Output : "thequickbrownfxjmpsvlazydg"   
 
 // const extract = str => {
 //     const set = new Set();
 //     for (let i = 0; i < str.length; i++) {
 //         set.add(str[i]);
 //     }
-//      return [...set].join(' ');
+//      return [...set].join('');
 // }
 // // ~test~
 // const str = "tttthequickbrownfoxjumpsoverthelazydog";
@@ -561,6 +559,7 @@
 // const far = foo;
 // console.log(getName(far));
 
+// 30
 // const checkFibonacci = target => {
 //     // if (target < 0) return false;
 //     // if (target === 0) return true;
