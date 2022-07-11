@@ -2,15 +2,12 @@
 // // Example x = 32243;
 // // Expected Output : 34223
 // const reverseNum = num => {
-//     return num.toString().split("").reverse().join("");
-//     // return num.toString().split('').join('');
+//     return parseInt(num.toString().split("").reverse().join(""));
 // }
-// console.log(reverseNum(2345))
-// // 是一个string, 所以还需要用parseint转成数组
-// console.log(typeof(reverseNum(2345)));
+// console.log(reverseNum(2345));
 
 
-// // 解法2
+// // method2
 // const reverseNumber = num => {
 //     let res = 0;
 //     let target = num;
@@ -26,22 +23,15 @@
 // const x = 9876504321;
 // console.log(reverseNumber(x));
 
-// // // 2. Write a JavaScript function that checks whether a passed string is palindrome or not?
-// // // A palindrome is word, phrase, or sequence that reads the same backward as forward, e.g., madam or nurses run.
+// // 2. Write a JavaScript function that checks whether a passed string is palindrome or not?
+// // A palindrome is word, phrase, or sequence that reads the same backward as forward, e.g., madam or nurses run.
 // const checkPalindrome = str => {
-//     const target = str.split("");
-//     const reverseStr = target.reverse().join("");
-//     return reverseStr === str ? true : false;
-// };
-// const checkPalindrome = str => {
-
 //     let reversed = str.split('').reverse().join('');
 //     return reversed === str;
 // }
 
 // // ~test~
 // console.log(checkPalindrome("showohs"));
-// console.log(typeof("showtohs").split('').join(''));
 
 // // 3. Write a JavaScript function that generates all combinations of a string.
 // // Example string : 'dog'
@@ -67,9 +57,7 @@
 // // 4. Write a JavaScript function that returns a passed string with letters in alphabetical order.
 // // Example string : 'webmaster'
 // // Expected Output : 'abeemrstw'
-// function sort1 (str) {
-//     return str.split("").sort().join("");
-// }
+
 // const sorting = str => {
 //     return str.split('').sort().join('');
 // }
@@ -139,6 +127,7 @@
 //     }
 //     return res;
 // }
+
 // // ~test~
 // const str = "The quick brown fox THE QUICK BROWN FOX";
 // console.log(countVowels(str));
@@ -171,7 +160,7 @@
 // console.log(getType("ss"));
 // console.log(getType(a));
 
-// // 10. Write a JavaScript function which returns the n rows by n columns identity matrix.
+// 10. Write a JavaScript function which returns the n rows by n columns identity matrix.
 // const generMatrix = n => {
 //     const res = [];
 //     for (let i = 0; i < n; i++) {
