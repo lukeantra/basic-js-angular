@@ -1065,12 +1065,12 @@
 
 // //Q: how about this one?  async api acts like a theshold/transfer station. check it goes to task queue or not 
 // after how many seconds
-// function foo() {
-//     for (let i = 2; i < 5 ; i++){
+//  function foo() {
+//     for (var i = 1; i < 5 ; i++){
 //         setTimeout(() => console.log(i),i*1000);
 //     }
 //     console.log('abc');
-// }
+//  }
 
 // foo();
 
