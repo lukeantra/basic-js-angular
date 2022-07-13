@@ -90,7 +90,8 @@
 // )();
 // console.log(output);
 
-// // coercion 类型相互转换
+// // type coercion 类型相互转换
+// // Type coercion is the process of converting value from one type to another
 
 // console.log(typeof ('0' - '1'));
 // console.log(true + false); 
@@ -100,7 +101,11 @@
 // var num2 = +(num + '').split('').reverse().join('');
 // console.log(typeof num2);
 
-// equality == vs. ===
+// equality == vs. === 
+// == compare the values ignore the types, it is also called coercion.
+// but it does not really change the value type in this case.
+
+
 // I dont know convert string to num or num to string, I think it depends.
 // console.log('1' == 1); // true
 
