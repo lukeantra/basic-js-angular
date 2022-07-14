@@ -90,6 +90,7 @@
 // )();
 // console.log(output);
 
+
 // // type coercion 类型相互转换
 // // Type coercion is the process of converting value from one type to another
 
@@ -367,6 +368,8 @@
 
 // const er = new Employer('Dio',100,'Apple');
 // console.log(er);
+
+
 
 // ----------------poly morphism ------------------------
 // 不用讲什么是 poly-morphism 但有人问 就说 . Like a man at the same time is a father, 
