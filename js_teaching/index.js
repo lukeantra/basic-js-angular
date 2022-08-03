@@ -3,10 +3,10 @@
 // Javascript = ECMAscript + Web.api
 // Nodejs = ECMAscript + Node.api
 
-// // showing node index.js
+//* showing node index.js
 
-// // Primitive Data
-// // sting number boolean undefined null symbol
+//*Primitive Data
+//*string number boolean undefined null symbol bigINT
 
 // var str = 'abc'; 
 // console.log(typeof str);
