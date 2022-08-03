@@ -3,27 +3,30 @@
 // Javascript = ECMAscript + Web.api
 // Nodejs = ECMAscript + Node.api
 
-//* showing node index.js
+//* showing the command: node index.js
 
 //*Primitive Data
 //*string number boolean undefined null symbol bigINT
 
+
+//*examples
 // var str = 'abc'; 
 // console.log(typeof str);
+// console.log(typeof(str));
 // var copystr = str;
-// console.log(typeof copystr);
-// console.log('string: typeof instance === ', typeof 'string');
-// console.log('number: typeof instance === ', typeof 911);
-// console.log('boolean: typeof instance === ', typeof true);
-// console.log('undefined: typeof instance === ', typeof undefined); 
-// console.log(typeof null); // it is a bug of js, is a primitive value.
+// console.log(copystr);
+// console.log(typeof 'string');
+// console.log( typeof 911);
+// console.log(typeof true);
+// console.log(typeof undefined); // undefined
+// console.log(typeof null); // object, but it is a bug of js, is a primitive value.
 
-// undefined is where no notion of the thing exists; 
-// it has no type, and it's never been referenced before in that scope!!!!
-//  null is where the thing is known to exist, 
-//  but it's not known what the value is.
+//* undefined vs null
+// *undefined is where no notion of the thing exists; 
+// *it has no type, and it's never been referenced before in that scope!!!!
+// *null is where the thing is known to exist, but we don't known what the value is.
 
-// primitive data example
+// *primitive data example
 // let a = 5;
 // function foo(input){
 //     input = 6;
@@ -37,12 +40,11 @@
 // b = 6;
 // console.log(b, c);
 
-// // Object Data -------------------------
-// how to create an object in js some students dont know how to create obj, 
-// you need to learn more by yourself after class
-// // plain obj or use class to create obj
+//------------------------ Object Data -------------------------
+// Lets move to non-primitive data, say we have an empty object.
+
 // var obj = {}
-// // prototype chain, what is prototype chain? ()
+// *prototype chain, what is prototype chain? ()
 // console.log(obj);
 
 // // not a plain object, instead class object
@@ -54,7 +56,7 @@
 // var obj2 = new myObject();
 // console.log(obj2);
 
-//Q:---what is the typeof function? --> object, but it will return a funtion
+//Q:????---what is the typeof function? --> object, but it will return a funtion??????
 // what is the typeof array? -> object
 // let arr = [1, 2, 3];
 // console.log(typeof(arr));
@@ -70,12 +72,12 @@
     
 //     input.name = 'Jojo'
 //     console.log(input);
-//     // Q: how about this one????? --> create an new obj but only with the scope
-//     // input = {name: 'Jojo'} 
-//     // console.log(input === obj)
-//     // // Q: we changed the reference but why it is not working???
-//     // // js is sometimes wired, it create another variable called input. so the second way is not a good behavior
-//     // // then the first one will get ignored, run line by line, also called interpartor
+    // Q: how about this one????? --> create an new obj but only with the scope
+    // input = {name: 'Jojo'} 
+    // console.log(input === obj)
+    // Q: we changed the reference but why it is not working???
+    // js is sometimes wired, it create another variable called input. so the second way is not a good behavior
+    // then the first one will get ignored, run line by line, also called interpartor
 // }
 // bar(obj);
 // console.log(obj);
@@ -91,7 +93,7 @@
 // console.log(output);
 
 
-// // type coercion 类型相互转换
+//type coercion 类型相互转换
 // // Type coercion is the process of converting value from one type to another
 
 // console.log(typeof ('0' - '1'));
@@ -120,6 +122,8 @@
 // console.log(NaN == NaN);
 
 // always use === 
+//* comprison table
+// https://dorey.github.io/JavaScript-Equality-Table/ 
 
 // // Q: how to declare a variable in js?
 // var vs let vs const
