@@ -34,7 +34,8 @@
 // }
 // foo(a); // 6 
 // console.log(a); // 5 passing by value not passing by reference
-// // // a same example
+
+// *a same example
 // let b = 5;
 // let c = b; // passing by value
 // b = 6;
@@ -47,7 +48,7 @@
 // *prototype chain, what is prototype chain? ()
 // console.log(obj);
 
-// // not a plain object, instead class object
+// *not a plain object, instead class object--->??????????
 // class myObject {
 //     constructor() {
 
