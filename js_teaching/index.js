@@ -63,7 +63,7 @@
 // console.log(typeof(arr));
 
 // var copyobj = obj;
-// //
+
 // // passing by reference: arr, function, object
 // it wont let you pass reference through the arguments of a function
 // var obj = {
@@ -94,16 +94,17 @@
 // console.log(output);
 
 
-//type coercion 类型相互转换
-// // Type coercion is the process of converting value from one type to another
+//*type coercion 类型相互转换
+//*Type coercion is the process of converting value from one type to another
 
-// console.log(typeof ('0' - '1'));
-// console.log(true + false); 
+// console.log(typeof ('0' - '1')); // number
+// console.log(true + false); // 1
 
-// var num = 2342342342413;
-// // 314...
-// var num2 = +(num + '').split('').reverse().join('');
-// console.log(typeof num2);
+// we have an interview question
+var num = 2342342342413;
+var num2 = +(num + '').split('').reverse().join(''); // + ''变成string, 再+变成数字
+console.log(num2);
+
 
 // equality == vs. === 
 // == compare the values ignore the types, it is also called coercion.
