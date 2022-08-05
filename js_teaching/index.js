@@ -56,6 +56,11 @@
 // }
 // var obj2 = new myObject();
 // console.log(obj2);
+// but you can change/mutate inside of the obj. so just be more clear about the concepts
+// const obj = { name:'Dio' }
+// obj.name = 'Jojo';
+// console.log(obj);
+// object define property. With some methods, you can't change it... it is advanced topic
 
 //Q:????---what is the typeof function? --> object, but it will return a funtion??????
 // what is the typeof array? -> object
@@ -100,32 +105,27 @@
 // console.log(typeof ('0' - '1')); // number
 // console.log(true + false); // 1
 
-// we have an interview question
-var num = 2342342342413;
-var num2 = +(num + '').split('').reverse().join(''); // + ''变成string, 再+变成数字
-console.log(num2);
+// Q: we have an interview question:
+// var num = 2342342342413;
+// var num2 = +(num + '').split('').reverse().join(''); // + ''变成string, 再+变成数字
+// console.log(num2);
 
 
-// equality == vs. === 
-// == compare the values ignore the types, it is also called coercion.
-// but it does not really change the value type in this case.
+//* equality == vs. === we have a table to show you
+
+//* comprison table
+//* https://dorey.github.io/JavaScript-Equality-Table/ 
+//* == compare the values ignore the types, it is also called coercion.
+//* but it does not really change the value type in this case.
 
 
-// I dont know convert string to num or num to string, I think it depends.
+// we are not sure about it: convert string to num or num to string, I think it depends.
 // console.log('1' == 1); // true
 
-
-// console.log(undefined == null);
-// console.log(null == false);
-// console.log(typeof NaN); 
-
-// console.log(false == NaN);
-// console.log(isNaN('apple') === isNaN('banana'));
-// console.log(NaN == NaN);
+//console.log(3 + 4 + "5"); --> 75
 
 // always use === 
-//* comprison table
-// https://dorey.github.io/JavaScript-Equality-Table/ 
+
 
 // // Q: how to declare a variable in js?
 // var vs let vs const
@@ -166,18 +166,13 @@ console.log(num2);
 
 
 // undefined vs not defined (reference error)
-// undefined: you declare a varibale but without assign it.
+// undefined: you declare a varibale but without assign it. there is no refrence.
 // console.log(abcd);
 // Q: what if you change keyword var to let 
 // Q: let vs const (const cant reassign a value after it is assigned.)
 
-// but you can change/mutate inside of the obj. so just be more clear about the concepts
-// const obj = {name:'Dio' }
-// obj.name = 'Jojo';
-// console.log(obj);
-// object defineproperty. With some methods, you can't change it... it is advanced topic
 
-// (if someone mentioned) java use complier and check everything first, but js use interpreter//
+
 
 
 // let and const
