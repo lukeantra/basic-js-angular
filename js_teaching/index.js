@@ -1,4 +1,4 @@
-// -----------------------------js day1----------------------------
+// -----------------------------Day1----------------------------
 // ECMAscript: syntax ES6
 // Javascript = ECMAscript + Web.api
 // Nodejs = ECMAscript + Node.api
@@ -48,6 +48,31 @@
 // *prototype chain, what is prototype chain? ()
 // console.log(obj);
 
+// *要放在这吗？？？？
+// obj vs map--> syntax difference
+// const a = {age: 12};
+// const b = {name: 'tt'};
+// const c = {};
+// console.log(a);
+//*arr[object Object]强转  // arr[something] 强转
+//* [object Object] is just a string representation, not what the object actually looks like. （bingo）
+// c[a] = 456;
+// c[b] = 745;
+// console.log(c);
+// console.log(c[a], c[b]);
+
+// const a = new Map();
+// const b = new Map();
+
+// const c = new Map();
+
+// c.set(a, 456);
+// c.set(b, 678)
+// console.log(c.get(a), c.get(b));
+
+
+
+//------------------------------??????----------------------------------------
 // *not a plain object, instead class object--->??????????
 // class myObject {
 //     constructor() {
@@ -97,6 +122,7 @@
 // }
 // )();
 // console.log(output);
+//------------------------------??????----------------------------------------
 
 
 //*type coercion 类型相互转换
@@ -455,43 +481,47 @@
 
 
 
-
-// -------------------for loop------------------------------------------
+// -------------------Day2------------------------------------------
+// -------------------loop--------------------------------------
 // const arr = [1, 2, 3];
 // console.log(arr);
 
 // *key-value pairs are properties such as 0: 1, 1: 2, and 2: 3
-
+// *some ways to do the for loop
+// *1 Q: can we use const in this case --> no
 // for (let i = 0; i < arr.length; i++) {
 //     console.log(arr[i]);
 // }
+// *2 Q: can we use const in this case, --> yes, everytime create a new index.
+// * in: using key, so it is like arr['0'], corecion 
+// for (let index in arr) {
+//     console.log(arr[index]);
+//     console.log(typeof index);
+// }
+
+// *3 Q: If somebody ask, can we use const in this case, e.g. (const ele of arr) --> yes, 
+// * let is good for best practice
 // for (let ele of arr) {
 //     console.log(ele);
 // }
 
-// for (const index in arr) {
-//     console.log(arr[index]);
-// }
-
-// // we can construct an object
-// const obj = {
-//     name: 'Dio',
-//     age: 200
-// }
-// // what is the difference between this two: obj.name vs. obj['name']
-// // [] is for a variable, but . is for a given key or more like a sepecific key
+//* Same question, we can construct an object
+// const obj = {name: 'Dio', age: 200 }
 // console.log(obj.name, obj['name']);
-// // another example
+// *Q: what is the difference between this two: obj.name vs. obj['name']
+// * [] is for a variable, but . is for a given key or more like a sepecific key
+
+
+//* another example
 // for (const key in obj) {
-//     //you cant do things like: obj.key, becuase key is a variable
-//     console.log(key, obj[key]);
+//     console.log(key, obj[key]); // you cant do things like: obj.key, becuase key is a variable
 // }
 
-// //forEach building method-------- but it is not orginal for loop ----------
+//* forEach building method-------- but it is not orginal for loop ----------
 // Q: where does this forEach come from ? (from the array class, foreach is a method of prototype)
-// //forEach cant use break and continune inside of the functions...
+//* forEach cant use break and continune inside of the functions...
 // const arr = [1, 2, 3, 4, 5];
-//function(ele) is a callback funtion
+// function(ele) is a callback funtion
 // arr.forEach(function(ele) {
 //     console.log(ele);
 // });
