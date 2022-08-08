@@ -457,10 +457,10 @@
 
 
 // -------------------for loop------------------------------------------
-// const arr = [1, 2, 3, ];
+// const arr = [1, 2, 3];
 // console.log(arr);
 
-// key-value pairs are properties such as 0: 1
+// *key-value pairs are properties such as 0: 1, 1: 2, and 2: 3
 
 // for (let i = 0; i < arr.length; i++) {
 //     console.log(arr[i]);
