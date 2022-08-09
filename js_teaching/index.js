@@ -498,6 +498,10 @@
 //     console.log(arr[index]);
 //     console.log(typeof index);
 // }
+//* another example
+// for (const key in obj) {
+//     console.log(key, obj[key]); // you cant do things like: obj.key, becuase key is a variable
+// }
 
 // *3 Q: If somebody ask, can we use const in this case, e.g. (const ele of arr) --> yes, 
 // * let is good for best practice
@@ -512,35 +516,60 @@
 // * [] is for a variable, but . is for a given key or more like a sepecific key
 
 
-//* another example
-// for (const key in obj) {
-//     console.log(key, obj[key]); // you cant do things like: obj.key, becuase key is a variable
-// }
-
 //* forEach building method-------- but it is not orginal for loop ----------
-// Q: where does this forEach come from ? (from the array class, foreach is a method of prototype)
-//* forEach cant use break and continune inside of the functions...
+//* But no break and continune inside of the functions...
+
 // const arr = [1, 2, 3, 4, 5];
+//* Q: where does this forEach come from ? (from the array class, foreach is a method of prototype)
+// console.log(arr); // open the protoype and check the forEach method
 // function(ele) is a callback funtion
 // arr.forEach(function(ele) {
 //     console.log(ele);
 // });
 
-// // create my forEach
-// // Q: what is the arguments in forEach? what is the callback function?
-// // Q: do you know waht the this mean??? we are going to talk about this later...
+// --------forEach arguments: current ele, current index, original array-----------
+//*ele is required , but other two are not required.
+// const arr = [100, 200, 300];
+// arr.forEach(function(ele, i, array){
+//     array[i] = ele + 1;
+//     console.log(ele, i, array, arr);
+//     console.log(arr === array);
+// })
+// console.log(arr);
+//*since this arr can be changed instead of creating a new array. 
+
+
+//同理 如果有三个参数的 myforEach
 // Array.prototype.myforEach = function (callbackfn) {
 
 //     for (let i = 0; i < this.length; i++) {
-//         console.log(this);
-//         callbackfn(this[i]);
+//         callbackfn(this[i], i, this);
 //     }
 // }
-// arr.myforEach(function (ele) {
-//     console.log(ele);
+// arr.myforEach(function(ele,i,array){
+//     array[i] = ele + 1;
 // })
-// //what is "this"?
-// // this will target to the instace itself... in this situation, it is arr...
+// console.log(arr);
+// 同理 如果有三个参数的 Map 省略
+
+
+//* build myForEach
+//* Q: what is the arguments in forEach? what is the callback function?
+//* inherit from 
+
+Array.prototype.myforEach = function (callbackfn) {
+
+    for (let i = 0; i < this.length; i++) {
+        console.log(this); // this is relative to the object: array
+        callbackfn(this[i]);
+    }
+}
+const arr = [1, 2, 3, 4, 5];
+arr.myforEach(function (ele) {
+    console.log(ele);
+})
+//* what is "this"?
+//* this will target to the instace itself... in this situation, it is arr...
 
 // // !!!!the difference between forEach and Map!!!!
 // // map always generate new array. Below see the examples
@@ -568,39 +597,13 @@
 
 // console.log(newarr);
 
-// --------forEach arguments: current ele, current index, original array-----------
-// // ele is required , but other two are not required.
-// const arr = [100, 200, 300];
-// arr.forEach(function(ele, i, array){
-//     array[i] = ele + 1;
-//     console.log(ele, i, array, arr);
-//     console.log(arr === array);
-// })
-// console.log(arr);
-//// since this arr can be changed instead of creating a new array. 
-////try to avoid involve this array when doing things 
-//// e.g. array[1] = 2000;
-
-//同理 如果有三个参数的 myforEach
-// Array.prototype.myforEach = function (callbackfn) {
-
-//     for (let i = 0; i < this.length; i++) {
-//         //告诉你 callback function里面的参数 this[i]。格式就这样！
-//         callbackfn(this[i], i, this);
-//     }
-// }
-// arr.myforEach(function(ele,i,array){
-//     array[i] = ele + 1;
-// })
-// console.log(arr);
-// 同理 如果有三个参数的 Map 省略
 
 // const newarr = arr.filter(function(ele, i, array){
 //     return ele > 3
 // })
 // console.log(newarr)
 
-//build up your filter
+//build up myFilter
 // Array.prototype.myFilter = function (callbackfn) {
 //     const arr = []
 //     for (let i = 0; i < this.length; i++) {
