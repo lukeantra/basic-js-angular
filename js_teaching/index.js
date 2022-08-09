@@ -527,19 +527,19 @@
 //     console.log(ele);
 // });
 
-// --------forEach arguments: current ele, current index, original array-----------
+//*forEach arguments: current ele, current index, original array
 //*ele is required , but other two are not required.
 // const arr = [100, 200, 300];
-// arr.forEach(function(ele, i, array){
+// arr.forEach((ele, i, array) => {
 //     array[i] = ele + 1;
 //     console.log(ele, i, array, arr);
 //     console.log(arr === array);
 // })
 // console.log(arr);
-//*since this arr can be changed instead of creating a new array. 
+//*since this arr can be changed instead of creating a new array, so aviod muniplating orginal array
 
 
-//同理 如果有三个参数的 myforEach
+//* 同理 如果有三个参数的 myforEach
 // Array.prototype.myforEach = function (callbackfn) {
 
 //     for (let i = 0; i < this.length; i++) {
@@ -557,22 +557,22 @@
 //* Q: what is the arguments in forEach? what is the callback function?
 //* inherit from 
 
-Array.prototype.myforEach = function (callbackfn) {
+// Array.prototype.myforEach = function (callbackfn) {
 
-    for (let i = 0; i < this.length; i++) {
-        console.log(this); // this is relative to the object: array
-        callbackfn(this[i]);
-    }
-}
-const arr = [1, 2, 3, 4, 5];
-arr.myforEach(function (ele) {
-    console.log(ele);
-})
+//     for (let i = 0; i < this.length; i++) {
+//         console.log(this); // this is relative to the object: array
+//         callbackfn(this[i]);
+//     }
+// }
+// const arr = [1, 2, 3, 4, 5];
+// arr.myforEach(function (ele) {
+//     console.log(ele);
+// })
 //* what is "this"?
 //* this will target to the instace itself... in this situation, it is arr...
 
-// // !!!!the difference between forEach and Map!!!!
-// // map always generate new array. Below see the examples
+// !the difference between forEach and Map
+// *map always generate new array. Below see the examples
 // console.log( arr.forEach(function(ele) {
 //     console.log(ele);
 // }))
