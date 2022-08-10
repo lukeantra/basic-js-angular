@@ -621,12 +621,18 @@
 
 //* reducer is the callback function for reduce. It saves the previous value for new iteration (4 parameters)
 //* example
-const str = 'abc';
-const reducer = function(acc, cur, i, array) {   
-    return acc + cur + cur;
-}
-console.log(str.split('').reduce(reducer,''));
+// const str = 'abc';
+// const reducer = function(acc, cur, i, array) {   
+//     return acc + cur + cur;
+// }
+// console.log(str.split('').reduce(reducer,''));
 
+//*2example
+// const numbers = [175, 50, 25];
+// const reducer = function(acc, cur) {   
+//     return acc - cur;
+// }
+// console.log(numbers.reduce(reducer, 0));
 
 //* build up myReduce with an ininial Value
 // Array.prototype.myReduce = function (callbackfn, initVal) {
@@ -655,13 +661,12 @@ console.log(str.split('').reduce(reducer,''));
 //     return acc;
 // }
 
-// //console.log(strarr.myReduce((acc, cur)=>acc+cur+cur, ''))
 // console.log(strarr.myReduce(reducer,''))
 
 //---------------------------  destructure ---------------------------------
-// // Q: we have something called constructor. does any body know what the destructure is in js? 
-// // It creates a pattern that describes the kind of value you are expecting and makes the assignment. 
-// // Array destructuring uses position.
+//* Q: we have something called constructor. does any body know what the destructure is in js? 
+//* It creates a pattern that describes the kind of value you are expecting and makes the assignment. 
+//* Array destructuring uses position.
 
 // const [first, second, third] = ["a", "b", "c"];
 // console.log(first, third);
