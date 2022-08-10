@@ -580,11 +580,10 @@
 //     console.log(ele);
 // }))
 
-//create my Map
+//* build myMap
 // Array.prototype.myMap = function (callbackfn) {
 //     const arr = []
 //     for (let i = 0; i < this.length; i++) {
-
 //         arr.push(callbackfn(this[i]))
 //     }
 //     return arr
@@ -597,13 +596,13 @@
 
 // console.log(newarr);
 
-
+//* also filter is an important method
 // const newarr = arr.filter(function(ele, i, array){
 //     return ele > 3
 // })
 // console.log(newarr)
 
-//build up myFilter
+//*build up myFilter (it is one of my sep interview questions)
 // Array.prototype.myFilter = function (callbackfn) {
 //     const arr = []
 //     for (let i = 0; i < this.length; i++) {
@@ -618,38 +617,38 @@
 // })
 // console.log(newarr)
 
-// // reduce() has 4 parameters. The last one is an initial value.
+//!reduce() has 2 parameters. The last one is an initial value. 
 
-// //reducer is the callback function for reduce. Always save the previous value for new iteration
+//* reducer is the callback function for reduce. It saves the previous value for new iteration (4 parameters)
+//* example
+const str = 'abc';
+const reducer = function(acc, cur, i, array) {   
+    return acc + cur + cur;
+}
+console.log(str.split('').reduce(reducer,''));
 
-// const reducer = function(acc, cur, i, array) {   
-//     return acc + cur + cur
-// }
-// //reduce 里面其实还是一个function('') 就多了个initial acc参数
-// console.log(strarr.reduce(reducer,''))
-// // build up my Reduce with ininial Value...
+
+//* build up myReduce with an ininial Value
 // Array.prototype.myReduce = function (callbackfn, initVal) {
-//     // you cant make it as a const, otherwise the value wont be changed.
-//     let value = initVal;
+//* Q: can I change let to const
+//     let acc = initVal;
 //     for (let i = 0; i < this.length; i++) {
-//         value = callbackfn(value, this[i], i, this);
+//         acc = callbackfn(acc, this[i], i, this);
 //     }
 //     return value;
 // }
 // const str ='abc';
 // const strarr = str.split('');
-// biuld up my Reduce no matter it has initial or not
+//* Q:what if we dont know about the initial value biuld up myReduce no matter it has initial or not
 // Array.prototype.myReduce = function (...args) {
-//     // let [ acc, index ] = args.length === 1
-//     //     ? [ this[0], 1 ]
-//     //     : [ args[1], 0 ];
-// //another way 
-//     let acc = this[0];
-//     let index = 1;
-//     if (args.length > 1){
-//         acc = args[1]
-//         index = 0;
-//     }
+//     let [ acc, index ] = args.length === 1 ? [ this[0], 1 ] : [ args[1], 0 ];
+//     // *another way 
+//     // let acc = this[0];
+//     // let index = 1;
+//     // if (args.length > 1){
+//     //     acc = args[1]
+//     //     index = 0;
+//     // }
 //     for (let i = index; i < this.length; i++) {
 //         acc = args[0](acc, this[i], i, this);
 //     }
