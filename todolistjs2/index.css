@@ -1,10 +1,28 @@
 :root {
-
+    --panel-width: 300px;
+    --panel-width: 300px;
+    --panel-color: #eeb4bc;
 }
 
 * {
     margin: 0;
     padding: 0;
-    
+}
+
+.container {
+    /* display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; */
+    margin: auto;
+
+    width: var(--panel-width);
+    height: var(--panel-height);
+    background-color: var(--panel-color);
+    border: solid;
+}
+
+.container li {
+    list-style: none;
 }
 
