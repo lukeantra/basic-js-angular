@@ -1,0 +1,36 @@
+:root {
+    --todolist-height: 400px;
+    --todolist-width: 400px;
+    --todolist-container-color: #eeb4bc;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    height: var(--todolist-height);
+    width: var(--todolist-width);
+    
+    background-color: var(--todolist-container-color);
+    /* border: solid; */
+}
+
+.container li {
+    list-style: none;
+}
+
