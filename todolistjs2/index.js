@@ -1,6 +1,6 @@
-// ---------------------api, and you can create another file ----------------
-const api = () => {
-    const baseUrl = "http://localhost:3000";
+// ---------------------api ----------------
+const api = (() => {
+    const baseUrl = "https://jsonplaceholder.typicode.com";
     const todo = "todos";
 
     const getTodos = () =>
@@ -28,36 +28,17 @@ const api = () => {
         deleteTodos,
         addTodos,
     };
-};
+})();
 
-class Api {
-     baseUrl = "http://localhost:3000";
-     todo = "todos";
-
-     getTodos = () =>
-        fetch([baseUrl, todo].join("/")).then((response) => response.json());
-
-     deleteTodos = (id) => {
-        console.log(id);
-        fetch([baseUrl, todo, id].join("/"), {
-            method: "DELETE",
-        });
-    };
-
-     addTodos = () =>
-        fetch("https://jsonplaceholder.typicode.com/posts", {
-            method: "POST",
-            // newtodo
-            body: JSON.stringify(newtodo),
-            headers: {
-                "Content-type": "application/json; charset=UTF-8",
-            },
-        }).then((response) => response.json());
-}
 
 // ---------------------view----------------
-const view = () => {
-    // domStr ???
+const view = (() => {
+    // domStr
+    const domStr = {
+        list: ".list-container",
+        deletebtn: ".delete-btn",
+        input: ".input-container",
+    };
 
     const render = (ele, tmp) => {
         ele.innerHTML = tmp;
@@ -68,7 +49,7 @@ const view = () => {
         arr.forEach((todo) => {
             tmp += `<li>
           <span>${todo.id}-${todo.title}</span>
-          <button class="delete-btn" id="${todo.id}"></button>
+          <button class="delete-btn" id="${todo.id}">X</button>
         </li>`;
         });
 
@@ -78,11 +59,12 @@ const view = () => {
     return {
         render,
         createTmp,
+        domStr,
     }
-};
+})();
 
 // ---------------------model----------------
-const model = (api, view) => {
+const model = ((api, view) => {
 
     const getTodos = api.getTodos;
     const deleteTodos = api.deleteTodos;
@@ -94,7 +76,18 @@ const model = (api, view) => {
         }
     }
     class State {
+        #listFetch = [];
 
+        get todolist() {
+            return this.#listFetch;
+        }
+
+        set todolist(newtodos) {
+            this.#listFetch = newtodos;
+            const tmp = view.createTmp(this.#listFetch);
+            const list = document.querySelector(view.domStr.list);
+            view.render(list, tmp);
+        }
     }
 
     return {
@@ -105,18 +98,24 @@ const model = (api, view) => {
         Todo,
     };
 
-}
+})(api, view)
 
 
 // ---------------------controller----------------
-const controller = (model.view) => {
-    const state = model.State();
-    const init = () => {
+const controller = ((model) => {
+    const state = new model.State();
 
-    }
+    const init = () => {
+        model.getTodos().then(data => {
+            state.todolist = data;
+        })
+    };
 
     return {
         init,
-    }
-}
+    };
+})(model);
+
+controller.init();
+
 
