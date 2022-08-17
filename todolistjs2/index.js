@@ -33,7 +33,7 @@ const api = (() => {
 
 // ---------------------view----------------
 const view = (() => {
-    // domStr
+    
     const domStr = {
         list: ".list-container",
         deletebtn: ".delete-btn",
@@ -70,11 +70,11 @@ const model = ((api, view) => {
     const deleteTodos = api.deleteTodos;
     const addTodos = api.addTodos;
 
-    class Todo {
-        constructor(title) {
-            this.title = title;
-        }
-    }
+    // class Todo {
+    //     constructor(title) {
+    //         this.title = title;
+    //     }
+    // }
     class State {
         #listFetch = [];
 
@@ -95,7 +95,7 @@ const model = ((api, view) => {
         deleteTodos,
         addTodos,
         State,
-        Todo,
+        
     };
 
 })(api, view)
@@ -104,6 +104,9 @@ const model = ((api, view) => {
 // ---------------------controller----------------
 const controller = ((model) => {
     const state = new model.State();
+    const deletebtn = document.querySelector(view.domStr.deletebtn);
+    const list = document.querySelector(view.domStr.list);
+    
 
     const init = () => {
         model.getTodos().then(data => {
@@ -111,11 +114,29 @@ const controller = ((model) => {
         })
     };
 
+    const deleteTodo = () => {
+        // 这个为啥不能target到button， 因为button太多？？？
+        list.addEventListener("click", (event) => {
+            state.todolist = state.todolist.filter(
+                (todo) => +todo.id !== +event.target.id
+            );
+
+            model.deleteTodos(event.target.id);
+        });
+    }
+
+    const bootstrap = () => {
+        init();
+        deleteTodo();
+    }
+
     return {
-        init,
+        bootstrap,
     };
+
 })(model);
 
-controller.init();
+controller.bootstrap();
+
 
 

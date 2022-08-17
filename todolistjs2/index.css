@@ -71,6 +71,7 @@ ul li:hover {
 } 
 
 ul li  {
+    height: var(--todolist-list-height);;
     list-style: none;
     display: flex;
     /* flex-direction: column; */
