@@ -101,6 +101,8 @@ ul li button {
 
 ul li button:hover {
     font-size: 1.5rem;
+    cursor: pointer;
+
 }
 
 input, span {
