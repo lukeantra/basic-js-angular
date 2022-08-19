@@ -13,7 +13,7 @@ const api = (() => {
         });
     };
 
-    const addTodos = () =>
+    const addTodos = (newtodo) =>
         fetch("https://jsonplaceholder.typicode.com/posts", {
             method: "POST",
             // newtodo
@@ -70,19 +70,19 @@ const model = ((api, view) => {
     const deleteTodos = api.deleteTodos;
     const addTodos = api.addTodos;
 
-    // class Todo {
-    //     constructor(title) {
-    //         this.title = title;
-    //     }
-    // }
+    class Todo {
+        constructor(title) {
+            this.title = title;
+        }
+    }
     class State {
         #listFetch = [];
 
-        get todolist() {
+        get getList() {
             return this.#listFetch;
         }
 
-        set todolist(newtodos) {
+        set setList(newtodos) {
             this.#listFetch = newtodos;
             const tmp = view.createTmp(this.#listFetch);
             const list = document.querySelector(view.domStr.list);
@@ -94,14 +94,15 @@ const model = ((api, view) => {
         getTodos,
         deleteTodos,
         addTodos,
-        State,  
+        State, 
+        Todo 
     };
 
 })(api, view)
 
 
 // ---------------------controller----------------
-const controller = ((model) => {
+const controller = ((view, model) => {
     
     const state = new model.State();
     const deletebtn = document.querySelector(view.domStr.deletebtn);
@@ -110,14 +111,14 @@ const controller = ((model) => {
     
     const init = () => {
         model.getTodos().then(data => {
-            state.todolist = data;
+            state.setList = data;
         })
     };
 
     const deleteTodo = () => {
         // 为啥不能target到button， 因为button太多？？？
         list.addEventListener("click", (event) => {
-            state.todolist = state.todolist.filter(
+            state.setList = state.getList.filter(
                 (todo) => +todo.id !== +event.target.id
             );
 
@@ -128,10 +129,11 @@ const controller = ((model) => {
     const addTodo = () => {
         input.addEventListener('keyup', event => {
             if(event.key === "Enter" && event.target.value !== "") {
-                const todo = new model.Todo(event.traget.value);
+                console.log(event.target.value);
+                const todo = new model.Todo(event.target.value);
 
-                model.addTodos(todo).then(todo => {
-                    state.todolist([todo, ...state.todolist]);
+                model.addTodos(todo).then(data => {
+                    state.setList = [data, ...state.getList];
                 })
                 event.target.value = "";
             }
@@ -142,13 +144,14 @@ const controller = ((model) => {
     const bootstrap = () => {
         init();
         deleteTodo();
+        addTodo();
     }
 
     return {
         bootstrap,
     };
 
-})(model);
+})(view, model);
 
 controller.bootstrap();
 
