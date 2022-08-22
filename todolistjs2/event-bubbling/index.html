@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>event-bubbling</title>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <form class="grandparent" onclick="clickTarget()">
+      FORM
+      <div class="parent">
+        DIV
+        <p class="child" id="hhh" >P</p>
+      </div>
+    </form>
+  </body>
+
+  <script>
+    function clickTarget() {
+      console.log(event.target);
+    }
+  </script>
+</html>
