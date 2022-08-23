@@ -1,6 +1,7 @@
 // ---------------------api ----------------
 const api = (() => {
     const baseUrl = "https://jsonplaceholder.typicode.com";
+    // const baseUrl = "http://localhost:3000";
     const todo = "todos";
 
     const getTodos = () =>
@@ -14,7 +15,7 @@ const api = (() => {
     };
 
     const addTodos = (newtodo) =>
-        fetch("https://jsonplaceholder.typicode.com/posts", {
+        fetch([baseUrl, todo].join("/"), {
             method: "POST",
             // newtodo
             body: JSON.stringify(newtodo),
@@ -115,7 +116,7 @@ const model = ((api, view) => {
 
         const state = new model.State();
         const list = document.querySelector(view.domStr.list);
-        const input = document.querySelector(view.domStr.input);
+        
 
         const init = () => {
             model.getTodos().then(data => {
@@ -143,6 +144,7 @@ const model = ((api, view) => {
 
         const deleteTodo = () => {
             list.addEventListener("click", (event) => {
+                //filter will help to rerender the page
                 state.setList = state.getList.filter(
                     (todo) => +todo.id !== +event.target.id
                 );
@@ -152,13 +154,21 @@ const model = ((api, view) => {
         }
 
         const addTodo = () => {
+            // the input wont change, it is always this one input, so not recursion.
+            const input = document.querySelector(view.domStr.input);
             input.addEventListener('keyup', event => {
                 if (event.key === "Enter" && event.target.value !== "") {
-                    console.log(event.target.value);
+                    // console.log(event.target.value);
                     const todo = new model.Todo(event.target.value);
-
+                    // 传给后端 
                     model.addTodos(todo).then(data => {
+                        console.log(data);
+                        
+                        //[]也会有new reference, rerender the page
+                        //for fakebackend, the id will be the same.
                         state.setList = [data, ...state.getList];
+                        // concat also return a new array
+                        // state.setList = state.getList.concat(data);
                     })
                     event.target.value = "";
                 }
