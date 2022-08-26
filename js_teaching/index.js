@@ -8,9 +8,8 @@
 //*Primitive Data
 //*string number boolean undefined null symbol bigINT
 
-
 //*examples
-// var str = 'abc'; 
+// var str = 'abc';
 // console.log(typeof str);
 // console.log(typeof(str));
 // var copystr = str;
@@ -22,7 +21,7 @@
 // console.log(typeof null); // object, but it is a bug of js, is a primitive value.
 
 //* undefined vs null
-// *undefined is where no notion of the thing exists; 
+// *undefined is where no notion of the thing exists;
 // *it has no type, and it's never been referenced before in that scope!!!!
 // *null is where the thing is known to exist, but we don't known what the value is.
 
@@ -32,7 +31,7 @@
 //     input = 6;
 //     console.log(input);
 // }
-// foo(a); // 6 
+// foo(a); // 6
 // console.log(a); // 5 passing by value not passing by reference
 
 // *a same example
@@ -70,8 +69,6 @@
 // c.set(b, 678)
 // console.log(c.get(a), c.get(b));
 
-
-
 //------------------------------??????----------------------------------------
 // *not a plain object, instead class object--->??????????
 // class myObject {
@@ -100,19 +97,18 @@
 //     name: 'Dio',
 // }
 // function bar(input) {
-    
+
 //     input.name = 'Jojo'
 //     console.log(input);
-    // Q: how about this one????? --> create an new obj but only with the scope
-    // input = {name: 'Jojo'} 
-    // console.log(input === obj)
-    // Q: we changed the reference but why it is not working???
-    // js is sometimes wired, it create another variable called input. so the second way is not a good behavior
-    // then the first one will get ignored, run line by line, also called interpartor
+// Q: how about this one????? --> create an new obj but only with the scope
+// input = {name: 'Jojo'}
+// console.log(input === obj)
+// Q: we changed the reference but why it is not working???
+// js is sometimes wired, it create another variable called input. so the second way is not a good behavior
+// then the first one will get ignored, run line by line, also called interpartor
 // }
 // bar(obj);
 // console.log(obj);
-
 
 // Q what is the output??
 // var X = {foo: 1};
@@ -123,7 +119,6 @@
 // )();
 // console.log(output);
 //------------------------------??????----------------------------------------
-
 
 //*type coercion 类型相互转换
 //*Type coercion is the process of converting value from one type to another
@@ -136,32 +131,29 @@
 // var num2 = +(num + '').split('').reverse().join(''); // + ''变成string, 再+变成数字
 // console.log(num2);
 
-
 //* equality == vs. === we have a table to show you
 
 //* comprison table
-//* https://dorey.github.io/JavaScript-Equality-Table/ 
+//* https://dorey.github.io/JavaScript-Equality-Table/
 //* == compare the values ignore the types, it is also called coercion.
 //* but it does not really change the value type in this case.
-
 
 // we are not sure about it: convert string to num or num to string, I think it depends.
 // console.log('1' == 1); // true
 
 //console.log(3 + 4 + "5"); --> 75
 
-// always use === 
-
+// always use ===
 
 // // Q: how to declare a variable in js?
 // var vs let vs const
-// what is the difference between var and let 
+// what is the difference between var and let
 
 // create a table like this
 
 //             var | let | const | function
 // hoisting     y      y      y       y
-// init      undefined -      -       
+// init      undefined -      -
 // scope     function block block
 
 // what is hoisting?
@@ -189,17 +181,11 @@
 // }
 // foo();
 
-
-
 // undefined vs not defined (reference error)
 // undefined: you declare a varibale but without assign it. there is no refrence.
 // console.log(abcd);
-// Q: what if you change keyword var to let 
+// Q: what if you change keyword var to let
 // Q: let vs const (const cant reassign a value after it is assigned.)
-
-
-
-
 
 // let and const
 // function foo() {
@@ -227,9 +213,9 @@
 // how about function....it will also do hoisting
 // console.log(foo);
 // function foo(){};
-// Ok, let's talk about a very important part, how about const or var a foo function 
+// Ok, let's talk about a very important part, how about const or var a foo function
 // hoisting function is diff with hositing var function, when you are
-// arrow funtion just need to be careful, because you can not use the arrow 
+// arrow funtion just need to be careful, because you can not use the arrow
 // function before you declare it.
 // const foo = () => {}
 // var foo = () => {}
@@ -238,15 +224,14 @@
 
 ////////////////////////  oop: Object Oriented Programming ////////////////////
 
-
 // the old way to doing it before ES6
-// function 名字要大写 js的构函常用写法(constructor function)  但是这个是ES6以前的写法 
+// function 名字要大写 js的构函常用写法(constructor function)  但是这个是ES6以前的写法
 // function PersonFn(name, age) {
 //     this.name = name;
 //     this.age = age;
 // }
 
-// // // no return 
+// // // no return
 // // const dio = PersonFn('Dio', 200);
 // // console.log(dio);
 
@@ -273,7 +258,6 @@
 //     console.log(`${this.name} is running`);
 // }
 
-
 // dio.run();
 // const jojo = new PersonFn('Jojo', 18);
 // jojo.run();
@@ -287,7 +271,7 @@
 // dio.__proto__.run = function() {
 //     console.log(`${this.name} is running`);
 // }
-// //alternatively ！！但是不能写成PersonFn.walk .... 
+// //alternatively ！！但是不能写成PersonFn.walk ....
 // jojo.walk = function() {
 //     console.log(`${this.name} is running`);
 // }
@@ -299,7 +283,7 @@
 
 // console.log(dio.prototype === dio.__proto__);
 // Q:how about this one??
-// console.log(PersonFn.prototype === dio.__proto__);// true class.prototype or instance.__proto__ 
+// console.log(PersonFn.prototype === dio.__proto__);// true class.prototype or instance.__proto__
 /*******************************************************/
 // another way of inheritance !!introduce the prototype!!
 // function PersonFn(name, age) {
@@ -325,7 +309,6 @@
 // jojo.run();
 // jojo.walk();
 // PersonFn.jump();
-
 
 // console.log(PersonFn);
 // -----------------------------------------------------------------------------
@@ -361,7 +344,6 @@
 // p.name = 'Jojo';
 // console.log(p.name);
 
-
 // // Inheritance ------------------------------------------------
 
 // // extends
@@ -396,19 +378,17 @@
 // const er = new Employer('Dio',100,'Apple');
 // console.log(er);
 
-
-
 // ----------------poly morphism ------------------------
-// 不用讲什么是 poly-morphism 但有人问 就说 . Like a man at the same time is a father, 
+// 不用讲什么是 poly-morphism 但有人问 就说 . Like a man at the same time is a father,
 // a husband, an employee. So the same person posses !!!different behavior!!!
 // in different situations. This is called polymorphism.
 // ----------------overloading ------------------------
-// // js does not have overload (same name but different params)feature 
+// // js does not have overload (same name but different params)feature
 // // but it has something called overiding
 
 // so here is a very good example I want to show you guys.
-// we have a instance from employee when it calling some function, it always search from function 
-// employee (Itsself)first then from person(Parent). 
+// we have a instance from employee when it calling some function, it always search from function
+// employee (Itsself)first then from person(Parent).
 // // so which means there is an order. instance > class Employee > class Person
 // class Person {
 //     #name;
@@ -469,17 +449,15 @@
 // e.getSalary = function(){
 //     console.log("hello");
 // }
-// // from instance to employee to person and overridding to the end of the same name function 
+// // from instance to employee to person and overridding to the end of the same name function
 // console.log(e);
 
 // ------------------abstraction ------------------------------
-// (如果有人问的话) what is the difference between interface(multiple level) and abstract class (one level) in js??? 
+// (如果有人问的话) what is the difference between interface(multiple level) and abstract class (one level) in js???
 // // js
 // abstract class is for the inheritance but no instance. However, in js we dont have this kinda of concept
 // js does not have a key word abstract private or public, we you face that in the typescript which will
 // talked about in the angular traning.
-
-
 
 // -------------------Day2------------------------------------------
 // -------------------loop--------------------------------------
@@ -493,7 +471,7 @@
 //     console.log(arr[i]);
 // }
 // *2 Q: can we use const in this case, --> yes, everytime create a new index.
-// * in: using key, so it is like arr['0'], corecion 
+// * in: using key, so it is like arr['0'], corecion
 // for (let index in arr) {
 //     console.log(arr[index]);
 //     console.log(typeof index);
@@ -503,7 +481,7 @@
 //     console.log(key, obj[key]); // you cant do things like: obj.key, becuase key is a variable
 // }
 
-// *3 Q: If somebody ask, can we use const in this case, e.g. (const ele of arr) --> yes, 
+// *3 Q: If somebody ask, can we use const in this case, e.g. (const ele of arr) --> yes,
 // * let is good for best practice
 // for (let ele of arr) {
 //     console.log(ele);
@@ -514,7 +492,6 @@
 // console.log(obj.name, obj['name']);
 // *Q: what is the difference between this two: obj.name vs. obj['name']
 // * [] is for a variable, but . is for a given key or more like a sepecific key
-
 
 //* forEach building method-------- but it is not orginal for loop ----------
 //* But no break and continune inside of the functions...
@@ -538,7 +515,6 @@
 // console.log(arr);
 //*since this arr can be changed instead of creating a new array, so aviod muniplating orginal array
 
-
 //* 同理 如果有三个参数的 myforEach
 // Array.prototype.myforEach = function (callbackfn) {
 
@@ -552,10 +528,9 @@
 // console.log(arr);
 // 同理 如果有三个参数的 Map 省略
 
-
 //* build myForEach
 //* Q: what is the arguments in forEach? what is the callback function?
-//* inherit from 
+//* inherit from
 
 // Array.prototype.myforEach = function (callbackfn) {
 
@@ -617,19 +592,19 @@
 // })
 // console.log(newarr)
 
-//!reduce() has 2 parameters. The last one is an initial value. 
+//!reduce() has 2 parameters. The last one is an initial value.
 
 //* reducer is the callback function for reduce. It saves the previous value for new iteration (4 parameters)
 //* example
 // const str = 'abc';
-// const reducer = function(acc, cur, i, array) {   
+// const reducer = function(acc, cur, i, array) {
 //     return acc + cur + cur;
 // }
 // console.log(str.split('').reduce(reducer,''));
 
 //*2example
 // const numbers = [175, 50, 25];
-// const reducer = function(acc, cur) {   
+// const reducer = function(acc, cur) {
 //     return acc - cur;
 // }
 // console.log(numbers.reduce(reducer, 0));
@@ -648,7 +623,7 @@
 //* Q:what if we dont know about the initial value biuld up myReduce no matter it has initial or not
 // Array.prototype.myReduce = function (...args) {
 //     let [ acc, index ] = args.length === 1 ? [ this[0], 1 ] : [ args[1], 0 ];
-//     // *another way 
+//     // *another way
 //     // let acc = this[0];
 //     // let index = 1;
 //     // if (args.length > 1){
@@ -664,8 +639,8 @@
 // console.log(strarr.myReduce(reducer,''))
 
 //---------------------------  destructure ---------------------------------
-//* Q: we have something called constructor. does any body know what the destructure is in js? 
-//* It creates a pattern that describes the kind of value you are expecting and makes the assignment. 
+//* Q: we have something called constructor. does any body know what the destructure is in js?
+//* It creates a pattern that describes the kind of value you are expecting and makes the assignment.
 //* Array destructuring uses position.
 
 // const [first, second, third] = ["a", "b", "c"];
@@ -681,12 +656,11 @@
 // const theage = obj.age;
 // console.log(name, theage);
 
-// this is the destructure: a shorter syntax, you will find key and value in the 
+// this is the destructure: a shorter syntax, you will find key and value in the
 // const {name, age} = obj;
 // lets change the sequence, and it wont affect anything, becasue the obj has key value pair.
 // const {age, name} = obj;
 // console.log(name, age);
-
 
 // // in my mind, destructuring will reduce some code. Or simplifies the code.
 // // Also you can add some properties
@@ -694,7 +668,7 @@
 // const {age, name, middleName, LastName = "Dio"} = obj;
 // console.log(name, age, middleName, LastName);
 
-// // lets see if I do this: 
+// // lets see if I do this:
 // const {key, value} = obj; // undefined
 // // const {key = "apple", value = "male"} = obj; // add new properties
 // console.log(key, value);
@@ -742,8 +716,8 @@
 // // i did see some students do something like this during the interveiw
 // //  function foo([...args]){} lets try it
 
-// //spread operator 
-// // Q: what is spread oprator? 
+// //spread operator
+// // Q: what is spread oprator?
 // // Q: waht does ... mean?  (copy, is it shallow copy or deep copy?)
 // const arr = [1, 2, 3];
 // const arr1 =[...arr, 4, 5];
@@ -772,15 +746,13 @@
 // console.log(set);
 
 // --------------------------------object copy----------------------------------
-// // shallow copy : share the same reference. 
+// // shallow copy : share the same reference.
 // // In other words, the memory addresses are the same
 // const obj = {name: 'Jojo', age: 18}
-// // just copy the refence 
+// // just copy the refence
 // const obj1 = obj;
 // obj1.name = 'Dio'; // it will change
 // console.log(obj);
-
-
 
 // // Q: how about spread operator (only deep copy the first level)
 
@@ -798,32 +770,27 @@
 // only deep copy the first level for the reference of the object,
 // but for the seond level (e.g. links), it will share the reference for links
 // const obj2 = {...obj};
-// console.log(obj == obj2); // == to cheack the reference 
+// console.log(obj == obj2); // == to cheack the reference
 // // // also you can check the reference for links
 // console.log(obj.links == obj2.links);
 // obj2.name = 'Dio'; // does not effect
-// console.log(obj);   
+// console.log(obj);
 // obj2.links = [100, 200, 300];
 // console.log(obj);
 // obj2.links[0] = 100;
 // console.log(obj);
 
-
-
-// // 第一个方法 deep copy 
-// // change the original obj to a string and then change it back  
+// // 第一个方法 deep copy
+// // change the original obj to a string and then change it back
 // console.log(obj, JSON.parse(JSON.stringify(obj)));
 // const obj2 = JSON.parse(JSON.stringify(obj));
-// console.log(obj == obj2); // == to cheack the reference 
+// console.log(obj == obj2); // == to cheack the reference
 // // also you can check the reference for links
 // console.log(obj.links == obj2.links);
 
 // //the cons: it cant not change the function to a string. Lose the function
 // // also it has a issue for date.
 // console.log(obj2);
-
-
-
 
 //----------------------------------iife----------------------------------------
 // // The definition (save some codes, create private scope)
@@ -835,11 +802,11 @@
 //     return console.log(5)
 // })()
 
-// // use iife to create closure ????? ---> work together with closure
+// * use iife to create closure ????? ---> work together with closure
 
 //--------------------------------closure------------------------------------
-// // example from MDN website
-// // definition
+// * example from MDN website
+// * definition
 // function init() {
 //     var name = 'Mozilla'; // name is a local variable created by init
 //     function displayName() { // displayName() is the inner function, a closure
@@ -848,7 +815,7 @@
 //     displayName();
 //   }
 //   init();
-// //  This is a closure! In this case, myFunc is a reference 
+// //  This is a closure! In this case, myFunc is a reference
 // //  to the instance of the function displayName() that is created when makeFunc is run.
 // function makeFunc() {
 //     var name = 'Mozilla';
@@ -866,7 +833,7 @@
 //     var name = 'Mozilla';
 //     return function() {
 //       console.log(name);
-//     } 
+//     }
 //   }
 
 //   var myFunc = makeFunc();
@@ -882,8 +849,8 @@
 // }
 // // // This is a closure! var add = makeAdder() -> it shares same body from function makeAdder(x)
 // // // then it refers to "instance" funtion(y)!!!
-// var add = makeAdder(5); 
-// console.log(add(2)); 
+// var add = makeAdder(5);
+// console.log(add(2));
 // // class practice num之后就不能返回所加的值了，显示 out of limits
 // const target = (a, b) => console.log(a + b);
 // const fn = limitedFunction(2, target);
@@ -891,13 +858,13 @@
 // function limitedFunction(num, cb) {
 //     let counter = num;
 //     return function(...rest){
-//         if (counter > 0){  
-//             counter -= 1;      
-//             return cb(...rest);        
+//         if (counter > 0){
+//             counter -= 1;
+//             return cb(...rest);
 //         } else{
 //         console.log("out of limits");
 //         }
-//     }  
+//     }
 // }
 // fn(4,5);
 // fn(4,5);
@@ -924,11 +891,10 @@
 //             console.log(this);// this will goes to Window Global. Because it is not belong to myobj
 //             // in other words, this does not know the target in the first place, then it will target to window.
 //         }
-//         bar(); 
+//         bar();
 //     }
 // }
 // myObj.foo();
-
 
 // class Person {
 //     constructor(name) {
@@ -950,9 +916,8 @@
 // // Lets make a summary. Three ways to use this keyword
 // // 1. if "this" keyword in the function, it will target to global object
 // // 2. if the function belongs to an object, the "this" keyword will target to the object.
-// // 3.1 if "this" is in the class, it will target to the instance. 
+// // 3.1 if "this" is in the class, it will target to the instance.
 // // 3.2 if you use static, it will target to the class
-
 
 //-----------------------------call bind---------------------------------
 // const obj = {
@@ -960,7 +925,7 @@
 //     age: 18,
 
 //     foo: function() {
-//         console.log(this); 
+//         console.log(this);
 
 //         (function() {
 //             console.log(this);
@@ -970,7 +935,7 @@
 //             console.log(this);
 //         }
 //         const newbar = bar.bind(this);
-//         newbar(); 
+//         newbar();
 //     }
 // }
 // obj.foo();
@@ -1009,8 +974,6 @@
 // // // apply is also eager loading but only two args: obj and array
 // getNum.apply(obj, [1, 2, 3]);
 
-
-
 // ES6 arrow function class let const promise
 //--------------------------------------arrow function  ES6 ----------------------
 // const foo = a => b => a + b;
@@ -1024,6 +987,7 @@
 // console.log(foo());
 
 //--------------------------------------currying-------------------------
+// * interview question
 // foo(4)(5);
 
 // const callback1 = a => a + 2;
@@ -1032,7 +996,6 @@
 
 // // use whatever callback you want...
 // console.log(runAll(callback1, callback1, callback1)(10));
-
 
 // function runAll(...args) {
 //     // 由参数的话 格式就这样 return function 没法改
@@ -1045,9 +1008,8 @@
 // // res = ele(res);
 // // }
 //         return res;
-//       }  
+//       }
 // }
-
 
 // // using reduce is neater!
 // function runAll(...args) {
@@ -1070,7 +1032,7 @@
 // arr.forEach(bar(12));
 
 //-------------------------------------Event loop------------------------------
-// //Q: what is event loop??? 
+// //Q: what is event loop???
 // //let us do an example first
 
 // // setTimeout(()=>{console.log(1)}, 3000); 第一个par必须是个function 不能只是console.log(...)
@@ -1109,7 +1071,7 @@
 // console.log(foo);
 // console.log(foo());
 
-// //Q: how about this one?  async api acts like a theshold/transfer station. check it goes to task queue or not 
+// //Q: how about this one?  async api acts like a theshold/transfer station. check it goes to task queue or not
 // after how many seconds
 //  function foo() {
 //     for (var i = 1; i < 5 ; i++){
@@ -1120,24 +1082,22 @@
 
 // foo();
 
+// *Can somebody explain how it works?
+// *call stack is first in last out but it is about function invoke function or something, not line by line.
+// *(dont get confused about stack!!!)one line code, will go in and go out immediately.
 
-// // Can somebody explain how it works? 
-// // call stack is first in last out but it is about function invoke function or something, not line by line.
-// // (dont get confused about stack!!!)one line code, will go in and go out immediately.
+// *async api, or web api:  hold的功能 时间到了 就push到task queue
 
-// // async api, or web api:  hold的功能 时间到了 就push到task queue
+// *等到call stack is empty (很快就empty了 一起全走了) OR you can say the sync function has finished
 
-// //等到call stack is empty (很快就empty了 一起全走了)/ OR you can say the sync function has finished
+// *task queue, message queue (queue) 先进先出 。
+// *The task queue will Wait for call stack is empty （一般很快都empty）, after call stack is empty,
+// *the task queue will push all the items into call stack ---> This is event loop!
+// *为什么要回到stack， 因为回到stack才会consloe 东西 （所以这就叫做 loop)
 
-// // task queue, message queue (queue) 先进先出 。
-// //The task queue will Wait for call stack is empty （一般很快都empty）, after call stack is empty,
-// //the task queue will push all the items into call stack ---> This is event loop! 
-// //为什么要回到stack， 因为回到stack才会consloe 东西 （所以这就叫做 loop)
+// *But when you are using "let" the time will help to hold the i.....
 
-
-// //But when you are using "let" the time will help to hold the i.....
-
-// Another way to change it 
+// Another way to change it
 // for (var i = 0; i < 5 ; i ++){
 
 //     (function (v){
@@ -1146,7 +1106,7 @@
 
 // }
 
-// //interview question
+// *interview question
 // const first = [
 //     { userid: 2, name: 'Velen' },
 //     { userid: 56, name: 'Illidan' },
@@ -1174,8 +1134,7 @@
 //     ...
 // ];
 
-
-// function solution (firstarr, secondarr) {  
+// function solution (firstarr, secondarr) {
 //     // const arr = firstarr.contact(secondarr);
 //     const arr = [...firstarr, ...secondarr];
 //     // the most important is to create a map
@@ -1188,7 +1147,7 @@
 //             // 这个是指重复的id，也就是第二次出现的
 //             ...map[ele.userid],
 //             // 这个就是当前的
-//             ...ele    
+//             ...ele
 //         };
 
 //     })
@@ -1198,7 +1157,6 @@
 // }
 
 // console.log(solution(first, second));
-
 
 //-----------------------JS day5 -----------------------------------------------
 //--------callback function & callback hell & Promise & My Promise--------------------
@@ -1214,11 +1172,11 @@
 //     setTimeout(callback, timer * 1000);
 // }
 
-// // callFnInRandomTime(foo);
-// // // introduce call back hell
-// // callFnInRandomTime(() => {
-// //     callFnInRandomTime(foo);
-// // });
+// callFnInRandomTime(foo);
+// //* introduce call back hell
+// callFnInRandomTime(() => {
+//     callFnInRandomTime(foo);
+// });
 // callFnInRandomTime(() => {
 //     callFnInRandomTime(() => {
 //         callFnInRandomTime(() => {
@@ -1252,11 +1210,10 @@
 // // Q: what is JSON? -->data format
 // // Q: Why does JSON is popular? --> js natively support JSON & XML is not very readable
 
-
 // const print = (ele) => {
 //   console.log(ele);
 // }
-// //you can not control the time when fetching the data. 
+// //you can not control the time when fetching the data.
 // // it is like settimeout(() => {}, but the httprequest time is random. Always changed )
 // // so lets try to run it. (Everytime it will respond differently)
 // getToDoFormJsonPlaceHolder(4, print);
@@ -1271,21 +1228,23 @@
 //     print(data);
 //     getToDoFormJsonPlaceHolder(16, (data) => {
 //         print(data);
-//     }); 
+//     });
 // });
 
 //-------------------------------------Promise & My Promise -------------------------
-// // lets give an example of promise:
+//* Q: what is promise -> 1, avoid callback hell;
+//* 2, object return completed/resolve or failure/rejected and results for async events
+//* 3 status: pending, fulfilled and rejected
 
 // const promise = new Promise((resolve, reject) => {
 // console.log('hello');
 // });
-// // // there is no need to have const promise 
-// // // in other words, you dont need to creat an instance of promise
+
+//* there is no need to have declare a promise. You dont need to creat an instance of a promise
 // new Promise((resolve, reject) => {
 //     console.log('hello');
 //     });
-// // //three build in methods: then(),catch(),finally()
+//* three build in methods: then(),catch(),finally()
 
 // class MyPromise {
 //     constructor(executor){
@@ -1296,15 +1255,13 @@
 //     //finally()...
 // }
 
-
-// //resolve and reject are two callback functions. 
-
+// ! hello 那句并不是 async 整个promise是立即执行
 // new Promise((resolve, reject) => {
 //     console.log('hello');
 //     resolve('world');
 
-// // resolve will hold some data, and transfer the data to .then()
-// // in other words, the .then() will always looking for resolve
+//* resolve will hold some data, and transfer the data to .then()
+// ! .then() will return another promise
 // }).then((data)=>{
 //     console.log(data);
 //     return 'test1';
@@ -1313,61 +1270,60 @@
 //     return 'test2';
 // })
 
-// using promise example
+// * using promise example
 // const getToDoFormJsonPlaceHolder = (id) => {
-//     return new Promise((resolve,reject) => {
+//     return new Promise((resolve, reject) => {
 //         var xhttp = new XMLHttpRequest();
-// xhttp.onreadystatechange = function() {
-//     if (this.readyState == 4 && this.status == 200) {
-//        // Typical action to be performed when the document is ready:
-//        resolve(JSON.parse(xhttp.response));
-//     }
+//         xhttp.onreadystatechange = function () {
+//             if (this.readyState == 4 && this.status == 200) {
+//                 resolve(JSON.parse(xhttp.response));
+//             }
+//         };
+//         xhttp.open("GET", `https://jsonplaceholder.typicode.com/todos/${id}`, true);
+//         xhttp.send();
+//     });
 // };
-// xhttp.open("GET", `https://jsonplaceholder.typicode.com/todos/${id}`, true);
-// xhttp.send();
-//     }) 
-// }
 
 // const myprint = (ele) => {
 //     console.log(ele);
-// }
-// //this is callback hell as well, and you never want to write your promise in this way.
-// getToDoFormJsonPlaceHolder(4)
-//     .then(data =>{
-//         myprint(data); // or you can say console.log(data)
-//         return getToDoFormJsonPlaceHolder(15)
-//         .then(data =>{
+// };
+// * this is callback hell as well, and you never want to write your promise in this way.
+// getToDoFormJsonPlaceHolder(4).then((data) => {
+//     myprint(data); // or you can say console.log(data)
+//     return getToDoFormJsonPlaceHolder(15).then((data) => {
+//         myprint(data);
+//         return getToDoFormJsonPlaceHolder(78).then((data) => {
 //             myprint(data);
-//             return getToDoFormJsonPlaceHolder(78)
-//             .then(data =>{
-//                 myprint(data);
-//              })
-//          })
-//     })
-// But this way is much better, and it avoid callback hell style
+//         });
+//     });
+// });
+
+//* But this way is much better, and it avoid callback hell style
 // getToDoFormJsonPlaceHolder(4)
 //     .then(data => {
-//         myprint(data); 
+//         myprint(data);
 //         return getToDoFormJsonPlaceHolder(15);
 //     }) // close it everytime, no more nesting
 //     .then(data => {
-//         myprint(data); 
+//         myprint(data);
 //         return getToDoFormJsonPlaceHolder(78);
 //     })
 //     .then(data => {
-//         myprint(data); 
+//         myprint(data);
 //     })
 
-// //async await,  a lot of online toturials are using this way but ... syntax sugar...
+// * async await... syntax sugar of promise
+
+
 // (async () => {
-//         const todo5 = await getToDoFormJsonPlaceHolder(5);
-//         console.log(todo5);
-  
+//         * wait the get function done, and pass the resolve result to todo
+//         * same as the promise, it passes the resolve data to .then()
+//         const todo = await getToDoFormJsonPlaceHolder(1);
+//         console.log(todo);
 // })();
 
-// // 
+// * the way to catch error for async await
 // (async () => {
-//     // the way to catch error for async await
 //     try {
 //         const todo5 = await getToDoFormJsonPlaceHolder(5);
 //         console.log(todo5);
@@ -1382,18 +1338,38 @@
 //     }
 // })();
 
-// // what the syntax difference between promise and async await, go to the following link:
-// // Let us take a look
-// // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function
+// go to the website: https://javascript.info/async-await
+// async function f() {
 
-// //Build your MyPromise
+//     // return  1
+  
+//     let promise = new Promise((resolve, reject) => {
+//      return 1;
+//     });
+  
+//     let result = await promise; 
+  
+//     alert; 
+  
+    // let promise = new Promise((resolve, reject) => {
+    //   setTimeout(() => {return "done"}, 1000)
+    // });
+  
+    // let result = await promise; 
+  
+    // alert; 
+//   }
+  
+//   f().then(alert);
 
-// // Mypromise  interview question for fb and amazon interview
+
+// --------------------Build your own MyPromise----------------------------
+
 // class MyPromise{
-//     // use an array to hold the callback method...
+//     //* use an array to hold the callback method...
 //     thencallbackqueue = [];
 
-//     //make your life easier.
+    
 //     constructor(executor){
 //         // console.log(this);
 //         executor(this.resolve.bind(this), this.reject);
@@ -1401,7 +1377,7 @@
 //     // same thing to bind when you use => function....
 //     //resdata is to keep collecting data
 //     resolve(resData) {
-//         // this "this" is undefined..since it is a function from constructor. 
+//         // this "this" is undefined..since it is a function from constructor.
 //         //So needs to add a bind in constructor.
 //         // console.log(this);
 //         setTimeout(() => {
@@ -1415,7 +1391,7 @@
 //     reject = () => {
 //         console.log('reject');
 //     }
-//     //.then 就是hold callback function... 所以你就avoid callback hell.
+//     //*.then 就是hold callback function... 所以你就avoid callback hell.
 //     then(thencbfn){
 //       this.thencallbackqueue.push(thencbfn);
 //     }
@@ -1427,7 +1403,7 @@
 // // 再执行 .then()， push cb 到queue，这时候call stack空了 再执行async api: shift the hold data
 // new MyPromise((resolve, reject) => {
 //     console.log('hello1');
-//     // use resolve to hold the data: hello2!!!!!!!!! 
+//     // use resolve to hold the data: hello2!!!!!!!!!
 //     resolve('hello2');
 // }).then((data) => {
 //     console.log(data);
@@ -1447,7 +1423,7 @@
 //   // same thing to bind when you use => function....
 //   //resdata is to keep collecting data
 //   resolve(resData) {
-//     // this "this" is undefined..since it is a function from constructor. 
+//     // this "this" is undefined..since it is a function from constructor.
 //     //So needs to add a bind in constructor.
 //     // console.log(this);
 //     setTimeout(() => {
@@ -1475,7 +1451,7 @@
 // //第二个版本 storyline：.then()先push push...，resolve()的setTimeout  再shift shift shift...
 // //看notebook 知识逻辑点
 // new MyPromise((resolve, reject) => {
-//   // use resolve to hold the data: hello2!!!!!!!!! 
+//   // use resolve to hold the data: hello2!!!!!!!!!
 //   resolve('hello1');
 // }).then((data) => {
 //   console.log(data);
@@ -1487,7 +1463,7 @@
 //   console.log(data);
 // })
 
-// // 第3, 4个版本 
+// // 第3, 4个版本
 // class MyPromise {
 //   // use an array to hold the callback method...
 //   thencallbackqueue = [];
@@ -1499,7 +1475,7 @@
 //     try {
 //       executor(this.resolve.bind(this), this.reject);
 //     } catch (error) {
-//       this.reject(error);      
+//       this.reject(error);
 //     }
 
 //   }
@@ -1530,7 +1506,7 @@
 
 //   reject = (rejData) => {
 //     this.promiseState = 'rejected';
-//     setTimeout(() => {    
+//     setTimeout(() => {
 //       const cb = this.catchcallbackqueue.shift();
 //       cb(rejData);
 //     }, 0);
@@ -1576,7 +1552,7 @@
 //             res(resolveArr);
 //           }
 //         }
-//       }); 
+//       });
 //       res(resolveArr);
 //     });
 //   }
@@ -1595,7 +1571,6 @@
 //   console.log(values);
 
 // });
-
 
 // const getRandomTime = () => Math.floor(Math.random() * 6);
 
@@ -1659,13 +1634,13 @@
 //                     json() {
 //                         return JSON.parse(xhttp.response);
 //                     }
-//                 }); 
+//                 });
 //             } else if (this.status < 200 && this.status >= 300) {
 //                 reject({ errorStatus: this.status});
 //             }
 //         };
 
-//         options && options.body 
+//         options && options.body
 //             ? xhttp.send(options.body)
 //             : xhttp.send();
 //     });
