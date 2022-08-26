@@ -807,16 +807,19 @@
 //--------------------------------closure------------------------------------
 // * example from MDN website
 // * definition
+// * you can also get rid of function init(), js have its function wrap up everything,
+// * and you just can not see it.   outer means parent
 // function init() {
-//     var name = 'Mozilla'; // name is a local variable created by init
-//     function displayName() { // displayName() is the inner function, a closure
+//     var name = 'Mozilla'; 
+//     function displayName() { 
 //       console.log(name); // use variable declared in the parent function
 //     }
 //     displayName();
 //   }
 //   init();
-// //  This is a closure! In this case, myFunc is a reference
-// //  to the instance of the function displayName() that is created when makeFunc is run.
+
+// *  This is a closure! In this case, myFunc is a reference
+// *  to the instance of the function displayName() that is created when makeFunc is run.
 // function makeFunc() {
 //     var name = 'Mozilla';
 //     function displayName() {
@@ -827,8 +830,8 @@
 
 //   var myFunc = makeFunc();
 //   myFunc();
-//////////
-// //change samething as last one
+
+// * change samething as last one
 //   function makeFunc() {
 //     var name = 'Mozilla';
 //     return function() {
@@ -839,19 +842,8 @@
 //   var myFunc = makeFunc();
 //   myFunc();
 
-// //a tricky one
-// function makeAdder(x) {
-//     // 这时候funtion(y)只是一个变量。也不能给function加名字 and一定要有这个function，要不然 y就undefined
-//     return function(y) {
-//       return x + y;
-//     };
 
-// }
-// // // This is a closure! var add = makeAdder() -> it shares same body from function makeAdder(x)
-// // // then it refers to "instance" funtion(y)!!!
-// var add = makeAdder(5);
-// console.log(add(2));
-// // class practice num之后就不能返回所加的值了，显示 out of limits
+// *  Interview questions: class practice num之后就不能返回所加的值了，显示 out of limits 
 // const target = (a, b) => console.log(a + b);
 // const fn = limitedFunction(2, target);
 
@@ -873,9 +865,9 @@
 
 // ----------------------------js day4-----------------------------------
 //-------------------------------this-------------------------------------
-// // Q: what is this keyword? (window)
+// * Q: what is this keyword? (window)
 // console.log(this);
-// // this is also window (bec), which is gloabl environment
+// * this is also window (bec), which is gloabl environment
 // (function() {
 //     console.log(this);
 // })();
@@ -913,11 +905,11 @@
 // p.showThis();
 // Person.statisShowThis();
 
-// // Lets make a summary. Three ways to use this keyword
-// // 1. if "this" keyword in the function, it will target to global object
-// // 2. if the function belongs to an object, the "this" keyword will target to the object.
-// // 3.1 if "this" is in the class, it will target to the instance.
-// // 3.2 if you use static, it will target to the class
+// * Lets make a summary. Three ways to use this keyword
+// * 1. if "this" keyword in the function, it will target to global object
+// * 2. if the function belongs to an object, the "this" keyword will target to the object.
+// * 3.1 if "this" is in the class, it will target to the instance.
+// * 3.2 if you use static, it will target to the class
 
 //-----------------------------call bind---------------------------------
 // const obj = {
@@ -929,8 +921,8 @@
 
 //         (function() {
 //             console.log(this);
-//         }).call(this);  ///// confusing!!!
-//         // bind 和下面的一模一样
+//         }).call(this);  // confusing!!!
+//         * bind 和下面的一模一样
 //         const bar = function(){
 //             console.log(this);
 //         }
@@ -941,7 +933,7 @@
 // obj.foo();
 
 //------------------------------------call apply bind -----------------------
-// //bind
+// *bind
 // const obj ={
 //     pi: 3.14,
 //     getPi() {
@@ -953,11 +945,11 @@
 // }
 
 // getPerimeter(20);
-// //  bind involve one arg, -->the target you want to target
+// *  bind involve one arg, -->the target you want to target
 // const newGetPerimeter = getPerimeter.bind(obj); // -->lazyloading: you cant change bind to call
 // newGetPerimeter(20);
 
-// // lady loading here is hold or wait until someone use this method.
+// * lady loading here is hold or wait until someone use this method.
 
 //call apply   ------> they are eagerloading, you need to have declare first
 // const obj ={
@@ -971,7 +963,7 @@
 // }
 
 // getNum.call(obj, 1, 2, 3);
-// // // apply is also eager loading but only two args: obj and array
+// * apply is also eager loading but only two args: obj and array
 // getNum.apply(obj, [1, 2, 3]);
 
 // ES6 arrow function class let const promise
@@ -1143,10 +1135,10 @@
 //     arr.forEach(ele => {
 //         map[ele.userid] = {
 //             ...{name: null, role:null},
-//             //覆盖作用, Merge two maps. The last repeated key stay.
-//             // 这个是指重复的id，也就是第二次出现的
+//             *覆盖作用, Merge two maps. The last repeated key stay.
+//             * 这个是指重复的id，也就是第二次出现的
 //             ...map[ele.userid],
-//             // 这个就是当前的
+//            * 这个就是当前的
 //             ...ele
 //         };
 
@@ -1255,7 +1247,7 @@
 //     //finally()...
 // }
 
-// ! hello 那句并不是 async 整个promise是立即执行
+// ! hello 那句并不是 async 整个promise是立即执行 run immediately
 // new Promise((resolve, reject) => {
 //     console.log('hello');
 //     resolve('world');
@@ -1338,7 +1330,7 @@
 //     }
 // })();
 
-// go to the website: https://javascript.info/async-await
+// for async/await: go to the website: https://javascript.info/async-await
 // async function f() {
 
 //     // return  1
@@ -1362,6 +1354,13 @@
   
 //   f().then(alert);
 
+// * give an example, what is the result
+console.log(1);
+new Promise((res, rej) => {
+    console.log(2);
+    res(3);
+}).then(data => console.log(data));
+console.log(4);
 
 // --------------------Build your own MyPromise----------------------------
 
