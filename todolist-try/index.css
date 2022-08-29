@@ -14,6 +14,7 @@
     margin: 0;
     padding: 0;
     font-family: 'Edu NSW ACT Foundation', cursive;
+    font-size: 30px;
 }
 
 body{
@@ -21,7 +22,7 @@ body{
     width: 100vw;
     display: flex;
     align-items: center;
-    justify-content: center; 
+    justify-content: center;
 }
 
 .container {
@@ -30,24 +31,23 @@ body{
     background-color: var(--todolist-container-col);
 }
 
-.upper-container {
-    width: 100%;
-    height: var(--todolist-upper-height);
-    padding-bottom: 2%;
+.upper-container{
     background-color: var(--todolist-header-input-col);
+    height: var(--todolist-upper-height);
 
     display: flex;
     flex-direction: column;
-    align-items: center; 
+    align-items: center;
     justify-content: center;
+
+    padding-bottom: 2%;
 }
 
-header {
-    font-size: 40px;
+.upper-container header {
     padding: 2%;
 }
 
-input {
+.upper-container input {
     height: var(--todolist-header-height);
     width: var(--todolist-header-width);
     border: none;
@@ -57,33 +57,23 @@ input {
     width: 100%;
     height: 300px;
     overflow-y: auto;
+    background-color: var(--todolist-container-col);
 }
 
-
-/* Q: can i use this way ?
-ul li:hover {
-    background-color: grey;
-} */
-
-.list-container li:hover {
-    background-color: grey;
-   
-} 
-
-ul li  {
-    height: var(--todolist-list-height);;
+ul li {
+    height: var(--todolist-list-height);
     list-style: none;
     display: flex;
-    /* flex-direction: column; */
     justify-content: space-between;
 }
 
+.list-container li:hover {
+    background-color: grey;
+}
+
 ul li span {
-    /* height: 100%; */
     width: 90%;
-    line-height: var(--todolist-list-height);
     overflow: hidden;
-    
 }
 
 ul li:nth-child(2n) {
@@ -92,18 +82,19 @@ ul li:nth-child(2n) {
 
 ul li button {
     margin-right: 20px;
-    /* set color to tranparent */
-    background-color: rgba(0, 0, 0, 0);
     border: none;
-    font-size: 1rem;
+    background-color: transparent;
+    font-size: 0.5rem;
 }
 
 ul li button:hover {
-    font-size: 1.5rem;
+    font-size: 1rem;
     cursor: pointer;
 }
 
-input, span {
-    font-size: 30px;
-}
+
+
+
+
+
 

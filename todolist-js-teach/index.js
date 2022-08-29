@@ -1,3 +1,20 @@
+// const api = () => {
+
+//     const getTodos = () => 
+//         fetch('https://jsonplaceholder.typicode.com/todos')
+//             .then((response) => response.json())
+//             .then((json) => console.log(json));
+//     
+//     return {
+//         getTodos,
+//     }
+// }
+
+// const getTodos = api().getTodos;
+// const deleteTodos = api().deleteTodos;
+
+// getTodos();
+// deleteTodos();
 // ---------------------api ----------------
 const api = (() => {
     const baseUrl = "https://jsonplaceholder.typicode.com";
@@ -88,16 +105,7 @@ const model = ((api, view) => {
             const tmp = view.createTmp(this.#listFetch);
             const list = document.querySelector(view.domStr.list);
             view.render(list, tmp);
-            // recursion 
-            // const deletebtns = document.querySelectorAll(view.domStr.deletebtn);
-            // deletebtns.forEach(btn => {
-            //     btn.addEventListener('click', event => {
-            //         this.setList = this.getList.filter(
-            //             (todo) => +todo.id !== +event.target.id
-            //         );
-            //         model.deleteTodos(event.target.id);
-            //     })
-            // })
+         
         }
     }
     return {
@@ -191,4 +199,13 @@ const model = ((api, view) => {
     controller.bootstrap();
 
 
+    // const deletebtns = document.querySelectorAll(view.domStr.deletebtn);
+    // deletebtns.forEach(btn => {
+    //     btn.addEventListener('click', event => {
+    //         this.setList = this.getList.filter(
+    //             (todo) => +todo.id !== +event.target.id
+    //         );
+    //         model.deleteTodos(event.target.id);
+    //     })
+    // })
 
