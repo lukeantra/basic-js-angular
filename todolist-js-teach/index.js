@@ -93,6 +93,7 @@ const model = ((api, view) => {
             this.title = title;
         }
     }
+    
     class State {
         #listFetch = [];
 

@@ -222,7 +222,7 @@
 
 // overall you will prefer to use let and const rather than var
 
-////////////////////////  oop: Object Oriented Programming ////////////////////
+//---------------------- oop: Object Oriented Programming ---------------------------
 
 // the old way to doing it before ES6
 // function 名字要大写 js的构函常用写法(constructor function)  但是这个是ES6以前的写法
@@ -231,9 +231,9 @@
 //     this.age = age;
 // }
 
-// // // no return
-// // const dio = PersonFn('Dio', 200);
-// // console.log(dio);
+// //*no return
+// const dio = PersonFn('Dio', 200);
+// console.log(dio);
 
 // const dio = new PersonFn('Dio', 200);
 // console.log(dio);

@@ -4,57 +4,61 @@ const Api = (() => {
     const todopath = "todos";
 
     const getToDos = () =>
-        fetch([baseUrl, todopath].join("/"))
-            .then(response => response.json());
+        fetch([baseUrl, todopath].join("/")).then((response) => response.json());
 
     const deleteTodos = (id) =>
         fetch([baseUrl, todopath, id].join("/"), {
-            method: 'DELETE',
+            method: "DELETE",
         });
+
+    const addTodos = (newtodo) =>
+        fetch([baseUrl, todopath].join("/"), {
+            method: 'POST',
+            body: JSON.stringify(newtodo),
+        }).then((response) => response.json())
 
 
     return {
         getToDos,
         deleteTodos,
-    }
-
+        addTodos
+    };
 })();
-
-// const getTodos = api.getToDos;
-
-// getTodos().then(json => console.log(json));
 
 //----------------view----------------------
 const View = (() => {
-
     const render = (ele, tmp) => {
         ele.innerHTML = tmp;
-    }
+    };
 
     const createTmp = (arr) => {
         let tmp = "";
-        arr.forEach(todo => {
+        arr.forEach((todo) => {
             tmp += `<li>
             <span>${todo.id}-${todo.title}</span>
             <button class="delete-btn" id="${todo.id}">X</button>
-          </li>`
+          </li>`;
         });
         return tmp;
-    }
+    };
 
     return {
         render,
-        createTmp
-    }
-
+        createTmp,
+    };
 })();
-
-
 
 //----------------model----------------------
 const Model = ((api, view) => {
     const getTodos = api.getToDos;
     const deleteTodos = api.deleteTodos;
+    const addTodos = api.addTodos;
+
+    class Newtodo {
+        constructor(title) {
+            this.title = title
+        }
+    }
 
     class State {
         #todos = [];
@@ -68,61 +72,61 @@ const Model = ((api, view) => {
             const list = document.querySelector(".list-container");
             const tmp = view.createTmp(newtodos); // 这个也可以是newtodos 或者是 this.#todos
             view.render(list, tmp);
-
-
-            const deletebtn = document.querySelectorAll(".delete-btn");
-            deletebtn.forEach(btn => {
-                btn.addEventListener('click', event => {
-                    this.settodolist = this.gettodolist.filter(ele => +ele.id !== +event.target.id);
-                })
-            })
-
         }
     }
-
 
     return {
         getTodos,
         deleteTodos,
-        State
-    }
-
+        addTodos,
+        State,
+    };
 })(Api, View);
-
-
 
 //----------------controller----------------------
 const Controller = ((model, view) => {
     const state = new model.State();
+    const list = document.querySelector(".list-container");
+    const input = document.querySelector(".input-container");
 
     const init = () => {
-
-        model.getTodos().then(todolist => {
+        model.getTodos().then((todolist) => {
             state.settodolist = todolist;
-            // const tmp = view.createTmp(todolist);
-            // view.render(list, tmp)
+        });
+    };
 
-            //  const deletebtn = document.querySelectorAll(".delete-btn");
-            // deletebtn.forEach(btn => {
+    const deleteTodos = () => {
+        list.addEventListener("click", (event) => {
+            state.settodolist = state.gettodolist.filter(
+                (ele) => +ele.id !== +event.target.id
+            );
+            model.deleteTodos(event.target.id);
+        });
+    };
 
-            //     btn.addEventListener('click', event => {
-            //         todolist = todolist.filter(ele => +ele.id !== +event.target.id);
-            //         const tmp = view.createTmp(todolist);
-            //         view.render(list, tmp);
-            //     })
-            // })
+    const addTodos = () => { 
+        input.addEventListener("keyup", event => {
+            if (event.key === "Enter" && event.target.value !== "") {
+                const newtodo = new model.Newtodo(event.target.value);
 
-
+                state.settodolist = state.gettodolist.concat(newtodo);
+                state.addTodos(newtodo);
+            }
         })
-    }
+
+        
+
+    };
+
+    const bootstrap = () => {
+        init();
+        deleteTodos();
+        addTodos();
+    };
 
     return {
-        init
-    }
-
-
+        bootstrap,
+    };
 })(Model, View);
 
-Controller.init();
-
-
+Controller.bootstrap();
