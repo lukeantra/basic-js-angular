@@ -1,15 +1,17 @@
-/* :root{
+:root{
     --box-width: 500px;
+    --box-height: 500px;
 }
-* {
-    font-family: 'Splash', cursive;
-    font-size: 20px;
-} */
 
-/* #myh1 {
+*{
+    font-size: 20px;
+} 
+
+#myh1 {
     background-color: blueviolet;
-    height: 300px;
+    height: var(--box-height);
     width: var(--box-width);
+    border: solid;
     font-size: 50px;
     
 }
@@ -19,9 +21,6 @@
     top: 20px;
     background-color: blue;
 
-    height: 50vh; 
-    width: 10vw;
-
     font-size: 2rem;
-} */
+}
 

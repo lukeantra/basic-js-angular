@@ -17,37 +17,104 @@
 // console.log(typeof 'string');
 // console.log( typeof 911);
 // console.log(typeof true);
-// console.log(typeof undefined); // undefined
 // console.log(typeof null); // object, but it is a bug of js, is a primitive value.
 
-//* undefined vs null
+// ---------------forget about this part ----------------------
+// *undefined vs null
 // *undefined is where no notion of the thing exists;
 // *it has no type, and it's never been referenced before in that scope!!!!
 // *null is where the thing is known to exist, but we don't known what the value is.
 
-// *primitive data example
+
+// *undefined vs not defined (reference error)
+// undefined: you declare a varibale but without assign it. there is no refrence.
+// console.log(abcd);
+// Q: what if you change keyword var to let
+// Q: let vs const (const cant reassign a value after it is assigned.)
+
+// --------------- ----------------------
+
+// *primitive data example // passing by value means share the value. 
 // let a = 5;
 // function foo(input){
 //     input = 6;
-//     console.log(input);
 // }
 // foo(a); // 6
 // console.log(a); // 5 passing by value not passing by reference
+// console.log(input); // go to garbage collection
 
-// *a same example
+
+
+// *a same example // passing by value
 // let b = 5;
-// let c = b; // passing by value
+// let c = b; 
 // b = 6;
-// console.log(b, c);
+// console.log(b, c); // 6, 5
 
-//------------------------ Object Data -------------------------
+//------------------------ Object Data/ Reference data -------------------------
+// Array and object
 // Lets move to non-primitive data, say we have an empty object.
 
-// var obj = {}
-// *prototype chain, what is prototype chain? ()
-// console.log(obj);
+// -----------------------------object data instead of primitive ------------------------
+// * passing by reference: arr, function, object
+// * share the reference
+// var obj = {
+//     name: 'Dio',
+// }
 
-// *要放在这吗？？？？
+// function bar(input) {
+//     // 1
+//     // input.name = 'Jojo';
+//     // console.log(input);
+// // 2
+// input = {name: 'Jojo'}
+// console.log(input === obj)
+// ! // Q: we changed the reference but why it is not working??? it will create another input 
+// }
+
+// bar(obj);
+// console.log(obj); // 
+
+// ! If you still dont understand: https://www.javascripttutorial.net/javascript-pass-by-value/#:~:text=JavaScript%20pass%2Dby%2Dvalue%20or%20pass%2Dby%2Dreference&text=It%20means%20that%20JavaScript%20copies,variables%20outside%20of%20the%20function.
+//---------------------------------------------------
+
+
+//------------------using new key word to create an object, you will use a lot like this----------------------------------------
+// class Todo {
+//     constructor(title, id) {
+        // this.title = title;
+        // this.id  = id;
+//     }
+// }
+// var obj2 = new Todo('hello world', 1); // new is the key!!!
+// console.log(obj2);
+
+// but you can change/mutate inside of the obj. so just be more clear about the concepts
+// const obj = { name:'Dio' }
+// obj.name = 'Jojo';
+// console.log(obj);
+// object define property. With some methods, you can't change it... it is advanced topic
+
+// *Q:????---what is the typeof function? --> object, but it will return a funtion??????
+// * JavaScript doesn’t have a function data type but when we find the data type of a function using 
+// *the typeof operator, we find that it returns a function. This is because a function is an object 
+// *in JavaScript. Ideally the data type of a function should return an object but instead, it returns a function.
+// what is the typeof array? -> object
+// let arr = [1, 2, 3];
+// console.log(typeof(arr));
+
+//! ignore this one ...
+// Q what is the output??
+// var X = {foo: 1};
+// var output = ( function() {
+// delete X.foo;
+// return X.foo;
+// }
+// )();
+// console.log(output);
+//------------------------------------------------------------------
+
+
 // obj vs map--> syntax difference
 // const a = {age: 12};
 // const b = {name: 'tt'};
@@ -68,70 +135,25 @@
 // c.set(a, 456);
 // c.set(b, 678)
 // console.log(c.get(a), c.get(b));
-
-//------------------------------??????----------------------------------------
-// *not a plain object, instead class object--->??????????
-// class myObject {
-//     constructor() {
-
-//     }
-// }
-// var obj2 = new myObject();
-// console.log(obj2);
-// but you can change/mutate inside of the obj. so just be more clear about the concepts
-// const obj = { name:'Dio' }
-// obj.name = 'Jojo';
-// console.log(obj);
-// object define property. With some methods, you can't change it... it is advanced topic
-
-//Q:????---what is the typeof function? --> object, but it will return a funtion??????
-// what is the typeof array? -> object
-// let arr = [1, 2, 3];
-// console.log(typeof(arr));
-
-// var copyobj = obj;
-
-// // passing by reference: arr, function, object
-// it wont let you pass reference through the arguments of a function
-// var obj = {
-//     name: 'Dio',
-// }
-// function bar(input) {
-
-//     input.name = 'Jojo'
-//     console.log(input);
-// Q: how about this one????? --> create an new obj but only with the scope
-// input = {name: 'Jojo'}
-// console.log(input === obj)
-// Q: we changed the reference but why it is not working???
-// js is sometimes wired, it create another variable called input. so the second way is not a good behavior
-// then the first one will get ignored, run line by line, also called interpartor
-// }
-// bar(obj);
-// console.log(obj);
-
-// Q what is the output??
-// var X = {foo: 1};
-// var output = ( function() {
-// delete X.foo;
-// return X.foo;
-// }
-// )();
-// console.log(output);
-//------------------------------??????----------------------------------------
+//------------------------------coercion----------------------------------------
 
 //*type coercion 类型相互转换
 //*Type coercion is the process of converting value from one type to another
 
 // console.log(typeof ('0' - '1')); // number
 // console.log(true + false); // 1
+//console.log(3 + 4 + "5"); // 75
+// console.log(1 - '2'); // -1
+// console.log(typeof(1 - '2'))
+// console.log('2' - 1); // 1 
+// console.log(typeof('2' - 1))
 
 // Q: we have an interview question:
 // var num = 2342342342413;
 // var num2 = +(num + '').split('').reverse().join(''); // + ''变成string, 再+变成数字
 // console.log(num2);
 
-//* equality == vs. === we have a table to show you
+//--------------------------------- == vs. === -------------------------------------------
 
 //* comprison table
 //* https://dorey.github.io/JavaScript-Equality-Table/
@@ -140,12 +162,12 @@
 
 // we are not sure about it: convert string to num or num to string, I think it depends.
 // console.log('1' == 1); // true
-
-//console.log(3 + 4 + "5"); --> 75
+// console.log("" == false) // ture
+// console.log("" === false) // false
 
 // always use ===
 
-// // Q: how to declare a variable in js?
+// * Q: how to declare a variable in js?
 // var vs let vs const
 // what is the difference between var and let
 
@@ -181,11 +203,6 @@
 // }
 // foo();
 
-// undefined vs not defined (reference error)
-// undefined: you declare a varibale but without assign it. there is no refrence.
-// console.log(abcd);
-// Q: what if you change keyword var to let
-// Q: let vs const (const cant reassign a value after it is assigned.)
 
 // let and const
 // function foo() {
@@ -224,36 +241,33 @@
 
 //---------------------- oop: Object Oriented Programming ---------------------------
 
+
 // the old way to doing it before ES6
-// function 名字要大写 js的构函常用写法(constructor function)  但是这个是ES6以前的写法
-// function PersonFn(name, age) {
+// function ！！名字大小写无所谓！！！也可以写成PersonFn js的构函常用写法(constructor function)  但是这个是ES6以前的写法
+// function personFn(name, age) {
 //     this.name = name;
 //     this.age = age;
 // }
 
-// //*no return
-// const dio = PersonFn('Dio', 200);
+// const dio = new personFn('Dio', 20);
 // console.log(dio);
+// Q: what does the new keyword do? (like a constructor)
 
-// const dio = new PersonFn('Dio', 200);
-// console.log(dio);
-
-// Q: what does the new keyword do? (constructor)
+// ---------------------forget about it---------------------------
 // something like this, not exactly.
-
-// function PersonFn(name, age) {
+// function personFn(name, age) {
 //     let obj = {}
 //     obj.name = name;
 //     obj.age = age;
-//     obj.__proto__.constructor = PersonFn;
+//     obj.__proto__.constructor = personFn; // Function constructor
 //     return obj;
 // }
 
-// const jojo = new PersonFn('Jojo', 200);
-// console.log(dio);
+// const jojo = new personFn('Jojo', 10);
+// console.log(jojo);
 
-//------------------------------------------------------
-// //create 了一个object/class的function：run
+
+// *create 了一个object/class的function：run
 // PersonFn.prototype.run = function() {
 //     console.log(`${this.name} is running`);
 // }
@@ -261,13 +275,13 @@
 // dio.run();
 // const jojo = new PersonFn('Jojo', 18);
 // jojo.run();
-// //给你看一下proto的东西
+// *给你看一下proto的东西
 // console.log(dio);
 // console.log(dio.__proto__);
 
-// // __proto__和 prototype不同的是： __proto__直接用实例来弄
-// // __proto__这个东西通过这个chain，有dio传到了PersonFn
-// // this stands for dio
+// * __proto__和 prototype不同的是： __proto__直接用实例来弄
+// * __proto__这个东西通过这个chain，有dio传到了PersonFn
+// * this stands for dio
 // dio.__proto__.run = function() {
 //     console.log(`${this.name} is running`);
 // }
@@ -284,42 +298,22 @@
 // console.log(dio.prototype === dio.__proto__);
 // Q:how about this one??
 // console.log(PersonFn.prototype === dio.__proto__);// true class.prototype or instance.__proto__
-/*******************************************************/
-// another way of inheritance !!introduce the prototype!!
-// function PersonFn(name, age) {
-//     this.name = name;
-//     this.age = age;
-//     // this is the instance method
-//     this.run = function () {
-//         console.log(`${this.name} is running`);
-//     }
-// }
-// but when you using prototype you can not change the properties of the class.
+//-------------------------------------------------------------------------
 
-// PersonFn.prototype.walk = function() {
-//     console.log(`${this.name} is walking`);
-// }
-
-// // the way to create a static/class method.
-// PersonFn.jump = function () {
-//     console.log(`${this.name} is jumping`);
-// }
-
-// const jojo = new PersonFn('Jojo', 18);
-// jojo.run();
-// jojo.walk();
-// PersonFn.jump();
-
-// console.log(PersonFn);
+//-------------------------------- ES6 constructor ----------------/
 // -----------------------------------------------------------------------------
-// // ES6之后的写法  class es5 syntax is wired lets move to es6 syntax
-// // javascript does not have class structure just syntax sugar for constructor function
-// // JS is not designed for oop but has the similar feature like oop
+// *ES6之后的写法  class es5 syntax is wired lets move to es6 syntax
+// *javascript does not have class structure just syntax sugar for constructor function
+// *JS is not designed for oop but has the similar feature like oop
+
+// * a class is just like a function, but with new features: constructor function, getter and setter.
 // class Person {
+// //*    private value but you dont need to have private values
 //     #name;
 //     #age;
 //     #height;
 //     constructor(name, age, height) {
+    //* this will become the new instance/object if new instance is created.
 //         this.#name = name;
 //         this.#age = age;
 //         this.#height = height;
@@ -330,6 +324,7 @@
 //     set name(newName) {
 //         this.#name = newName;
 //     }
+
 //     run() {
 //         console.log(this.#name + ' is running');
 //         // console.log(this.#name, ' is running');
@@ -338,45 +333,57 @@
 // }
 
 // const p = new Person('Dio', 18);
-// // get method
+// console.log(p);
+// //* get method
 // console.log(p.name);
-// // set method
+// //* set method
 // p.name = 'Jojo';
 // console.log(p.name);
 
-// // Inheritance ------------------------------------------------
-
-// // extends
+//------------------------------ Inheritance ------------------------------------------------
+//* extends
+//* it inheritent from prototype, which inclues the properties and methods
+//* but the orginal one is from the object. open the console from chrome
+// i think private value can not be created in the child for some reason
 // class Employee extends Person {
-//     constructor(name, age, company) {
-//         super(name, age);
+//     constructor(name, age, height, company) {
+//         super(name, age, height);
 //         this.company = company;
 //     }
 // }
 
-// // Employee.prototype = Person.prototype;
-// // //change the constructor name
-// // EmployeeFn.prototype.constructor = EmployeeFn;
+// * now lets do something like this  check the object prototype
+// const obj = {};
+// console.log({});
+
+// //* Employee.prototype = Person.prototype;
+// //* change the constructor name
+// //* EmployeeFn.prototype.constructor = EmployeeFn;
+
 // const e = new Employee('Dio',100,'Apple');
 // console.log(e);
 
-// // // Go back to es5, what is this call and binding ? (gonna talk about keyword call later)
-// function PersonFn(name, age) {
-//         this.name = name;
-//         this.age = age;
-//         // this is the instance method
-//         this.run = function () {
-//             console.log(`${this.name} is running`);
-//         }
+// class Employee2 extends Person {
+//     constructor(name, age, height, company) {
+//         super(name, age, height);
+//         this.company = company;
 //     }
-// // super is just a call, that why you can do extends in js
-// function Employer(name, age, company) {
-//     PersonFn.call(this, name, age);
-//     this.company = company;
+
+//     getCompany() {
+//         console.log('no param');
+//         return this.company ;
+//     }
+
+//     getAge() {
+//         return this.age;
+//     }
 // }
 
-// const er = new Employer('Dio',100,'Apple');
-// console.log(er);
+
+
+// const e2 = new Employee2('Dio',100, 14,'Apple');
+// console.log(e2.getAge());
+
 
 // ----------------poly morphism ------------------------
 // 不用讲什么是 poly-morphism 但有人问 就说 . Like a man at the same time is a father,
@@ -419,38 +426,36 @@
 //         this.company = company;
 //     }
 
-//     getSalary() {
-//         console.log('no param');
-//         return this.salary
-//     }
 //     // 可以调换顺序看看 console的结果
-//     getSalary(baseSalary) {
+//     getSalary() {
 //         console.log('with param');
-//         return this.salary + baseSalary;
+//         return this.company;
 //     }
 
 // }
-// 两个 subclass employer employee
-// class Employer extends Person {
-//     constructor(name, age, company, position) {
-//         super(name, age);
-//         this.company = company;
-//         this.postition = position;
-//     }
-// }
 
-// const er = new Employer('Jojo',100,'Antra', 'officer');
-// console.log(er);
-
-// const e = new Employee('Dio', 100, 'Apple', 10000);
+// const e = new Employee('Dio', 100,  'Apple');
 // console.log(e.getSalary()); // NaN (0 + undefined) 第一个getsalary直接忽略 因为有第二个
 
-// // the order code prototype chain
+// the order code prototype chain
 // e.getSalary = function(){
 //     console.log("hello");
 // }
-// // from instance to employee to person and overridding to the end of the same name function
-// console.log(e);
+// from instance to employee to person and overridding to the end of the same name function
+// Person.prototype.jump = function() {
+//     console.log(`${this.name} is jumping`);
+// }
+
+// function Employee2() {
+//     Person.call(this);
+// }
+//get everything from its parent
+
+
+// const e2 = new Employee2('Jojo', 200, 'Google');
+// Employee2.prototype = Object.create(Person.prototype)
+
+// console.log(e2.jump());
 
 // ------------------abstraction ------------------------------
 // (如果有人问的话) what is the difference between interface(multiple level) and abstract class (one level) in js???
@@ -561,7 +566,7 @@
 //     for (let i = 0; i < this.length; i++) {
 //         arr.push(callbackfn(this[i]))
 //     }
-//     return arr
+//     return arr;
 // }
 // const newarr = arr.myMap(function(ele) {
 //     if (ele !== 4){
@@ -609,27 +614,28 @@
 // }
 // console.log(numbers.reduce(reducer, 0));
 
+
 //* build up myReduce with an ininial Value
 // Array.prototype.myReduce = function (callbackfn, initVal) {
-//* Q: can I change let to const
 //     let acc = initVal;
 //     for (let i = 0; i < this.length; i++) {
 //         acc = callbackfn(acc, this[i], i, this);
 //     }
-//     return value;
+//     return acc;
 // }
-// const str ='abc';
-// const strarr = str.split('');
+
+// console.log(strarr.myReduce(reducer,''));
+
 //* Q:what if we dont know about the initial value biuld up myReduce no matter it has initial or not
 // Array.prototype.myReduce = function (...args) {
-//     let [ acc, index ] = args.length === 1 ? [ this[0], 1 ] : [ args[1], 0 ];
-//     // *another way
-//     // let acc = this[0];
-//     // let index = 1;
-//     // if (args.length > 1){
-//     //     acc = args[1]
-//     //     index = 0;
-//     // }
+////     let [ acc, index ] = args.length === 1 ? [ this[0], 1 ] : [ args[1], 0 ];
+//     *another way
+//     let acc = this[0];
+//     let index = 1;
+//     if (args.length > 1){
+//         acc = args[1]
+//         index = 0;
+//     }
 //     for (let i = index; i < this.length; i++) {
 //         acc = args[0](acc, this[i], i, this);
 //     }
@@ -643,7 +649,7 @@
 //* It creates a pattern that describes the kind of value you are expecting and makes the assignment.
 //* Array destructuring uses position.
 
-// const [first, second, third] = ["a", "b", "c"];
+// const [first, secondthird] = ["a", "b", "c"];
 // console.log(first, third);
 
 // const obj ={
@@ -651,7 +657,7 @@
 //     age: 18
 // }
 
-// //before es6, you can only do things like this for the assignment
+// *before es6, you can only do things like this for the assignment
 // const name = obj.name;
 // const theage = obj.age;
 // console.log(name, theage);
@@ -660,24 +666,21 @@
 // const {name, age} = obj;
 // lets change the sequence, and it wont affect anything, becasue the obj has key value pair.
 // const {age, name} = obj;
+// const {a, b} = obj;
 // console.log(name, age);
+// console.log(a, b);
+//*destructuring will reduce some code. Or simplifies the code.
 
-// // in my mind, destructuring will reduce some code. Or simplifies the code.
-// // Also you can add some properties
+//*However, you can add some properties
+// const {age, name, a, b = "Dio"} = obj;
+// console.log(name, age, a, b);
 
-// const {age, name, middleName, LastName = "Dio"} = obj;
-// console.log(name, age, middleName, LastName);
 
-// // lets see if I do this:
-// const {key, value} = obj; // undefined
-// // const {key = "apple", value = "male"} = obj; // add new properties
-// console.log(key, value);
-
-// e.g.
+// interview questions
 
 // const {links} = {
 //     id: 1,
-//     name: 'David Dong',
+//     name: 'Luke',
 //     links: [
 //         { name: 'wechat',       link: 'wechat.com'      },
 //         { name: 'apple',        link: 'apple.com'       },
@@ -686,77 +689,74 @@
 //         { name: 'hbo',          link: 'hbo.com'         },
 //     ]
 // };
-// // // before es6
+// * 
 // console.log(links.find((ele) => ele.name === 'cnn').link);
-// // // after es6
+// * using iife
 // console.log(links.find(({name}) => name === 'cnn').link);
 // // console.log(links[1].name);
 
 //------------------------------js day3----------------------------------------------------
 //--------------------------- spread operator vs. rest parameter ---------------------------
-// // rest parameter
-// // argument is an object (array like) to take care of all the parameters
-// Q: what does array like mean ? you can not use something like forEach, filter...
-//// Such as HTML.collection is also array like.
-// function foo(...args) {
-//     console.log(arguments);
+// * rest parameter
+// * arguments is an object (array like) to take care of all the parameters
+// * it does not have forEach method, but it looks like an array
+// * the original prototype is object
+// Q: what does array like mean ? it is array
+
+// * les see what does ...args do, also you can change it to ...args1 etc,
+// function foo(...args1) {
+//     console.log(arguments); //arguments is array like
 //     console.log(arguments[4]);
-//     console.log(...args);
-//     console.log(args);
+//     console.log(...args1);
+//     console.log(args1); // args1 is an array!!
 // }
 // foo(1, 2, 3, 4, "abc");
 
-// //another this example
+//*another this example
 // function foo(num, ...args) {
 //     console.log(...args);
 //     console.log(args);
 // }
 // foo(1, 2, 3, 4, "abc");
 
-// // i did see some students do something like this during the interveiw
-// //  function foo([...args]){} lets try it
-
-// //spread operator
-// // Q: what is spread oprator?
-// // Q: waht does ... mean?  (copy, is it shallow copy or deep copy?)
+// *spread operator
+// * Q: what is spread oprator?
+// * Q: waht does ... mean?  (copy, is it shallow copy or deep copy?)
+// * first level shallow copy
 // const arr = [1, 2, 3];
 // const arr1 =[...arr, 4, 5];
 // const arr2 = [...arr, 4, 5];
 // console.log(arr1, arr2);
 
-// // // their references are not the same
+// * their references are not the same
 // console.log(arr1 === arr2);
-// // // Q: how about this one?
+// * Q: how about this one?
 // console.log(arr1 == arr2); // false
-// // what does [] do? (Creating a new array and get a new reference, same thing for {})
+// * what does [] do? (Creating a new array and get a new reference, same thing for {})
 
-// arr1 = [1, 2, 3];
-// arr2 = arr1;
+// let arr1 = [1, 2, 3];
+// arr2 = arr1; // share the reference
 // console.log(arr1 === arr2);
 
-// const obj ={
+// const obj = {
 //     name: "Jojo", age: 18
 // }
-// const obj1 = {...obj};
-// console.log(obj1);
+// const obj1 = {height: 6, ...obj};
+// console.log(obj1 );
 
-// const str ='abcabc';
-// const newstr = str.split('') // ['a', 'b', 'c']
-// const set = new Set(newstr);
-// console.log(set);
 
 // --------------------------------object copy----------------------------------
-// // shallow copy : share the same reference.
-// // In other words, the memory addresses are the same
+// * shallow copy : share the same reference.
+// * In other words, the memory addresses are the same 
 // const obj = {name: 'Jojo', age: 18}
 // // just copy the refence
 // const obj1 = obj;
-// obj1.name = 'Dio'; // it will change
+// obj1.name = 'Dio'; 
 // console.log(obj);
 
-// // Q: how about spread operator (only deep copy the first level)
+// * Q: how about spread operator (only deep copy the first level)
 
-// // (The spread operator makes deep copies of data if the data is not nested.)
+// * (The spread operator makes deep copies of data if the data is not nested.)
 
 // const obj = {
 //     name: 'Jojo',
@@ -764,33 +764,41 @@
 //     links: [1, 2, 3],
 //     date: new Date(), // new Data(obj.date)
 //     foo: function() {
-//         console.log('this is foo')
+//         console.log('this is foo');
 //     }
 // };
-// only deep copy the first level for the reference of the object,
-// but for the seond level (e.g. links), it will share the reference for links
 // const obj2 = {...obj};
+// console.log(obj);
+// console.log(obj2);
 // console.log(obj == obj2); // == to cheack the reference
-// // // also you can check the reference for links
+
+// * if you want to compare the content of obj, json strigify needs the order to be the same
+// * maybe you will ask how to compare the value. _.isequal()
+// * in angular, we can use clone.
+
+// *only deep copy the first level for the reference of the object,
+// *but for the seond level (e.g. links), it will share the reference for links
+
+// * also you can check the reference for links
 // console.log(obj.links == obj2.links);
 // obj2.name = 'Dio'; // does not effect
 // console.log(obj);
-// obj2.links = [100, 200, 300];
+// obj2.links = [100, 200, 300]; // does not effect
 // console.log(obj);
-// obj2.links[0] = 100;
+//* how about the next one
+// obj2.links[0] = 100; // it changed!!!!
 // console.log(obj);
 
-// // 第一个方法 deep copy
-// // change the original obj to a string and then change it back
+// * so the question is like do we have any other methods????
+// * 第一个方法 deep copy
+// * change the original obj to a string and then change it back
 // console.log(obj, JSON.parse(JSON.stringify(obj)));
-// const obj2 = JSON.parse(JSON.stringify(obj));
+// const obj2 = JSON.parse(JSON.stringify(obj)); // lose the date
 // console.log(obj == obj2); // == to cheack the reference
-// // also you can check the reference for links
+// * also you can check the reference for links 
 // console.log(obj.links == obj2.links);
 
-// //the cons: it cant not change the function to a string. Lose the function
-// // also it has a issue for date.
-// console.log(obj2);
+// deep copy: Lodash | _.cloneDeep() Method
 
 //----------------------------------iife----------------------------------------
 // // The definition (save some codes, create private scope)
@@ -1355,12 +1363,12 @@
 //   f().then(alert);
 
 // * give an example, what is the result
-console.log(1);
-new Promise((res, rej) => {
-    console.log(2);
-    res(3);
-}).then(data => console.log(data));
-console.log(4);
+// console.log(1);
+// new Promise((res, rej) => {
+//     console.log(2);
+//     res(3);
+// }).then(data => console.log(data));
+// console.log(4);
 
 // --------------------Build your own MyPromise----------------------------
 
