@@ -810,12 +810,10 @@
 //     return console.log(5)
 // })()
 
-// * use iife to create closure ????? ---> work together with closure
 
 //--------------------------------closure------------------------------------
 // * example from MDN website
 // * definition
-// * you can also get rid of function init(), js have its function wrap up everything,
 // * and you just can not see it.   outer means parent
 // function init() {
 //     var name = 'Mozilla'; 
@@ -851,34 +849,36 @@
 //   myFunc();
 
 
-// *  Interview questions: class practice num之后就不能返回所加的值了，显示 out of limits 
-// const target = (a, b) => console.log(a + b);
-// const fn = limitedFunction(2, target);
+// *  Interview questions: num之后就不能返回所加的值了，显示 out of limits 
+// const targetFn = (a) => console.log(a);
+// // const targetFn = (a, b, c, d) => console.log(a + b + c + d);
+// const fn = limitedFunction(3, targetFn);
 
 // function limitedFunction(num, cb) {
 //     let counter = num;
-//     return function(...rest){
+//     return function(i){
 //         if (counter > 0){
 //             counter -= 1;
-//             return cb(...rest);
+//             return cb(i); 
 //         } else{
 //         console.log("out of limits");
 //         }
 //     }
 // }
-// fn(4,5);
-// fn(4,5);
-// fn(4,5);
-// fn(4,5);
+// fn(4);
+// fn(5);
+// fn(1,2);
+// fn(4);
 
 // ----------------------------js day4-----------------------------------
 //-------------------------------this-------------------------------------
 // * Q: what is this keyword? (window)
 // console.log(this);
-// * this is also window (bec), which is gloabl environment
+// //* this is also window (bec), which is gloabl environment
 // (function() {
 //     console.log(this);
 // })();
+
 
 // const myObj = {
 //     name: 'Dio',
@@ -888,8 +888,7 @@
 //         console.log(this); // this goes to obj
 
 //         const bar = function() {
-//             console.log(this);// this will goes to Window Global. Because it is not belong to myobj
-//             // in other words, this does not know the target in the first place, then it will target to window.
+//             console.log(this);// this will goes to Window Global. it is parent its a function. 
 //         }
 //         bar();
 //     }
@@ -903,34 +902,87 @@
 //     showThis() {
 //         console.log(this);
 //     }
-//     // no instace needed
+//     //* no instace needed
 //     static statisShowThis() {
 //         console.log(this);
 //     }
 // }
-// // no static has to creat an instance
 // const p = new Person('Jojo');
 // p.showThis();
 // Person.statisShowThis();
 
-// * Lets make a summary. Three ways to use this keyword
-// * 1. if "this" keyword in the function, it will target to global object
-// * 2. if the function belongs to an object, the "this" keyword will target to the object.
-// * 3.1 if "this" is in the class, it will target to the instance.
-// * 3.2 if you use static, it will target to the class
+// //* Q: how about this one? --> same as the class
+// function PersonFn(name, age) {
+//     this.name = name;
+//     this.age = age;  
+// }
 
-//-----------------------------call bind---------------------------------
+// PersonFn.prototype.run = function() {
+//     console.log(this);
+// }
+
+// const dio = new PersonFn('Dio', 20);
+// console.log(dio);
+// dio.run;
+
+// * Lets make a summary. Three ways to use this keyword
+// * 1. Function: if "this" keyword in the function, it will target to global object
+// * 2. Object: if the function belongs to an object, the "this" keyword will target to the object.
+// * 3.1 Class: if "this" is in the class, it will target to the instance.
+// * 3.2 Class: if you use static, it will target to the class
+
+
+
+//------------------------------------call apply bind -----------------------
+// *bind  // -->lazyloading: have to generate a new variable
+// const obj ={
+//     pi: 3.14,
+//     getPi() {
+//         return this.pi;
+//     }
+// }
+// //*this will go to the window object
+// function getPerimeter(radius) {
+//     console.log(this.getPi() * 2 * radius);
+// }
+
+// getPerimeter(20);
+// //*  bind involve one arg, -->the target you want to refer to
+// //* lady loading here is hold or wait until someone use this method.
+// const newGetPerimeter = getPerimeter.bind(obj); 
+// newGetPerimeter(20);
+
+// getPerimeter.call(obj, 20);
+
+// ******************call apply   ------> they are eagerloading, you dont need to have declare first
+// * apply and call only difference is one will invole an array.
+// const obj = {
+//     area: 1000,
+//     getArea() {
+//         return this.area;
+//     }
+// }
+// function getNum(num0, num1, num2) {
+//     console.log(this.getArea(), num0, num1, num2);
+// }
+
+
+// getNum.call(obj, 1, 2, 3);
+// * apply is also eager loading but only two args: obj and array
+// getNum.apply(obj, [1, 2, 3]);
+
+//----------------------------- more examples call  bind---------------------------------
 // const obj = {
 //     name: 'Dio',
 //     age: 18,
 
 //     foo: function() {
-//         console.log(this);
+//         console.log(this); // this one will refer to obj
 
 //         (function() {
 //             console.log(this);
-//         }).call(this);  // confusing!!!
-//         * bind 和下面的一模一样
+//         }).call(this);  // directly use it, just the syntax this = obj (you can change this to obj)
+//       //* bind 和下面的一模一样
 //         const bar = function(){
 //             console.log(this);
 //         }
@@ -940,62 +992,57 @@
 // }
 // obj.foo();
 
-//------------------------------------call apply bind -----------------------
-// *bind
-// const obj ={
-//     pi: 3.14,
-//     getPi() {
-//         return this.pi;
-//     }
-// }
-// function getPerimeter(radius) {
-//     console.log(this.getPi() * 2 * radius);
-// }
-
-// getPerimeter(20);
-// *  bind involve one arg, -->the target you want to target
-// const newGetPerimeter = getPerimeter.bind(obj); // -->lazyloading: you cant change bind to call
-// newGetPerimeter(20);
-
-// * lady loading here is hold or wait until someone use this method.
-
-//call apply   ------> they are eagerloading, you need to have declare first
-// const obj ={
-//     area: 1000,
-//     getArea() {
-//         return this.area
-//     }
-// }
-// function getNum(num0, num1, num2) {
-//     console.log(this.getArea(), num0, num1, num2);
-// }
-
-// getNum.call(obj, 1, 2, 3);
-// * apply is also eager loading but only two args: obj and array
-// getNum.apply(obj, [1, 2, 3]);
-
 // ES6 arrow function class let const promise
+
 //--------------------------------------arrow function  ES6 ----------------------
+// * Q: you guys know what are arrow functions right ?
+// With arrow functions the this keyword always represents the object that defined the arrow function.
 // const foo = a => b => a + b;
+// * example 1
+// const obj = {
+//     name: 'Dio',
+//     age: 18,
 
-// function bar (){
-//     console.log(arguments);
+//     foo: function() {
+//         const bar = function(){
+//             console.log(this);
+//         }
+//         const newbar = bar.bind(this);
+//         newbar();
+//         // With arrow functions the this keyword always represents the object that defined the arrow function.
+//        const baz = () => {
+//             console.log(this);
+//        }
+//        baz();
+
+//     }
 // }
+// obj.foo();
 
-// const foo = (...args) => console.log(args);
+// * example 2
+// Array.prototype.myforEach =  (callbackfn) => {
 
-// console.log(foo());
+//     for (let i = 0; i < this.length; i++) {
+//         console.log(this); // this is relative to the object: Array, but we want instance instead. so it will never work
+//         callbackfn(this[i]);
+//     }
+// }
+// const arr = [1, 2, 3, 4, 5];
+// arr.myforEach(function (ele) {
+//     console.log(ele);
+// })
 
 //--------------------------------------currying-------------------------
+// ! google it. It works closely with closure!
 // * interview question
-// foo(4)(5);
 
-// const callback1 = a => a + 2;
-// const callback2 = b => b * 2;
-// const callback3 = c => c / 3;
 
-// // use whatever callback you want...
-// console.log(runAll(callback1, callback1, callback1)(10));
+const callback1 = a => a + 2;
+const callback2 = b => b * 2;
+const callback3 = c => c / 3;
+
+// use whatever callback you want...
+console.log(runAll(callback1, callback2, callback3)(10));
 
 // function runAll(...args) {
 //     // 由参数的话 格式就这样 return function 没法改
@@ -1004,22 +1051,18 @@
 //         for (let i in args){
 //             res =args[i](res);
 //         }
-// // for (let ele of args) {
-// // res = ele(res);
-// // }
 //         return res;
 //       }
 // }
 
-// // using reduce is neater!
-// function runAll(...args) {
+// * using reduce is neater!
+function runAll(...args) {
 
-//     return function (num) {
-//         return args.reduce((acc, cb) => cb(acc), num);
-//return args.reduce((acc, cur) => cur(acc), num);
-//     }
-// }
-
+    return function (num) {
+        return args.reduce((acc, cb) => cb(acc), num);
+    }
+}
+//_---------------forget about it----------------------------
 // this is also currying.
 // const arr = [1, 2, 3];
 
@@ -1124,15 +1167,15 @@
 //     { userid: 12, role: 'Hunter' },
 // ];
 
-// looking for
-// solution (firstarr, secondarr)
-// [
-//     { userid: 2, name: 'Velen', role: 'Mage'},
-//     { userid: 4, name: 'Gul\'Dan', role: 'Worlock' },
-//     { userid: 12,  name: 'Sylvanas', role: 'Hunter' },
-//     { userid: 23, name: 'Muradin', role: null},
-//     ...
-// ];
+// // *looking for
+// // console.log(solution(first, second));
+// // [
+// //     { userid: 2, name: 'Velen', role: 'Mage'},
+// //     { userid: 4, name: 'Gul\'Dan', role: 'Worlock' },
+// //     { userid: 12,  name: 'Sylvanas', role: 'Hunter' },
+// //     { userid: 23, name: 'Muradin', role: null},
+// //     ...
+// // ];
 
 // function solution (firstarr, secondarr) {
 //     // const arr = firstarr.contact(secondarr);
@@ -1142,16 +1185,15 @@
 //     const map = {};
 //     arr.forEach(ele => {
 //         map[ele.userid] = {
-//             ...{name: null, role:null},
-//             *覆盖作用, Merge two maps. The last repeated key stay.
-//             * 这个是指重复的id，也就是第二次出现的
+//             name: null, role: null, // ...{name: null, role: null}
+//             //*覆盖作用, Merge two maps. The last repeated key stay.
+//             //* 第二次碰到重复的id的时候，要替换之前的，所以就要加满
 //             ...map[ele.userid],
-//            * 这个就是当前的
+//            //* 这个就是当前的
 //             ...ele
 //         };
 
 //     })
-//     console.log(map[2]);
 //     return map;
 
 // }
