@@ -854,6 +854,7 @@
 // // const targetFn = (a, b, c, d) => console.log(a + b + c + d);
 // const fn = limitedFunction(3, targetFn);
 
+
 // function limitedFunction(num, cb) {
 //     let counter = num;
 //     return function(i){
