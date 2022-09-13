@@ -1,7 +1,7 @@
 // ~~~~~~~~~~~~~~~~~~~~~~~~~API~~~~~~~~~~~~~~~~~~~~~~~~~
 export const TodoAPI = (() => {
     const baseUrl = 'http://localhost:3000';
-    // const basurl = 'https://jsonplaceholder.typicode.com';
+    // const baseUrl = 'https://jsonplaceholder.typicode.com';
     const todo = 'todos'
 
     const getAllTodos = () =>

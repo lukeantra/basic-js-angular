@@ -131,6 +131,7 @@ const Controler = ((view, model) => {
                     const newtodo = new model.Todo(event.target.value);
                     model.addTodo(newtodo).then(todo => {
                         state.todolistPending = [todo, ...state.todolistPending];
+                        console.log(state.todolistPending);
                     });
                     event.target.value = '';
                 }
@@ -253,6 +254,7 @@ const Controler = ((view, model) => {
 
     const onInit = () => {
         model.getAllTodos().then(data => {
+            // console.log(data);
 
             let arr1 = [];
             let arr2 = [];
