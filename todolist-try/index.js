@@ -113,9 +113,6 @@ const Controller = ((model, view) => {
                 state.addTodos(newtodo);
             }
         })
-
-        
-
     };
 
     const bootstrap = () => {
