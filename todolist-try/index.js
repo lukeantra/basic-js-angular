@@ -67,10 +67,10 @@ const Model = ((api, view) => {
             return this.#todos;
         }
 
-        set settodolist(newtodos) {
-            this.#todos = newtodos;
+        set settodolist(todos) {
+            this.#todos = todos;
             const list = document.querySelector(".list-container");
-            const tmp = view.createTmp(newtodos); // 这个也可以是newtodos 或者是 this.#todos
+            const tmp = view.createTmp(todos); // 这个也可以是newtodos 或者是 this.#todos
             view.render(list, tmp);
         }
     }
