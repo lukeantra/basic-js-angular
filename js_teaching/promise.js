@@ -2,35 +2,38 @@ const states = {
     PENDING: 'pending',
     FULFILLED: 'fulfilled',
     REJECTED: 'rejected',
-  };
+};
 
 
 class myPormise {
-  // states = {
-  //   PENDING: 'pending',
-  //   FULFILLED: 'fulfilled',
-  //   REJECTED: 'rejected',
-  // };
+    #state = states.PENDING;
+    #value = undefined;
+    #thenqueue = [];
+    #catchqueue = [];
+
+    constructor(cbFn) {
 
 
+        if (typeof cbFn === 'function') {
+            try {
+                cbFn(this.#onFulfilled.bind(this), this.#onRejected.bind(this))
+            }
 
-  constructor(cb) {
-    this.#state = states.PENDING;
-    this.#value = undefined;
-    this.#thenqueue = [];
-    this.#catchqueue = [];
-
-    if (typeof cb === 'function') {
-      try {
-        cb(this.#onFulfilled.bind(this), this.#onRejected.bind(this))
-      }
-      
-      catch (err) {}
+            catch (err) { }
+        }
     }
-  }
-    
 
-    then() {
+    then(fulfilledFn, catchFn) {
+        const controlPromise = new myPormise();
+        this.#thenqueue.push([controlPromise, fulfilledFn, catchFn]);
+
+        if (this.#state === states.FULFILLED) {
+            this.#propagateResolved();
+        } else if (this.#state === states.REJECTED) {
+            this.#propagateRejected();
+        }
+
+        return controlPromise;
 
     }
 
@@ -41,21 +44,36 @@ class myPormise {
     finally() {
 
     }
-    
+
     #onFulfilled(value) {
-      if (this.#state === states.PENDING) {
-        this.#state = states.FULFILLED;
-        this.#value = value;
-        this.#propagationResolved();
-      }
+        if (this.#state === states.PENDING) {
+            this.#state = states.FULFILLED;
+            this.#value = value;
+            this.#propagateResolved();
+        }
     }
 
     #onRejected(value) {
         if (this.#state === states.PENDING) {
-          this.#state = states.FULFILLED;
-          this.#value = value;
-          this.#propagationResolved();
+            this.#state = states.REJECTED;
+            this.#value = value;
+            this.#propagateRejected();
         }
-      }
-    
+    }
+
+    #propagateResolved() {
+        this.#thenqueue.forEach(([a, b]) => {
+
+        })
+
+    }
+
+    #propagateRejected() {
+
+    }
+
 }
+
+const p = new Promise ((res, rej) => {
+    res(42);
+})
