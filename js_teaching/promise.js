@@ -11,31 +11,34 @@ class myPormise {
   //   FULFILLED: 'fulfilled',
   //   REJECTED: 'rejected',
   // };
-  #state = states.PENDING;
-  #value = undefined;
-  #thenqueue = [];
-  #catchqueue = [];
+
 
 
   constructor(cb) {
+    this.#state = states.PENDING;
+    this.#value = undefined;
+    this.#thenqueue = [];
+    this.#catchqueue = [];
 
     if (typeof cb === 'function') {
       try {
         cb(this.#onFulfilled.bind(this), this.#onRejected.bind(this))
       }
       
-      catch (err) {
-
-        #onRejected(err);
-      }
+      catch (err) {}
     }
+  }
     
 
     then() {
-    
+
     }
 
     catch() {
+
+    }
+
+    finally() {
 
     }
     
@@ -46,6 +49,13 @@ class myPormise {
         this.#propagationResolved();
       }
     }
+
+    #onRejected(value) {
+        if (this.#state === states.PENDING) {
+          this.#state = states.FULFILLED;
+          this.#value = value;
+          this.#propagationResolved();
+        }
+      }
     
-  }
 }
