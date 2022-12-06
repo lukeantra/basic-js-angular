@@ -4,6 +4,7 @@ const states = {
     REJECTED: 'rejected',
 };
 
+const isThenable = maybePromise => maybePromise && typeof maybePromise.then === 'function';
 
 class myPormise {
     #state = states.PENDING;
@@ -12,7 +13,6 @@ class myPormise {
     #catchqueue = [];
 
     constructor(cbFn) {
-
 
         if (typeof cbFn === 'function') {
             try {
@@ -53,17 +53,30 @@ class myPormise {
         }
     }
 
-    #onRejected(value) {
+    #onRejected(reason) {
         if (this.#state === states.PENDING) {
             this.#state = states.REJECTED;
-            this.#value = value;
+            this.#reason = reason;
             this.#propagateRejected();
         }
     }
 
     #propagateResolved() {
         this.#thenqueue.forEach(([a, b]) => {
+            if (typeof fulfilledFn === 'function') {
+                const valueOrPromise = fulfilledFn(this.#value);
 
+                if (isThenable(valueOrPromise)) {
+                    valueOrPromise.then(
+                        value => controlPromise.#onFulfilled(value),
+                        reason => controlPromise.#onRejected(reason),
+                    )
+                } else {
+                    controlPromise.#onFulfilled(valueOrPromise);
+                }
+            }else {
+                return controlPromise.#onFulfilled(this.#value);
+            }
         })
 
     }
@@ -74,6 +87,17 @@ class myPormise {
 
 }
 
-const p = new Promise ((res, rej) => {
-    res(42);
+const promise = new Promise((res, rej) => {
+    res(1);
+    setTimeout(() => res(2), 1000);
+});
+
+const firstThen = promise.then(value => {
+    console.log(value);
+    return value + 1;
+})
+
+const secondThen = firstThen.then(value => {
+    console.log(value);
+    return value + 1;
 })
