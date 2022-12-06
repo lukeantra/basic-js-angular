@@ -87,7 +87,6 @@ class myPormise {
 }
 
 const promise = new Promise((res, rej) => {
-    // res(1);
     setTimeout(() => res(2), 3000);
 });
 
