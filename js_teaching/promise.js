@@ -33,9 +33,7 @@ class myPormise {
         } else if (this.#state === states.REJECTED) {
             this.#propagateRejected();
         }
-
         return controlPromise;
-
     }
 
     catch() {
@@ -79,9 +77,7 @@ class myPormise {
                 return controlPromise.#onFulfilled(this.#value);
             }
         })
-
         this.#thenqueue = [];
-
     }
 
     #propagateRejected() {
@@ -91,8 +87,8 @@ class myPormise {
 }
 
 const promise = new Promise((res, rej) => {
-    res(1);
-    setTimeout(() => res(2), 1000);
+    // res(1);
+    setTimeout(() => res(2), 3000);
 });
 
 const firstThen = promise.then(value => {
