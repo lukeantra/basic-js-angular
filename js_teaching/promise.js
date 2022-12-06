@@ -9,6 +9,7 @@ const isThenable = maybePromise => maybePromise && typeof maybePromise.then === 
 class myPormise {
     #state = states.PENDING;
     #value = undefined;
+    #reason = undefined;
     #thenqueue = [];
     #catchqueue = [];
 
@@ -62,7 +63,7 @@ class myPormise {
     }
 
     #propagateResolved() {
-        this.#thenqueue.forEach(([a, b]) => {
+        this.#thenqueue.forEach(([controlPromise, fulfilledFn]) => {
             if (typeof fulfilledFn === 'function') {
                 const valueOrPromise = fulfilledFn(this.#value);
 
@@ -78,6 +79,8 @@ class myPormise {
                 return controlPromise.#onFulfilled(this.#value);
             }
         })
+
+        this.#thenqueue = [];
 
     }
 
