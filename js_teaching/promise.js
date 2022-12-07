@@ -6,26 +6,28 @@ const states = {
 
 const isThenable = maybePromise => maybePromise && typeof maybePromise.then === 'function';
 
-class myPormise {
+class myPromise {
     #state = states.PENDING;
     #value = undefined;
     #reason = undefined;
     #thenqueue = [];
     #catchqueue = [];
 
-    constructor(cbFn) {
+    constructor(computation) {
 
-        if (typeof cbFn === 'function') {
-            try {
-                cbFn(this.#onFulfilled.bind(this), this.#onRejected.bind(this))
-            }
-
-            catch (err) { }
+        if (typeof computation === 'function') {
+            // needs to delay this event
+            setTimeout(() => {
+                try {
+                    computation(this.#onFulfilled.bind(this), this.#onRejected.bind(this))
+                }
+                catch (err) { }
+            })
         }
     }
 
     then(fulfilledFn, catchFn) {
-        const controlPromise = new myPormise();
+        const controlPromise = new myPromise();
         this.#thenqueue.push([controlPromise, fulfilledFn, catchFn]);
 
         if (this.#state === states.FULFILLED) {
@@ -86,14 +88,16 @@ class myPormise {
 
 }
 
-const promise = new Promise((res, rej) => {
-    setTimeout(() => res(2), 3000);
+const promise = new myPromise((res, rej) => {
+    console.log
+    setTimeout(() => res(2), 1000);
 });
 
 const firstThen = promise.then(value => {
     console.log(value);
     return value + 1;
 })
+
 
 const secondThen = firstThen.then(value => {
     console.log(value);
