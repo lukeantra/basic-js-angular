@@ -31,7 +31,7 @@ body{
     background-color: var(--todolist-container-col);
 }
 
-.upper-container{
+.todolist{
     background-color: var(--todolist-header-input-col);
     height: var(--todolist-upper-height);
 
