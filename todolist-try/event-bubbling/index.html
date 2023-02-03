@@ -10,22 +10,34 @@
   <body>
     <form class="grandparent" onclick="clickTarget()">
       FORM
-      <div class="parent">
+      <div class="parent" onclick="clickTarget()">
         DIV
-        <p class="child" id="hhh" >P</p>
+        <p class="child" id="theid" onclick="clickTarget()">P</p>
       </div>
     </form>
   </body>
 
   <script>
     function clickTarget() {
-      console.log(event.target);
+      // console.log(event.currentTarget.className);
+      console.log(event.target.className);
+      // console.log(event.target.id);
     }
   </script>
 </html>
 
 <!-- 参考链接：
     https://javascript.info/bubbling-and-capturing
-event.target： 当前点击的那个element（需要是在那个方法里的任意children的element，只要点击到了那个）
-event.currentTarget: 只能是方法对应的那个element
+
+    1. bubbling: 
+    点击child，就会往parent（外面）冒。每一层有方法就会触发那层的方法。
+    2. event target:
+    The most deeply nested element (此时方法在外层，或者当前点的那层) that caused the event is called a target element, 
+    accessible as event.target.
+    3. catch:
+    if we have a single handler form.onclick (在form那一层), then it can “catch” all clicks inside the form. 
+    No matter where the click happened, it bubbles up to <form> and runs the handler.
+    4. 
+    event.currentTarget: --this-- 只能是方法(handler)对应的那个element.
+    5.we also can stop the bubbling. see that link.
 -->

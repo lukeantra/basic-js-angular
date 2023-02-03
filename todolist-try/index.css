@@ -3,7 +3,7 @@
     --todolist-width: 600px;
     --todolist-header-height: 40px;
     --todolist-header-width: 550px;
-    --todolist-list-height: 50px;
+    --todolist-list-height: 45px;
     --todolist-upper-height: 150px;
 
     --todolist-header-input-col: lightblue;
@@ -29,6 +29,8 @@ body{
     height: var(--todolist-height);
     width: var(--todolist-width);
     background-color: var(--todolist-container-col);
+    box-shadow: 5px 5px 2px black;
+    border: 1px solid;
 }
 
 .todolist{
@@ -40,14 +42,14 @@ body{
     align-items: center;
     justify-content: center;
 
-    padding-bottom: 2%;
+
 }
 
-.upper-container header {
+.todolist header {
     padding: 2%;
 }
 
-.upper-container input {
+.todolist input {
     height: var(--todolist-header-height);
     width: var(--todolist-header-width);
     border: none;

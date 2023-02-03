@@ -1,3 +1,4 @@
+console.log(1);
 //----------------api----------------------
 const Api = (() => {
     const baseUrl = "https://jsonplaceholder.typicode.com";
@@ -6,22 +7,25 @@ const Api = (() => {
     const getToDos = () =>
         fetch([baseUrl, todopath].join("/")).then((response) => response.json());
 
-    const deleteTodos = (id) =>
+    const deleteTodo = (id) =>
         fetch([baseUrl, todopath, id].join("/"), {
             method: "DELETE",
         });
 
-    const addTodos = (newtodo) =>
+    const addTodo = (newtodo) =>
         fetch([baseUrl, todopath].join("/"), {
             method: 'POST',
             body: JSON.stringify(newtodo),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+            },
         }).then((response) => response.json())
 
 
     return {
         getToDos,
-        deleteTodos,
-        addTodos
+        deleteTodo,
+        addTodo
     };
 })();
 
@@ -51,23 +55,23 @@ const View = (() => {
 //----------------model----------------------
 const Model = ((api, view) => {
     const getTodos = api.getToDos;
-    const deleteTodos = api.deleteTodos;
-    const addTodos = api.addTodos;
+    const deleteTodo = api.deleteTodo;
+    const addTodo = api.addTodo;
 
     class Newtodo {
         constructor(title) {
-            this.title = title
+            this.title = title;
         }
     }
 
     class State {
         #todos = [];
 
-        get gettodolist() {
+        get todolist() {
             return this.#todos;
         }
 
-        set settodolist(todos) {
+        set todolist(todos) {
             this.#todos = todos;
             const list = document.querySelector(".list-container");
             const tmp = view.createTmp(todos); // 这个也可以是newtodos 或者是 this.#todos
@@ -77,9 +81,10 @@ const Model = ((api, view) => {
 
     return {
         getTodos,
-        deleteTodos,
-        addTodos,
+        deleteTodo,
+        addTodo,
         State,
+        Newtodo,
     };
 })(Api, View);
 
@@ -91,39 +96,45 @@ const Controller = ((model, view) => {
 
     const init = () => {
         model.getTodos().then((todolist) => {
-            state.settodolist = todolist;
+            state.todolist = todolist;
         });
     };
 
-    const deleteTodos = () => {
+    const deleteTodo = () => {
         list.addEventListener("click", (event) => {
-            state.settodolist = state.gettodolist.filter(
+            state.todolist = state.todolist.filter(
                 (ele) => +ele.id !== +event.target.id
             );
-            model.deleteTodos(event.target.id);
+            model.deleteTodo(event.target.id);
         });
     };
 
-    const addTodos = () => { 
+    const addTodo = () => {
+        // const input = document.querySelector(".input-container");
         input.addEventListener("keyup", event => {
             if (event.key === "Enter" && event.target.value !== "") {
-                const newtodo = new model.Newtodo(event.target.value);
+                const todo = new model.Newtodo(event.target.value);
+                console.log(todo);
 
-                state.settodolist = state.gettodolist.concat(newtodo);
-                state.addTodos(newtodo);
+                model.addTodo(todo).then((todo) => {
+                    state.todolist = [todo, ...state.todolist];
+                    console.log(todo);
+                });
+                
+                event.target.value = "";
             }
         })
     };
 
     const bootstrap = () => {
         init();
-        deleteTodos();
-        addTodos();
+        deleteTodo();
+        addTodo();
     };
 
     return {
         bootstrap,
     };
-})(Model, View);
+})(Model);
 
 Controller.bootstrap();

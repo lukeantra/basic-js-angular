@@ -7,19 +7,19 @@ const states = {
 const isThenable = maybePromise => maybePromise && typeof maybePromise.then === 'function';
 
 class myPromise {
-    #state = states.PENDING;
-    #value = undefined;
-    #reason = undefined;
-    #thenqueue = [];
-    #catchqueue = [];
+    state = states.PENDING;
+    value = undefined;
+    reason = undefined;
+    thenqueue = [];
+    catchqueue = [];
 
-    constructor(computation) {
+    constructor(executor) {
 
-        if (typeof computation === 'function') {
-            // needs to delay this event
+        if (typeof executor === 'function') {
+            // !!!needs to delay this event
             setTimeout(() => {
                 try {
-                    computation(this.#onFulfilled.bind(this), this.#onRejected.bind(this))
+                    executor(this.onFulfilled.bind(this), this.onRejected.bind(this))
                 }
                 catch (err) { }
             })
@@ -28,12 +28,12 @@ class myPromise {
 
     then(fulfilledFn, catchFn) {
         const controlPromise = new myPromise();
-        this.#thenqueue.push([controlPromise, fulfilledFn, catchFn]);
+        this.thenqueue.push([controlPromise, fulfilledFn, catchFn]);
 
-        if (this.#state === states.FULFILLED) {
-            this.#propagateResolved();
-        } else if (this.#state === states.REJECTED) {
-            this.#propagateRejected();
+        if (this.state === states.FULFILLED) {
+            this.propagateResolved();
+        } else if (this.state === states.REJECTED) {
+            this.propagateRejected();
         }
         return controlPromise;
     }
@@ -42,47 +42,44 @@ class myPromise {
 
     }
 
-    finally() {
-
-    }
-
-    #onFulfilled(value) {
-        if (this.#state === states.PENDING) {
-            this.#state = states.FULFILLED;
-            this.#value = value;
-            this.#propagateResolved();
+    onFulfilled(value) {
+        if (this.state === states.PENDING) {
+            this.state = states.FULFILLED;
+            this.value = value;
+            this.propagateResolved();
         }
     }
 
-    #onRejected(reason) {
-        if (this.#state === states.PENDING) {
-            this.#state = states.REJECTED;
-            this.#reason = reason;
-            this.#propagateRejected();
+    onRejected(reason) {
+        if (this.state === states.PENDING) {
+            this.state = states.REJECTED;
+            this.reason = reason;
+            this.propagateRejected();
         }
     }
 
-    #propagateResolved() {
-        this.#thenqueue.forEach(([controlPromise, fulfilledFn]) => {
+    propagateResolved() {
+        this.thenqueue.forEach(([controlPromise, fulfilledFn]) => {
             if (typeof fulfilledFn === 'function') {
-                const valueOrPromise = fulfilledFn(this.#value);
+                const valueOrPromise = fulfilledFn(this.value);
 
                 if (isThenable(valueOrPromise)) {
                     valueOrPromise.then(
-                        value => controlPromise.#onFulfilled(value),
-                        reason => controlPromise.#onRejected(reason),
+                        value => controlPromise.onFulfilled(value),
+                        reason => controlPromise.onRejected(reason),
                     )
                 } else {
-                    controlPromise.#onFulfilled(valueOrPromise);
+                    controlPromise.onFulfilled(valueOrPromise);
                 }
             }else {
-                return controlPromise.#onFulfilled(this.#value);
+                return controlPromise.onFulfilled(this.value);
             }
         })
-        this.#thenqueue = [];
+        this.thenqueue = [];
     }
 
-    #propagateRejected() {
+    
+    propagateRejected() {
 
     }
 
