@@ -503,7 +503,7 @@
 // }
 //* another example
 // for (const key in obj) {
-//     console.log(key, obj[key]); // you cant do things like: obj.key, becuase key is a variable
+//     console.log(key, obj[key]); 
 // }
 
 // *3 Q: If somebody ask, can we use const in this case, e.g. (const ele of arr) --> yes,
@@ -515,8 +515,8 @@
 //* Same question, we can construct an object
 // const obj = {name: 'Dio', age: 200 }
 // console.log(obj.name, obj['name']);
-// *Q: what is the difference between this two: obj.name vs. obj['name']
-// * [] is for a variable, but . is for a given key or more like a sepecific key
+
+// JavaScript syntax requires properties beginning with a digit to be accessed using bracket notation instead of dot notation.
 
 //* forEach building method-------- but it is not orginal for loop ----------
 //* But no break and continune inside of the functions...
@@ -529,7 +529,7 @@
 //     console.log(ele);
 // });
 
-//*forEach arguments: current ele, current index, original array
+//*forEach arguments in callback: current ele, current index, original array
 //*ele is required , but other two are not required.
 // const arr = [100, 200, 300];
 // arr.forEach((ele, i, array) => {
@@ -710,7 +710,7 @@
 // };
 // *
 // console.log(links.find((ele) => ele.name === 'cnn').link);
-// * using iife
+// * using destructure
 // console.log(links.find(({name}) => name === 'cnn').link);
 // // console.log(links[1].name);
 
@@ -720,7 +720,6 @@
 // * arguments is an object (array like) to take care of all the parameters
 // * it does not have forEach method, but it looks like an array
 // * the original prototype is object
-// Q: what does array like mean ? it is array
 
 // * les see what does ...args do, also you can change it to ...args1 etc,
 // function foo(...args1) {
@@ -747,21 +746,54 @@
 // const arr2 = [...arr, 4, 5];
 // console.log(arr1, arr2);
 
-// * their references are not the same
-// console.log(arr1 === arr2);
-// * Q: how about this one?
-// console.log(arr1 == arr2); // false
+
 // * what does [] do? (Creating a new array and get a new reference, same thing for {})
 
 // let arr1 = [1, 2, 3];
 // arr2 = arr1; // share the reference
-// console.log(arr1 === arr2);
 
 // const obj = {
 //     name: "Jojo", age: 18
 // }
 // const obj1 = {height: 6, ...obj};
 // console.log(obj1 );
+
+// some cases:
+
+// const arr = [
+//   'AAPL',
+//   'MSFT',
+//   'BAC',
+//   ['JPM', 'TSLA'],
+//   ['DOW', 'COIN', 'MMM']
+// ]
+
+// function flatten (arr) {
+//   return arr.reduce((acc, cur) => {if (Array.isArray(cur)) {
+//     return [...acc, ...cur]
+//   }else {
+//     return [...acc, cur]
+//   }
+// }, [])
+// }
+
+// console.log(flatten(arr))
+
+// practice reduce
+// const arr = [
+//   {name: 'AA', age: 1},
+//   {name: 'BB', age: 2},
+//   {name: 'CC', age: 3},
+// ];
+
+// const foo = (arr) => {
+//   return arr.reduce((acc, cur)=> {
+//     return {...acc, [cur.name]: cur.age}
+//   }, {})
+// }
+
+// console.log(foo(arr));
+
 
 // --------------------------------object copy----------------------------------
 // * shallow copy : share the same reference.
