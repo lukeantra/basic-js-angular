@@ -575,10 +575,10 @@
 // !the difference between forEach and Map
 // *map always generate new array. Below see the examples
 // console.log( arr.forEach(function(ele) {
-//     console.log(ele);
+//     return ele;
 // }))
 // console.log( arr.map(function(ele) {
-//     console.log(ele);
+//     return ele;
 // }))
 
 //* build myMap
