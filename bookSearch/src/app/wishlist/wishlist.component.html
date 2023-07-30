@@ -1,0 +1,8 @@
+<p>My wish list {{ (wishlist$ | async).length }}</p>
+
+<div *ngFor="let book of wishlist$ | async">
+  <div class="wishlist-container">
+    <div class="title">{{ book.volumeInfo.title }}</div>
+    <div class="delete-btn" (click)="deletebook(book)">X</div>
+  </div>
+</div>

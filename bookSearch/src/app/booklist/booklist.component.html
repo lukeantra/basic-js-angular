@@ -1,0 +1,26 @@
+<input #booksearch type="text">
+
+<ul *ngFor="let book of books$ | async ">
+  <li class="book-card" (click)="addToWishlist(book)">
+    <div class="book-img">
+      <img [src]="book.volumeInfo.imageLinks?.thumbnail" />
+    </div>
+    <div class="book-info">
+      <h2>
+        <strong>{{ book.volumeInfo.title }}</strong>
+      </h2>
+      <div *ngIf="book.volumeInfo.authors">
+        <strong>Author: </strong>{{ book.volumeInfo.authors }}
+      </div>
+      <div *ngIf="book.volumeInfo.publisher">
+        <strong>Publisher: </strong>{{ book.volumeInfo.publisher }}
+      </div>
+      <div *ngIf="book.volumeInfo.publishedDate">
+        <strong>Published Date: </strong>{{ book.volumeInfo.publishedDate }}
+      </div>
+      <p *ngIf="book.volumeInfo.description">
+        <strong>Description: </strong>{{ book.volumeInfo.description }}
+      </p>
+    </div>
+  </li>
+</ul>
