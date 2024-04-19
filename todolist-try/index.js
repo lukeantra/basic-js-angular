@@ -73,6 +73,7 @@ const Model = ((api, view) => {
 
         set todolist(todos) {
             this.#todos = todos;
+            //rerender the page
             const list = document.querySelector(".list-container");
             const tmp = view.createTmp(todos); // 这个也可以是newtodos 或者是 this.#todos
             view.render(list, tmp);
