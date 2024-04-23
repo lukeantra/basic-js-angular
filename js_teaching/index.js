@@ -366,6 +366,7 @@
 // protected vs. private
 // protected is for programmers communication not in language syntax level,
 // but private is in the language level
+// protected means the variable or method can be accessed by subclass
 // ? But if we inherit from CoffeeMachine, then we’ll have no direct access
 // ? to #waterAmount. We’ll need to rely on waterAmount getter/setter:
 
