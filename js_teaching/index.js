@@ -396,7 +396,7 @@
 //     getCompany() {
 //         return this.#company ;
 //     }
-//     //不能get到private variable age
+//     //不能get到private variable age, （但能get到name，因为name有get method）
 //     getAge() {
 //         return this.age;
 //     }
@@ -419,7 +419,7 @@
 // // js does not have overload (same name but different params)feature
 // // but it has something called overiding
 
-// so here is a very good example I want to show you guys.
+// so here is a very good example I want to show you guys. （我不知道这块在搞什么？？？）
 // we have a instance from employee when it calling some function, it always search from function
 // employee (Itsself)first then from person(Parent).
 // which means there is an order. instance > class Employee > class Person
