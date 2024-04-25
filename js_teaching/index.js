@@ -1052,7 +1052,7 @@
 // * Lets make a summary. Three ways to use this keyword
 // * 1. Function: if "this" keyword in the function, it will point to global object
 // * 2. Object: if the function belongs to/is a direct child of an object, the "this" keyword will point to the object.
-// * 3.1 Class: if "this" is in the class, it will point to the instance.
+// * 3.1 Class: if "this" is in the class, it will point to the instance. even in the constuctor. this will refer to instance
 // * 3.2 Class: if you use static, it will point to the class
 
 //------------------------------------call apply bind -----------------------
